@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- [DB연결 사용법] 8. 만든 DTO와 Mapper정의하기 -->
+	<typeAliases>
+		<typeAlias type="com.alhl.hz.dto.UserDTO" alias="UserDTO"></typeAlias>
+	</typeAliases>
+	
+	
+	<mappers>
+		<mapper resource="mappers/UserMapper.xml" />
+	</mappers>
+</configuration>

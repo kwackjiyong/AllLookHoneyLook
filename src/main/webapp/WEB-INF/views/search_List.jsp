@@ -220,7 +220,7 @@
 								id="example">
 								<thead>
 									<tr>
-										<th width="5%">index</th>
+										<th width="5%">가격순</th>
 										<th width="10%">이미지</th>
 										<th width="65%">제목</th>
 										<th width="10%">가격</th>
@@ -375,14 +375,28 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
-        $('#example').DataTable( {
-            "initComplete": function () {
-                var api = this.api();
-                api.$('td').click( function () {
-                    api.search( this.innerHTML ).draw();
-                } );
-            }
-        } );
+        $('#example').DataTable({
+        	"lengthMenu": [ 5, 10, 25, 50, 100],
+        	"scrollY": 400,
+            "scrollCollapse": true,
+            "pagingType": "full_numbers",
+            "language": {
+                search: "리스트 내 검색 : ",
+                "info": "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
+                "infoEmpty": "검색 결과가 없습니다.",
+                "infoFiltered": " ( _MAX_개의 검색결과 중)",
+                "lengthMenu": "_MENU_ 개씩 보기",
+                "paginate": {
+                    "first": "처음",
+                    "last": "마지막",
+                    "next": "다음",
+                    "previous": "이전"
+                  }
+                
+                
+               }
+        	
+        });
     } );
     </script>
 

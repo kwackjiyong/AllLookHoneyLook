@@ -110,7 +110,7 @@
 
 				<div class="row justify-content-center">
 
-					<%-- <!-- 리스트 -->
+					<%-- <!-- 리스트 1-->
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">

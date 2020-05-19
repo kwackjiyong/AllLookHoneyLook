@@ -48,16 +48,6 @@
 
 	<div class="site-wrap" id="home-section">
 
-		<!-- 	<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
- -->
-
 		<nav class="navbar navbar-expand-lg fixed-top py-3 navbar-light"
 			id="mainNav">
 			<div class="container">
@@ -96,20 +86,6 @@
 						<li class="dropdown" id="service"><a class="nav-link"
 							data-toggle="modal" data-target="#loginDialog"
 							aria-haspopup="true" aria-expanded="false" role="button">Login</a></li>
-
-
-						<!-- <li class="dropdown" id="service"><a class="nav-link"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-							role="button"><img
-								src="./resources/template/images/login.png"
-								style="width: 50px; height: 50px;" />Login</a>
-							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown-item" data-toggle="modal"
-									data-target="#loginDialog">Login</li>
-
-								<li class="dropdown-item" data-toggle="modal"
-									data-target="#SigninDialog">Sign In</li>
-							</ul></li> -->
 					</ul>
 				</div>
 			</div>
@@ -121,37 +97,6 @@
 
 			<div class="container">
 				<div class="row align-items-center position-relative">
-					<!-- <section>
-						<div class="col-9  text-right">
-							<span class="d-inline-block d-lg-none"><a href="#"
-								class="text-primary site-menu-toggle js-menu-toggle py-5"><span
-									class="icon-menu h3 text-primary"></span></a></span>
-
-							<nav class="site-navigation text-right ml-auto d-none d-lg-block"
-								role="navigation">
-
-								<ul class="site-menu main-menu js-clone-nav ml-auto ">
-									<li class="active"><a href="index.html" class="nav-link">카테고리</a></li>
-									<li><a href="about.html" class="nav-link">검색어순위</a></li>
-
-									<li class="dropdown" id="service"><a class="nav-link"
-										data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false" role="button"><img
-											src="./resources/template/images/login.png"
-											style="width: 50px; height: 50px;" /></a>
-										<ul class="dropdown-menu" role="menu">
-											<li class="dropdown-item" data-toggle="modal"
-												data-target="#loginDialog">Login</li>
-
-											<li class="dropdown-item" data-toggle="modal"
-												data-target="#SigninDialog">Sign In</li>
-										</ul></li>
-								</ul>
-							</nav>
-						</div>
-
-					</section> -->
-
 
 
 				</div>

@@ -63,31 +63,52 @@
 					style="left: 150px; top: 20px; border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
 					<div style="position: relative; padding-right: 40px;">
 						<form action="search.do">
-						<input type="text" name="searchWord" class="form-control"
-							placeholder="검색어를 입력하세요"
-							style="width: 600px; height: 45px; border: none; font-size: 18px; color: #9F6118;">
-						<button
-							style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
-							<img src="<c:url value='/resources/icon/search.png'/>"
-								style="position: absolute; top: 0; right: 0; width: 45px; height: 45px; fill: #FF8A3D; padding: 1px 1px;">
-						</button>
+							<input type="text" name="searchWord" class="form-control"
+								placeholder="검색어를 입력하세요"
+								style="width: 600px; height: 45px; border: none; font-size: 18px; color: #9F6118;">
+							<button
+								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+								<img src="<c:url value='/resources/icon/search.png'/>"
+									style="position: absolute; top: 0; right: 0; width: 45px; height: 45px; fill: #FF8A3D; padding: 1px 1px;">
+							</button>
 						</form>
 					</div>
 				</section>
 
+				<c:if test="${sessionScope.userData == null}">
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link js-scroll-trigger"
+								href="index.html">Home</a></li>
+							<li class="nav-item"><a class="nav-link js-scroll-trigger"
+								href="sign_in.do">Sign In</a></li>
 
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="sign_in.do">Sign In</a></li>
+							<li class="dropdown" id="service"><a class="nav-link"
+								data-toggle="modal" data-target="#loginDialog"
+								aria-haspopup="true" aria-expanded="false" role="button">Login</a></li>
+						</ul>
+					</div>
+				</c:if>
 
-						<li class="dropdown" id="service"><a class="nav-link"
-							data-toggle="modal" data-target="#loginDialog"
-							aria-haspopup="true" aria-expanded="false" role="button">Login</a></li>
-					</ul>
-				</div>
+				<c:if test="${sessionScope.userData != null}">
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item">${userData.userName}님환영합니다!</li>
+							<li class="menu-item-has-children dropdown"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"> <i
+									class="menu-icon fa fa-cogs"></i>settings
+							</a>
+								<ul class="sub-menu children dropdown-menu">
+									<li><i class="menu-icon fa fa-sign-in"></i><a
+										href="${pageContext.request.contextPath}/member_modify.do">my
+											page</a></li>
+									<li><i class="menu-icon fa fa-sign-in"></i><a
+										href="${pageContext.request.contextPath}/member_logout.ing">Logout</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</c:if>
 			</div>
 		</nav>
 
@@ -96,10 +117,7 @@
 			role="banner" style="background-color: gray;">
 
 			<div class="container">
-				<div class="row align-items-center position-relative">
-
-
-				</div>
+				<div class="row align-items-center position-relative"></div>
 			</div>
 		</header>
 
@@ -110,7 +128,7 @@
 					<br> <br> <br> <br>
 					<section class="row align-items-center justify-content-center">
 						<div class="col-xs-6 relative align-self-center">
-						
+
 							<!-- 배너 문구 -->
 							<div class="form-group">
 								<h4 class="mb-7 text-primary font-weight-bold"
@@ -228,7 +246,7 @@
 							</tr>
 							<tr>
 								<td>PassWord</td>
-								<td><input type="password" name="userPw"
+								<td><input type="password" name="userPassword"
 									class="form-control" placeholder="PassWord를 입력" /></td>
 							</tr>
 							<tr>

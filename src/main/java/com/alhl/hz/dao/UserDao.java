@@ -16,10 +16,25 @@ public class UserDao implements IUserDao {
 	@Autowired
 	public SqlSessionTemplate mybatis;
 
+	/*
+	 * @Override public List<UserDTO> userSelect(){ // TODO Auto-generated method
+	 * stub return mybatis.selectList("userMapper.userSelectALL"); }
+	 */
 	@Override
-	public List<UserDTO> userSelect(){
+	public UserDTO userSelectOne(UserDTO dto) {
 		// TODO Auto-generated method stub
-		return mybatis.selectList("userMapper.userSelectALL");
+		dto.setUserPassword(SHA256.getSHA256(dto.getUserPassword()));
+		return mybatis.selectOne("userMapper.userSelectOne", dto);
 	}
-	
+	@Override
+	public int userInsert(UserDTO dto) {
+		// TODO Auto-generated method stub
+		dto.setUserPassword(SHA256.getSHA256(dto.getUserPassword()));
+		return mybatis.insert("userMapper.userInsert", dto);
+	}
+	@Override
+	public List<UserDTO> userSelect() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

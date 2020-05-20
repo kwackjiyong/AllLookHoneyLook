@@ -20,4 +20,15 @@ public class UserService implements IUserService {
 	public List<UserDTO> userSelect() {
 		return dao.userSelect();
 	}
+	
+	@Override
+	public UserDTO userSelectOne(UserDTO dto) {
+		return dao.userSelectOne(dto);
+	}
+	
+	@Override
+	public int userInsert(UserDTO dto) {
+		return dao.userInsert(dto);
+	}
+	
 }

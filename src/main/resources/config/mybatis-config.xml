@@ -8,7 +8,6 @@
 		<typeAlias type="com.alhl.hz.dto.UserDTO" alias="UserDTO"></typeAlias>
 	</typeAliases>
 	
-	
 	<mappers>
 		<mapper resource="mappers/UserMapper.xml" />
 	</mappers>

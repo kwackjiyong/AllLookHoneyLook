@@ -48,16 +48,6 @@
 
 	<div class="site-wrap" id="home-section">
 
-		<!-- 	<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
- -->
-
 		<nav class="navbar navbar-expand-lg fixed-top py-3 navbar-light"
 			id="mainNav">
 			<div class="container">
@@ -87,27 +77,13 @@
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="index.html">Home</a></li>
+							href="index.do">Home</a></li>
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
 							href="sign_in.do">Sign In</a></li>
 
 						<li class="dropdown" id="service"><a class="nav-link"
 							data-toggle="modal" data-target="#loginDialog"
 							aria-haspopup="true" aria-expanded="false" role="button">Login</a></li>
-
-
-						<!-- <li class="dropdown" id="service"><a class="nav-link"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-							role="button"><img
-								src="./resources/template/images/login.png"
-								style="width: 50px; height: 50px;" />Login</a>
-							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown-item" data-toggle="modal"
-									data-target="#loginDialog">Login</li>
-
-								<li class="dropdown-item" data-toggle="modal"
-									data-target="#SigninDialog">Sign In</li>
-							</ul></li> -->
 					</ul>
 				</div>
 			</div>
@@ -122,7 +98,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="contact_form">
-							<form action="Sign_in.ing" method="post">
+							<form action="sign_in.ing" method="post">
 
 								<table class="table">
 									<tr>
@@ -143,20 +119,20 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="text" class="form-control"
-											placeholder="PassWord를 재입력" value="hidden" /></td>
+										<td><input type="password" class="form-control"
+											placeholder="PassWord를 재입력"/></td>
 									</tr>
 
 									<tr>
 										<td>Birth</td>
-										<td><input type="text" name="userBirth"
-											class="form-control" placeholder="생년월일(8자리입력 '-'없이)" /></td>
+										<td><input type="date" name="userBirth"
+											class="form-control" placeholder="생년월일(19xx-xx-xx)" /></td>
 									</tr>
 
 									<tr>
 										<td>Gender</td>
-										<td><input type="radio" name="userGender" />남<input
-											type="radio" name="userGender" />여</td>
+										<td><input type="radio" name="userGender" value = "1"/>남<input
+											type="radio" name="userGender" value = "2"/>여</td>
 									</tr>
 
 									<tr>

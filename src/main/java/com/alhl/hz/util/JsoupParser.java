@@ -111,8 +111,9 @@ public class JsoupParser {
 					}catch (Exception e){
 						dto.setSrchPrice(0); // 형식에 안맞으면 그냥 0으로 입력
 					}
-					
-					dtos.add(dto); // 리스트에 추가
+					if(dto.getSrchPrice() !=0) {
+						dtos.add(dto); // 리스트에 추가
+					}
 				}
 				}catch(Exception e) {
 					
@@ -123,6 +124,75 @@ public class JsoupParser {
 		
 		return dtos;
 	}
+	
+	
+	//번개장터 파싱 메서드 - 셀레니움 웹드라이버 사용
+		public static List<SearchDTO> parsing_BGJ(String word){
+			List<SearchDTO> dtos = new ArrayList<SearchDTO>();
+			//중고나라
+					String url="https://m.bunjang.co.kr/search/products?q="+word;
+					String selector = "//div[@class='app']/div[1]/div[5]/div[1]/div[4]/div[1]/div";								// 선택자
+					
+					//웹드라이버 로드부분************************************************************
+					System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_2\\chromedriver.exe");
+					//Driver SetUp
+					ChromeOptions options = new ChromeOptions(); // 크롬드라이버 옵션들 
+					options.setCapability("ignoreProtectedModeSettings", true);
+					options.addArguments("headless");
+					options.addArguments("disable-gpu");
+					options.addArguments("disable-infobars");
+					options.addArguments("--disable-extensions");
+					WebDriver driver = new ChromeDriver(options);
+					driver.get(url);
+					// Find the element
+					List<WebElement> jElements = driver.findElements(By.xpath(selector));
+					while(jElements.size()<10) {
+						jElements = driver.findElements(By.xpath(selector));
+					}
+					
+					//*********************************************************************************
+					
+					System.out.println("번개장터 검색된 갯수:"+jElements.size());
+					int cnt=0;
+					try {
+					for(WebElement element: jElements) {
+						SearchDTO dto = new SearchDTO();
+						WebElement aElement = element.findElement(By.tagName("a")); // 앵커 태그
+						String adata_pid = aElement.getAttribute("data-pid");
+						dto.setSrchURL(aElement.getAttribute("href"));
+						WebElement mElement = element.findElement(By.tagName("img")); // 이미지 태그
+						dto.setSrchImageURL(mElement.getAttribute("src"));
+						dto.setSrchSiteName("번개장터");
+						
+						WebElement tElement = element.findElement(By.xpath("a[@data-pid='"+adata_pid+"']/div[2]/div[1]"));
+						dto.setSrchTitle(tElement.getAttribute("innerText"));
+						
+						WebElement pElement = element.findElement(By.xpath("a[@data-pid='"+adata_pid+"']/div[2]/div[2]/div[1]")); // 가격태그
+						String strtemp = pElement.getAttribute("innerText");
+						
+						strtemp = strtemp.replace(",", "");
+						strtemp = strtemp.replace("원", "");
+						strtemp = strtemp.replace("-", "");
+						strtemp = strtemp.replace("무료나눔", "");
+						try {
+							dto.setSrchPrice(Integer.parseInt(strtemp)); // 가격 입력
+						}catch (Exception e){
+							dto.setSrchPrice(0); // 형식에 안맞으면 그냥 0으로 입력
+						}
+						
+						if(dto.getSrchPrice() !=0) {
+							dtos.add(dto); // 리스트에 추가
+						}
+					}
+					}catch(Exception e) {
+						
+					}finally {
+						driver.close();// 다쓰고난 드라이버는 종료합니다.
+						driver.quit();// 모든 드라이버를 닫습니다.
+					}
+			return dtos;
+		}
+	
 	
 	
 	
@@ -141,11 +211,8 @@ public class JsoupParser {
 		
 		//*********************************번개장터 검색*************************************
 		//번개장터
-		
-		url="https://m.bunjang.co.kr/search/products?q="+word;
-		selector="div#root";
-		Elements bTitles = parsing_Jsoup(url,selector);					// 위 두가지를 가지고 크롤링
-		System.out.println("번개장터 검색된갯수:"+bTitles.size());
+		List<SearchDTO> dtos_BGJ = parsing_BGJ(word); // 셀레니움 검색 
+		dtos.addAll(dtos_BGJ); // 검색된 리스트 추가
 		
 		
 		//*********************************번개장터 끝*************************************
@@ -185,7 +252,9 @@ public class JsoupParser {
 				//e.printStackTrace(); 
 				dto.setSrchPrice(0); // 형식에 안맞으면 그냥 0으로 입력
 			}
-			dtos.add(dto); //찾은 레코드들을 차곡차곡 담습니다.
+			if(dto.getSrchPrice() !=0) {
+				dtos.add(dto); //찾은 레코드들을 차곡차곡 담습니다.
+			}
 		}
 		//**********************************당근마켓 검색 끝***********************************
 		
@@ -193,7 +262,7 @@ public class JsoupParser {
 		for(int i=0;i<dtos.size();i++) { // 가격순으로 인덱스 달아줌
 			dtos.get(i).setSrchIndex(i+1);
 		}
-		
+		System.out.println("가격미정 제품을 제외한 총갯수:"+dtos.size()+"개");
 		System.out.println("크롤링 끝");
 		return dtos;
 	}

@@ -65,6 +65,8 @@ public class UserController {
 	public void login_do(HttpServletRequest request, HttpServletResponse response, Model model, UserDTO userdto)
 			throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		
 		// id가 있는지 확인하고 해당 id에서 각종 정보를 검색합니다.
 		UserDTO selectDTO = userSer.userSelectOne(userdto);
 		// 아이디가 존재할 때
@@ -94,7 +96,9 @@ public class UserController {
 		}
 	}
 
+	
 	/*
+	 * 
 	 * // 로그인
 	 * 
 	 * @RequestMapping("/member_login.ing") public String
@@ -144,7 +148,7 @@ public class UserController {
 	 * 
 	 * model.addAttribute("modify_request", result);
 	 * 
-	 * if(result == 1) { System.out.println("회원수정 성공"); }else {
+	 * if (result == 1) { System.out.println("회원수정 성공"); } else {
 	 * System.out.println("실패"); } return "member_modify"; }
 	 * 
 	 * // 회원 삭제
@@ -157,7 +161,7 @@ public class UserController {
 	 * return "member_delete"; }
 	 * 
 	 * @RequestMapping("/member_delete.ing") public String
-	 * delete_ing(HttpServletRequest request,HttpServletResponse response, Model
+	 * delete_ing(HttpServletRequest request, HttpServletResponse response, Model
 	 * model, Member_dto dto) {
 	 * 
 	 * System.out.println("member_delete()처리");

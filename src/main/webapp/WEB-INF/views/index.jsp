@@ -1,14 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html lang="kr">
 <head>
 <title>올룩꿀룩 &mdash; [중고 거래 검색]</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900"
 	rel="stylesheet">
@@ -64,7 +63,7 @@
 					<div style="position: relative; padding-right: 40px;">
 						<form action="search.do">
 							<input type="text" name="searchWord" class="form-control"
-								placeholder="검색어를 입력하세요"
+								placeholder="검색어를 입력하세요 [${sessionScope.userData.userName}] / ${userData.getUserId()}"
 								style="width: 600px; height: 45px; border: none; font-size: 18px; color: #9F6118;">
 							<button
 								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
@@ -74,8 +73,8 @@
 						</form>
 					</div>
 				</section>
-
-				<c:if test="${sessionScope.userData == null}">
+					
+				<c:if test="${empty sessionScope.userData}">
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link js-scroll-trigger"
@@ -90,7 +89,7 @@
 					</div>
 				</c:if>
 
-				<c:if test="${sessionScope.userData != null}">
+				<c:if test="${not empty sessionScope.userData}">
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item">${userData.userName}님환영합니다!</li>
@@ -133,7 +132,7 @@
 							<div class="form-group">
 								<h4 class="mb-7 text-primary font-weight-bold"
 									data-aos="fade-up">
-									<span class="typed-words">안녕하세요! 올룩꿀룩입니다</span>.
+									<span class="typed-words">안녕하세요! 올룩꿀룩입니다 </span>.
 								</h4>
 							</div>
 						</div>

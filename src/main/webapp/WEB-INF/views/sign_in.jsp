@@ -90,14 +90,17 @@
 		</nav>
 		<main role="main">
 
-			<div class="contact_header jumbotron text-center">
-				<h1 class="display-4">Contact us</h1>
-				<p>Please Feel to contact us if you have anu question or query.</p>
-			</div>
+			<div class="contact_header jumbotron text-center"
+				style="background-color: #9F6118;"></div>
 			<div class="contact_form_wrapper container mb-5">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="contact_form">
+							<h1 class="display-4" >
+								<img src="<c:url value='/resources/icon/sign_image.png'/>"
+									style="width: 250px; height: 250px; margin-right: 100px;"><b style = "float:right;">회원가입</b>
+
+							</h1>
 							<form action="sign_in.ing" method="post">
 
 								<table class="table">
@@ -120,7 +123,7 @@
 									<tr>
 										<td></td>
 										<td><input type="password" class="form-control"
-											placeholder="PassWord를 재입력"/></td>
+											placeholder="PassWord를 재입력" /></td>
 									</tr>
 
 									<tr>
@@ -131,8 +134,8 @@
 
 									<tr>
 										<td>Gender</td>
-										<td><input type="radio" name="userGender" value = "1"/>남<input
-											type="radio" name="userGender" value = "2"/>여</td>
+										<td><input type="radio" name="userGender" value="1" />남<input
+											type="radio" name="userGender" value="2" />여</td>
 									</tr>
 
 									<tr>
@@ -153,59 +156,59 @@
 			</div>
 			<!-- ********************************************************** 푸터 영역  ************************************************************************-->
 			<footer class="site-section">
-		<div class="container">
-			<div class="row mt-2 justify-content-center">
-				<div class="col-md-7 text-center">
-					<p>
-						<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
-					</p>
+				<div class="container">
+					<div class="row mt-2 justify-content-center">
+						<div class="col-md-7 text-center">
+							<p>
+								<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
+							</p>
 
-					<div>
-						<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
-					</div>
+							<div>
+								<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
+							</div>
 
-					<br>
-					<div>
-						<h6>대표 번호 : 010-5347-8469</h6>
-					</div>
-					<br>
+							<br>
+							<div>
+								<h6>대표 번호 : 010-5347-8469</h6>
+							</div>
+							<br>
 
-					<div>
-						<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
-					</div>
+							<div>
+								<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
+							</div>
 
-					<div class="row mt-5 text-center">
-						<div class="col">
-							<a href="#"><span class="m-2 icon-facebook"></span></a> <a
-								href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
-								class="m-2 icon-linkedin"></span></a> <a href="#"><span
-								class="m-2 icon-instagram"></span></a> <a href="#"><span
-								class="m-2 icon-skype"></span></a>
+							<div class="row mt-5 text-center" style="color: #9F6118;">
+								<div class="col">
+									<a href="#"><span class="m-2 icon-facebook"></span></a> <a
+										href="#"><span class="m-2 icon-twitter"></span></a> <a
+										href="#"><span class="m-2 icon-linkedin"></span></a> <a
+										href="#"><span class="m-2 icon-instagram"></span></a> <a
+										href="#"><span class="m-2 icon-skype"></span></a>
+								</div>
+							</div>
 						</div>
 					</div>
+
+					<div class="row mt-5 justify-content-center" style="color: #9F6118;">
+						<h6 class="col-md-3">
+							<a href="https://policy.daangn.com/terms.html">이용약관</a>
+						</h6>
+						<h6 class="col-md-3">
+							<a href="https://policy.daangn.com/terms.html">개인정보처리방침</a>
+						</h6>
+						<h6 class="col-md-3">
+							<a href="https://policy.daangn.com/terms.html">공지사항</a>
+						</h6>
+						<h6>
+							<a href="https://policy.daangn.com/terms.html">About Us</a>
+						</h6>
+					</div>
+
+					<div class="row mt-5 justify-content-center">
+						<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
+					</div>
 				</div>
-			</div>
-
-			<div class="row mt-5 justify-content-center">
-				<h6 class="col-md-3">
-					<a href="https://policy.daangn.com/terms.html">이용약관</a>
-				</h6>
-				<h6 class="col-md-3">
-					<a href="https://policy.daangn.com/terms.html">개인정보처리방침</a>
-				</h6>
-				<h6 class="col-md-3">
-					<a href="https://policy.daangn.com/terms.html">공지사항</a>
-				</h6>
-				<h6>
-					<a href="https://policy.daangn.com/terms.html">About Us</a>
-				</h6>
-			</div>
-
-			<div class="row mt-5 justify-content-center">
-				<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
-			</div>
-		</div>
-	</footer>
+			</footer>
 		</main>
 	</div>
 

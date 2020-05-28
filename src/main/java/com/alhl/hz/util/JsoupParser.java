@@ -44,8 +44,12 @@ public class JsoupParser {
 	}
 	
 	//Selenium으로 파싱하는 메서드
-	public static List<WebElement> parsing_Selenium(String url, String selector) {
-		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver_2\\chromedriver.exe");
+	public static List<SearchDTO> parsing_Selenium(String word,HttpServletRequest request) {
+		//서블릿 리퀘스트로부터 실제 프로젝트 경로를 받아옴
+		String path = request.getSession().getServletContext().getRealPath("");
+		path=path+"resources/chromedriver/chromedriver.exe";
+		System.out.println("리소스 드라이버 경로1:"+ path);
+		System.setProperty("webdriver.chrome.driver", path);
 		//Driver SetUp
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ignoreProtectedModeSettings", true);
@@ -54,14 +58,124 @@ public class JsoupParser {
 		options.addArguments("disable-infobars");
 		options.addArguments("--disable-extensions");
 		WebDriver driver = new ChromeDriver(options);
-		driver.get(url);
+		//같은 드라이버를 사용하여 시간을 단축합니다.
+		List<SearchDTO> dtos_jgn = parsing_JGN(word,driver);//중고나라 검색하는 메서드
+		List<SearchDTO> dtos_bgj = parsing_BGJ(word,driver);//번개장터 검색하는 메서드
+		
+		//전체 리스트
+		List<SearchDTO> dtos_ALL = new ArrayList<SearchDTO>();
+		dtos_ALL.addAll(dtos_jgn);
+		dtos_ALL.addAll(dtos_bgj);
+		driver.close();// 다쓰고난 드라이버는 종료합니다.
+		driver.quit();// 모든 드라이버를 닫습니다.
+		return dtos_ALL;
+	}
+	
+	
+	//중고나라 (웹드라이버 받아서 검색하는 메서드)
+	public static List<SearchDTO> parsing_JGN(String word,WebDriver wDriver){
+		//빈 리스트 생성
+		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
+		String url = "https://m.joongna.com/search-list?searchword="+word; // URL
+		String selector = "//div[@class='pd_h15']";								// 선택자
+		
+		
+		// 드라이버 로드
+		wDriver.get(url);
 		// Find the element
-		List<WebElement> element = driver.findElements(By.className(selector));
-		while(element.size()<10) {
-			element = driver.findElements(By.className(selector));
+		List<WebElement> jElements = wDriver.findElements(By.xpath(selector));
+		while(jElements.size()<10) {
+			jElements = wDriver.findElements(By.xpath(selector));
 		}
-		//driver.close();
-		return element;
+		
+		//*********************************************************************************
+		
+		System.out.println("중고나라 검색된 갯수:"+jElements.size());
+		int cnt=0;
+		try {
+		for(WebElement element: jElements) {
+			SearchDTO dto = new SearchDTO();
+			WebElement mElement = element.findElement(By.tagName("img")); // 이미지 태그
+			dto.setSrchImageURL(mElement.getAttribute("src")); // 이미지 url 입력
+			WebElement tElement = element.findElement(By.tagName("span")); // 제목 태그
+			dto.setSrchTitle(tElement.getText()); //제목 입력
+			dto.setSrchSiteName("중고나라");
+			WebElement uElement = element.findElement(By.tagName("a")); // a태그 가져옴
+			String url_a = uElement.getAttribute("href");// url
+			dto.setSrchURL(url_a); // url 입력
+			WebElement pElement = element.findElement(By.tagName("p")); // 가격태그
+			String strtemp = pElement.getText(); 
+			strtemp = strtemp.replace(",", "");
+			strtemp = strtemp.replace("원", "");
+			strtemp = strtemp.replace("-", "");
+			strtemp = strtemp.replace("무료나눔", "");
+			try {
+				dto.setSrchPrice(Integer.parseInt(strtemp)); // 가격 입력
+			}catch (Exception e){
+				dto.setSrchPrice(0); // 형식에 안맞으면 그냥 0으로 입력
+			}
+			if(dto.getSrchPrice() !=0) {
+				dtos.add(dto); // 리스트에 추가
+			}
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return dtos;
+	}
+	
+	//번개장터(웹드라이버 받아서 검색하는 메서드) 
+	public static List<SearchDTO> parsing_BGJ(String word,WebDriver wDriver){
+		//빈 리스트 생성
+		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
+		String url="https://m.bunjang.co.kr/search/products?q="+word;
+		String selector = "//div[@class='app']/div[1]/div[5]/div[1]/div[4]/div[1]/div";								// 선택자
+		//드라이버 로드
+		wDriver.get(url);
+		// Find the element
+		List<WebElement> jElements = wDriver.findElements(By.xpath(selector));
+		while(jElements.size()<10) {
+			jElements = wDriver.findElements(By.xpath(selector));
+		}
+		
+		//*********************************************************************************
+		
+		System.out.println("번개장터 검색된 갯수:"+jElements.size());
+		int cnt=0;
+		try {
+		for(WebElement element: jElements) {
+			SearchDTO dto = new SearchDTO();
+			WebElement aElement = element.findElement(By.tagName("a")); // 앵커 태그
+			String adata_pid = aElement.getAttribute("data-pid");
+			dto.setSrchURL(aElement.getAttribute("href"));
+			WebElement mElement = element.findElement(By.tagName("img")); // 이미지 태그
+			dto.setSrchImageURL(mElement.getAttribute("src"));
+			dto.setSrchSiteName("번개장터");
+			
+			WebElement tElement = element.findElement(By.xpath("a[@data-pid='"+adata_pid+"']/div[2]/div[1]"));
+			dto.setSrchTitle(tElement.getAttribute("innerText"));
+			
+			WebElement pElement = element.findElement(By.xpath("a[@data-pid='"+adata_pid+"']/div[2]/div[2]/div[1]")); // 가격태그
+			String strtemp = pElement.getAttribute("innerText");
+			
+			strtemp = strtemp.replace(",", "");
+			strtemp = strtemp.replace("원", "");
+			strtemp = strtemp.replace("-", "");
+			strtemp = strtemp.replace("무료나눔", "");
+			try {
+				dto.setSrchPrice(Integer.parseInt(strtemp)); // 가격 입력
+			}catch (Exception e){
+				dto.setSrchPrice(0); // 형식에 안맞으면 그냥 0으로 입력
+			}
+			
+			if(dto.getSrchPrice() !=0) {
+				dtos.add(dto); // 리스트에 추가
+			}
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return dtos;
 	}
 	
 	
@@ -137,7 +251,6 @@ public class JsoupParser {
 	//번개장터 파싱 메서드 - 셀레니움 웹드라이버 사용
 		public static List<SearchDTO> parsing_BGJ(String word,HttpServletRequest request){
 			List<SearchDTO> dtos = new ArrayList<SearchDTO>();
-			//중고나라
 					String url="https://m.bunjang.co.kr/search/products?q="+word;
 					String selector = "//div[@class='app']/div[1]/div[5]/div[1]/div[4]/div[1]/div";								// 선택자
 					
@@ -214,16 +327,24 @@ public class JsoupParser {
 		System.out.println("크롤링 시작");
 		String url;
 		String selector;
+		
+		
+		//**********셀레니움 통합 검색***************
+		List<SearchDTO> dtos_selenium = parsing_Selenium(word,request);
+		dtos.addAll(dtos_selenium); // 검색된 리스트 추가
+		
+		
+		
 		//*********************************중고나라 검색*************************************
 		//중고나라
-		List<SearchDTO> dtos_JGN = parsing_JGN(word,request); // 셀레니움 검색 
-		dtos.addAll(dtos_JGN); // 검색된 리스트 추가
+		//List<SearchDTO> dtos_JGN = parsing_JGN(word,request); // 셀레니움 검색 
+		//dtos.addAll(dtos_JGN); // 검색된 리스트 추가
 		//*********************************중고나라 끝*************************************
 		
 		//*********************************번개장터 검색*************************************
 		//번개장터
-		List<SearchDTO> dtos_BGJ = parsing_BGJ(word,request); // 셀레니움 검색 
-		dtos.addAll(dtos_BGJ); // 검색된 리스트 추가
+		//List<SearchDTO> dtos_BGJ = parsing_BGJ(word,request); // 셀레니움 검색 
+		//dtos.addAll(dtos_BGJ); // 검색된 리스트 추가
 		
 		
 		//*********************************번개장터 끝*************************************

@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
-
 import com.alhl.hz.dto.UserDTO;
 import com.alhl.hz.service.IUserService;
 
@@ -37,7 +35,9 @@ public class HomeController {
         response.setCharacterEncoding("UTF-8");
 		return "index";
 	}
-
+	
+	
+	
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String index_do(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		

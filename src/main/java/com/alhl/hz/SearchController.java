@@ -46,7 +46,7 @@ public class SearchController {
 		}
 		
 		//Jsoup 클래스로 요청한 단어로 검색을 한결과를 가져옵니다.
-		List<SearchDTO> dtos= JsoupParser.autoParsing(word);
+		List<SearchDTO> dtos= JsoupParser.autoParsing(word,request);
 		model.addAttribute("counter", dtos.size());
 		//리스트가 1개이상 존재할 때
 		if(dtos.size()>0) {

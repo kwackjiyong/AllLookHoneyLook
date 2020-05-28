@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.function.Function;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,6 +21,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.core.io.ClassPathResource;
 
 import com.alhl.hz.dto.SearchDTO;
 
@@ -62,14 +66,18 @@ public class JsoupParser {
 	
 	
 	//중고나라 파싱 메서드 - 셀레니움 웹드라이버 사용
-	public static List<SearchDTO> parsing_JGN(String word){
+	public static List<SearchDTO> parsing_JGN(String word,HttpServletRequest request){
 		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
 		//중고나라
 				String url = "https://m.joongna.com/search-list?searchword="+word; // URL
 				String selector = "//div[@class='pd_h15']";								// 선택자
 				
 				//웹드라이버 로드부분************************************************************
-				System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_2\\chromedriver.exe");
+				String path = request.getSession().getServletContext().getRealPath("");
+				path=path+"resources/chromedriver/chromedriver.exe";
+				System.out.println("리소스 드라이버 경로1:"+ path);
+				System.setProperty("webdriver.chrome.driver", path);
+				//System.setProperty("webdriver.chrome.driver", resource.getPath());
 				//Driver SetUp
 				ChromeOptions options = new ChromeOptions(); // 크롬드라이버 옵션들 
 				options.setCapability("ignoreProtectedModeSettings", true);
@@ -127,14 +135,17 @@ public class JsoupParser {
 	
 	
 	//번개장터 파싱 메서드 - 셀레니움 웹드라이버 사용
-		public static List<SearchDTO> parsing_BGJ(String word){
+		public static List<SearchDTO> parsing_BGJ(String word,HttpServletRequest request){
 			List<SearchDTO> dtos = new ArrayList<SearchDTO>();
 			//중고나라
 					String url="https://m.bunjang.co.kr/search/products?q="+word;
 					String selector = "//div[@class='app']/div[1]/div[5]/div[1]/div[4]/div[1]/div";								// 선택자
 					
 					//웹드라이버 로드부분************************************************************
-					System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_2\\chromedriver.exe");
+					String path = request.getSession().getServletContext().getRealPath("");
+					path=path+"resources/chromedriver/chromedriver.exe";
+					System.out.println("리소스 드라이버 경로1:"+ path);
+					System.setProperty("webdriver.chrome.driver", path);
 					//Driver SetUp
 					ChromeOptions options = new ChromeOptions(); // 크롬드라이버 옵션들 
 					options.setCapability("ignoreProtectedModeSettings", true);
@@ -197,7 +208,7 @@ public class JsoupParser {
 	
 	
 	//각종 사이트들을 자동으로 파싱하는 메서드입니다.
-	public static List<SearchDTO> autoParsing(String word){
+	public static List<SearchDTO> autoParsing(String word,HttpServletRequest request){
 		//각종 사이트들의 검색 결과를 담을 그릇 준비
 		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
 		System.out.println("크롤링 시작");
@@ -205,13 +216,13 @@ public class JsoupParser {
 		String selector;
 		//*********************************중고나라 검색*************************************
 		//중고나라
-		List<SearchDTO> dtos_JGN = parsing_JGN(word); // 셀레니움 검색 
+		List<SearchDTO> dtos_JGN = parsing_JGN(word,request); // 셀레니움 검색 
 		dtos.addAll(dtos_JGN); // 검색된 리스트 추가
 		//*********************************중고나라 끝*************************************
 		
 		//*********************************번개장터 검색*************************************
 		//번개장터
-		List<SearchDTO> dtos_BGJ = parsing_BGJ(word); // 셀레니움 검색 
+		List<SearchDTO> dtos_BGJ = parsing_BGJ(word,request); // 셀레니움 검색 
 		dtos.addAll(dtos_BGJ); // 검색된 리스트 추가
 		
 		

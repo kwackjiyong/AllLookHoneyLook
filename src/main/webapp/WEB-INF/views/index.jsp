@@ -93,9 +93,12 @@
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item">${userData.userName}님 환영합니다!</li>
-							<li class="dropdown" id="service"><a class="nav-link"
+							<li class="nav-item"><a class="nav-link"
 								data-toggle="modal" data-target="#btnSetting"
-								aria-haspopup="true" aria-expanded="false" role="button" src="<c:url value='/resources/icon/settings.png'/>"></a></li>
+								aria-haspopup="true" aria-expanded="false" role="button">
+								<img src="<c:url value='/resources/icon/settings.png'/>"
+									style="width: 45px; height: 45px;"></a>
+						</li>
 								
 									<%-- <li><i class="menu-icon fa fa-sign-in"></i><a
 										href="${pageContext.request.contextPath}/member_modify.do">my
@@ -345,7 +348,13 @@
 
 						<table class="table">
 							<tr>
-								<td><button type="button" name="logout"
+								<td>
+								<a class="nav-link"
+								data-toggle="modal" data-target="#loginDialog"
+								aria-haspopup="true" aria-expanded="false" role="button">
+								<img src="<c:url value='/resources/icon/mypage.png'/>"
+								</a>
+								<button type="button" name="logout"
 										class="form-control"
 										src="<c:url value='/resources/icon/mypage.png'/>"></button></td>
 								<td><button type="button" name="mypage"

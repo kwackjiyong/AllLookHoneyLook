@@ -1,7 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
 <html lang="kr">
 <head>
 <title>올룩꿀룩 &mdash; [중고 거래 검색]</title>
@@ -73,7 +73,7 @@
 						</form>
 					</div>
 				</section>
-					
+
 				<c:if test="${empty sessionScope.userData}">
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ml-auto">
@@ -92,19 +92,16 @@
 				<c:if test="${not empty sessionScope.userData}">
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ml-auto">
-							<li class="nav-item">${userData.userName}님환영합니다!</li>
-							<li class="menu-item-has-children dropdown"><a href="#"
-								class="dropdown-toggle" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"> <i
-									class="menu-icon fa fa-cogs"></i>settings
-							</a>
-								<ul class="sub-menu children dropdown-menu">
-									<li><i class="menu-icon fa fa-sign-in"></i><a
+							<li class="nav-item">${userData.userName}님 환영합니다!</li>
+							<li class="dropdown" id="service"><a class="nav-link"
+								data-toggle="modal" data-target="#btnSetting"
+								aria-haspopup="true" aria-expanded="false" role="button" src="<c:url value='/resources/icon/settings.png'/>"></a></li>
+								
+									<%-- <li><i class="menu-icon fa fa-sign-in"></i><a
 										href="${pageContext.request.contextPath}/member_modify.do">my
 											page</a></li>
 									<li><i class="menu-icon fa fa-sign-in"></i><a
-										href="${pageContext.request.contextPath}/member_logout.ing">Logout</a></li>
-								</ul></li>
+										href="${pageContext.request.contextPath}/member_logout.ing">Logout</a></li> --%>
 						</ul>
 					</div>
 				</c:if>
@@ -318,6 +315,44 @@
 								<td><input type="text" name="userEmail"
 									class="form-control" placeholder="Email 입력" /></td>
 							</tr>
+						</table>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">닫기</button>
+							<button class="btn btn-primary" type="submit">회원가입</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- setting모달 -->
+	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
+		aria-labelledby="setting" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginDialogLabel">Sign In</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="Sign_in.ing" method="post">
+
+						<table class="table">
+							<tr>
+								<td><button type="button" name="logout"
+										class="form-control"
+										src="<c:url value='/resources/icon/mypage.png'/>"></button></td>
+								<td><button type="button" name="mypage"
+										class="form-control"
+										src = "<c:url value='/resources/icon/exit.png'/>"></button></td>
+							</tr>
+
 						</table>
 						<div class="modal-footer">
 							<button class="btn btn-secondary" type="button"

@@ -63,7 +63,7 @@
 					<div style="position: relative; padding-right: 40px;">
 						<form action="search.do">
 							<input type="text" name="searchWord" class="form-control"
-								placeholder="검색어를 입력하세요 [${sessionScope.userData.userName}] / ${userData.getUserId()}"
+								placeholder="검색어를 입력하세요 "
 								style="width: 600px; height: 45px; border: none; font-size: 18px; color: #9F6118;">
 							<button
 								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">

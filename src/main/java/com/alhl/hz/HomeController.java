@@ -32,14 +32,16 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String home(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 		return "index";
 	}
 
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String index_do(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		
-		//response.setContentType("text/html; charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 

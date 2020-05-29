@@ -1,79 +1,118 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
 <html lang="kr">
+<head>
+<title>올룩꿀룩 &mdash; [중고 거래 검색]</title>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/fonts/icomoon/style.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/css/bootstrap.min.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/css/bootstrap-datepicker.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/css/jquery.fancybox.min.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/css/owl.carousel.min.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/css/owl.theme.default.min.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/fonts/flaticon/font/flaticon.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/css/aos.css'/>">
 
-  <head>
-    <title>올룩꿀룩 &mdash; [중고 거래 검색]</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- MAIN CSS -->
+<link rel="stylesheet"
+	href="<c:url value='/resources/template/css/style.css'/>">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="<c:url value='/resources/template/fonts/icomoon/style.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/template/css/bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/template/css/bootstrap-datepicker.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/template/css/jquery.fancybox.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/template/css/owl.carousel.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/template/css/owl.theme.default.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/template/fonts/flaticon/font/flaticon.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/template/css/aos.css'/>">
+<!-- Main CSS -->
+<link rel="stylesheet"
+	href="<c:url value='/resources/template2/assets/css/app.css'/>">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600,700,800,900&amp;display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+</head>
 
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="<c:url value='/resources/template/css/style.css'/>">
+<body data-spy="scroll" data-target=".site-navbar-target"
+	data-offset="300">
 
-  </head>
+	<div class="site-wrap" id="home-section">
 
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+		<nav class="navbar navbar-expand-lg fixed-top py-3 navbar-light"
+			id="mainNav">
+			<div class="container">
+				<a class="navbar-brand js-scroll-trigger" href="index.do"><img
+					src="<c:url value='/resources/icon/logo_alhl2.png'/>"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarResponsive" aria-controls="navbarResponsive"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-    
-    <div class="site-wrap" id="home-section">
+				<section
+					style="left: 150px; top: 20px; border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
+					<div style="position: relative; padding-right: 40px;">
+						<form action="search.do">
+							<input type="text" name="searchWord" class="form-control"
+								placeholder="검색어를 입력하세요 "
+								style="width: 600px; height: 45px; border: none; font-size: 18px; color: #9F6118;">
+							<button
+								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+								<img src="<c:url value='/resources/icon/search.png'/>"
+									style="position: absolute; top: 0; right: 0; width: 45px; height: 45px; fill: #FF8A3D; padding: 1px 1px;">
+							</button>
+						</form>
+					</div>
+				</section>
 
-      <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div>
+				<c:if test="${empty sessionScope.userData}">
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link js-scroll-trigger"
+								href="index.html">Home</a></li>
+							<li class="nav-item"><a class="nav-link js-scroll-trigger"
+								href="sign_in.do">Sign In</a></li>
+
+							<li class="dropdown" id="service"><a class="nav-link"
+								data-toggle="modal" data-target="#loginDialog"
+								aria-haspopup="true" aria-expanded="false" role="button">Login</a></li>
+						</ul>
+					</div>
+				</c:if>
+
+				<c:if test="${not empty sessionScope.userData}">
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item" style = "margin-left:50px;margin-top: 10px;"><a class="nav-link js-scroll-trigger">${userData.userName} 님 <br> 환영합니다!</a></li>
+							<li class="nav-item" style = "padding-left: 50px; margin-top: 10px;"> <a class="nav-link js-scroll-trigger" data-toggle="modal"
+								data-target="#btnSetting" aria-haspopup="true"
+								aria-expanded="false" role="button"> <img
+									src="<c:url value='/resources/icon/settings.png'/>"
+									style="width: 45px; height: 45px;"></a></li>
+						</ul>
+					</div>
+				</c:if>
+			</div>
+		</nav>
 
 
+		<header class="site-navbar js-sticky-header site-navbar-target"
+			role="banner" style="background-color: gray;">
 
-      <header class="site-navbar site-navbar-target" role="banner">
+			<div class="container">
+				<div class="row align-items-center position-relative"></div>
+			</div>
+		</header>
 
-        <div class="container">
-          <div class="row align-items-center position-relative">
-
-            <div class="col-3 ">
-              <div class="site-logo">
-                <a href="index.html" class="font-weight-bold text-primary">올룩꿀룩</a>
-              </div>
-            </div>
-
-            <div class="col-9  text-right">
-              
-
-              <span class="d-inline-block d-lg-none"><a href="#" class="text-primary site-menu-toggle js-menu-toggle py-5"><span class="icon-menu h3 text-primary"></span></a></span>
-
-              
-
-              <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
-                <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li class="active"><a href="index.html" class="nav-link">카테고리</a></li>
-                  <li><a href="about.html" class="nav-link">검색어순위</a></li>
-                  <li><a href="services.html" class="nav-link">로그인</a></li>
-                  <li><a href="blog.html" class="nav-link">MyPage</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-              </nav>
-            </div>
-
-            
-          </div>
-        </div>
-
-      </header>
 	<!-- 첫번째 섹션 -->
     <div class="ftco-blocks-cover-1">
       <div class="site-section-cover half-bg">
@@ -206,110 +245,105 @@
       
     </div>
 	<!-- 전체 바디 끝 -->
-<!-- ********************************************************** 푸터 영역  ************************************************************************-->
-    <div class="footer site-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="site-logo-footer">
-              <a href="/">올룩꿀룩</a>
-            </div> 
-          </div>
-          <div class="col-md-8 ml-auto">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">hello@mydomain.com</a></li>
-                  <li><a href="#">+1 829 2293 382</a></li>
-                  <li><a href="#">Support</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About Us</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <ul class="list-unstyled links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">About Us</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+	<footer class="site-section">
+		<div class="container">
+			<div class="row mt-2 justify-content-center">
+				<div class="col-md-7 text-center">
+					<p>
+						<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
+					</p>
 
-    <div class="site-section">
-      <div class="container">
-        <div class="row mb-4 text-center">
-          <div class="col">
-            <a href="#"><span class="m-2 icon-facebook"></span></a>
-            <a href="#"><span class="m-2 icon-twitter"></span></a>
-            <a href="#"><span class="m-2 icon-linkedin"></span></a>
-            <a href="#"><span class="m-2 icon-instagram"></span></a>
-            <a href="#"><span class="m-2 icon-skype"></span></a>
-          </div>
-        </div>
-        <div class="row mt-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+					<div>
+						<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
+					</div>
 
-    
+					<br>
+					<div>
+						<h6>대표 번호 : 010-5347-8469</h6>
+					</div>
+					<br>
 
-    </div>
+					<div>
+						<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
+					</div>
 
+					<div class="row mt-5 text-center">
+						<div class="col">
+							<a href="#"><span class="m-2 icon-facebook"></span></a> <a
+								href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
+								class="m-2 icon-linkedin"></span></a> <a href="#"><span
+								class="m-2 icon-instagram"></span></a> <a href="#"><span
+								class="m-2 icon-skype"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
 
+			<div class="row mt-5 justify-content-center">
+				<h6 class="col-md-3">
+					<a href="about_us.do">이용약관</a>
+				</h6>
+				<h6 class="col-md-3">
+					<a href="#">개인정보처리방침</a>
+				</h6>
+				<h6 class="col-md-3">
+					<a href="#">공지사항</a>
+				</h6>
+				<h6>
+					<a href="about_us.do">About Us</a>
+				</h6>
+			</div>
 
-<!-- *****************************   자바 스크립트 섹션     ***********************-->
-    <script src="<c:url value='/resources/template/js/jquery-3.3.1.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/jquery-migrate-3.0.0.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/popper.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/bootstrap.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/owl.carousel.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/jquery.sticky.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/jquery.waypoints.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/jquery.animateNumber.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/jquery.fancybox.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/jquery.stellar.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/jquery.easing.1.3.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/bootstrap-datepicker.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/isotope.pkgd.min.js'/>"></script>
-    <script src="<c:url value='/resources/template/js/aos.js'/>"></script>
-  
+			<div class="row mt-5 justify-content-center">
+				<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
+			</div>
+		</div>
+	</footer>
 
-    <script src="<c:url value='/resources/template/js/typed.js'/>"></script>
-            <script>
-            var typed = new Typed('.typed-words', {
-            strings: [" 모든 중고제품을 여기서 만나보세요."," 희수♥지용"," 다양한 카테고리로 검색해보세요", " 최저가의 제품을 찾아보세요"],
-            typeSpeed: 80,
-            backSpeed: 80,
-            backDelay: 4000,
-            startDelay: 1000,
-            loop: true,
-            showCursor: true
-            });
-            </script>
+	<!-- *****************************   자바 스크립트 섹션     ***********************-->
+	<script
+		src="<c:url value='/resources/template/js/jquery-3.3.1.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/jquery-migrate-3.0.0.js'/>"></script>
+	<script src="<c:url value='/resources/template/js/popper.min.js'/>"></script>
+	<script src="<c:url value='/resources/template/js/bootstrap.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/owl.carousel.min.js'/>"></script>
+	<script src="<c:url value='/resources/template/js/jquery.sticky.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/jquery.waypoints.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/jquery.animateNumber.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/jquery.fancybox.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/jquery.stellar.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/jquery.easing.1.3.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/bootstrap-datepicker.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/template/js/isotope.pkgd.min.js'/>"></script>
+	<script src="<c:url value='/resources/template/js/aos.js'/>"></script>
 
 
-    <script src="<c:url value='/resources/template/js/main.js'/>"></script>
+	<script src="<c:url value='/resources/template/js/typed.js'/>"></script>
+	<script>
+		var typed = new Typed('.typed-words', {
+			strings : [ " 모든 중고제품을 여기서 만나보세요.", " 희수♥지용", " 다양한 카테고리로 검색해보세요",
+					" 최저가의 제품을 찾아보세요" ],
+			typeSpeed : 80,
+			backSpeed : 80,
+			backDelay : 4000,
+			startDelay : 1000,
+			loop : true,
+			showCursor : true
+		});
+	</script>
 
-  </body>
+
+	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
+</body>
 
 </html>
-

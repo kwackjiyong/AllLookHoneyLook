@@ -44,6 +44,19 @@
 	href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
 
 <!-- ///////////////////////////////------부트스트랩 링크 END------///////////////////////////////-->
+
+<style>
+.tab_style {
+	width: 200px;
+	height: 50px;
+	color: #555;
+	cursor: default;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+	color: #555;
+}
+</style>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -132,202 +145,184 @@
 		</header>
 
 
-		<!-- ///////////////////////////////------섹션 1------///////////////////////////////-->
-		<div class="ftco-blocks-cover-1">
-			<div class="site-section-cover half-bg">
+		<main role="main">
 
-				<!-- ///////////////////////////////------왼쪽------///////////////////////////////-->
-				<div class="container" style="float: left; width: 50%;">
-					<br> <br> <br> <br>
-					<section class="row align-items-center justify-content-center">
-						<div class="col-xs-6 relative align-self-center">
+			<div class="contact_header jumbotron text-center"
+				style="background-color: #9F6118;"></div>
+			<div class="contact_form_wrapper container mb-5">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="contact_form">
 
-							<!-- 배너 문구 -->
-							<div class="form-group">
-								<h4 class="mb-7 text-primary font-weight-bold"
-									data-aos="fade-up">
-									<span class="typed-words">안녕하세요! 올룩꿀룩입니다 </span>.
-								</h4>
-							</div>
-						</div>
-					</section>
-				</div>
-				<!-- ///////////////////////////////------왼쪽 END------///////////////////////////////-->
+							<!-- <div role="tabpanel">
+								Nav tabs
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active tab_style"><a
+										href="#home" aria-controls="home" role="tab" data-toggle="tab"
+										aria-expanded="true">Home</a></li>
+									<li role="presentation" class="active" aria-expanded="false"><a
+										href="#profile" aria-controls="profile" role="tab"
+										data-toggle="tab">Profile</a></li>
+									<li role="presentation" class="active" aria-expanded="false"><a
+										href="#messages" aria-controls="messages" role="tab"
+										data-toggle="tab">Messages</a></li>
+									<li role="presentation" class="active" aria-expanded="false"><a
+										href="#settings" aria-controls="settings" role="tab"
+										data-toggle="tab">Settings</a></li>
+								</ul>
 
-				<!-- ///////////////////////////////------오른쪽------///////////////////////////////-->
-				<div class="container" style="float: right; width: 50%;">
-					<br> <br> <br> <br>
-					<section style="width: 100%;">
-						<br> <br>
-						<div class="row">
-							<div class="col-xs-6 col-md-4">
-								<div class="card">
-									<div class="card-body">
-										<p class="card-title" style="color: blue;">인기 검색어 순위</p>
-										<div class="table-responsive">
-											<table id="recent-purchases-listing" class="table">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th>검색어</th>
-													</tr>
-												</thead>
+								Tab panes
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane fade in active" id="home">아이디
+										비번 바꿀거야</div>
+									<div role="tabpanel" class="tab-pane fade" id="profile">회원탈퇴</div>
+									<div role="tabpanel" class="tab-pane fade" id="messages">...</div>
+									<div role="tabpanel" class="tab-pane fade" id="settings">...</div>
+								</div>
 
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td>닌텐도</td>
-													</tr>
-													<c:forEach items="${userdata}" var="userdata">
-														<tr>
-															<td>2</td>
-															<td>${userdata.userId}</td>
-														</tr>
-													</c:forEach>
+							</div> -->
 
-												</tbody>
-											</table>
-										</div>
+							<div class="bs-example bs-example-tabs" role="tabpanel"
+								data-example-id="togglable-tabs">
+								<ul id="myTab" class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a href="#home"
+										id="home-tab" role="tab" data-toggle="tab"
+										aria-controls="home" aria-expanded="true">Home</a></li>
+									<li role="presentation" class=""><a href="#profile"
+										role="tab" id="profile-tab" data-toggle="tab"
+										aria-controls="profile" aria-expanded="false">Profile</a></li>
+									<li role="presentation" class="dropdown"><a href="#"
+										id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"
+										aria-controls="myTabDrop1-contents" aria-expanded="false">Dropdown
+											<span class="caret"></span>
+									</a>
+										<ul class="dropdown-menu" role="menu"
+											aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+											<li><a href="#dropdown1" tabindex="-1" role="tab"
+												id="dropdown1-tab" data-toggle="tab"
+												aria-controls="dropdown1">@fat</a></li>
+											<li><a href="#dropdown2" tabindex="-1" role="tab"
+												id="dropdown2-tab" data-toggle="tab"
+												aria-controls="dropdown2">@mdo</a></li>
+										</ul></li>
+								</ul>
+								<div id="myTabContent" class="tab-content">
+									<div role="tabpanel" class="tab-pane fade active in" id="home"
+										aria-labelledby="home-tab">
+										<p>Raw denim you probably haven't heard of them jean
+											shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+											master cleanse. Mustache cliche tempor, williamsburg carles
+											vegan helvetica. Reprehenderit butcher retro keffiyeh
+											dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry
+											richardson ex squid. Aliquip placeat salvia cillum iphone.
+											Seitan aliquip quis cardigan american apparel, butcher
+											voluptate nisi qui.</p>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="profile"
+										aria-labelledby="profile-tab">
+										<p>Food truck fixie locavore, accusamus mcsweeney's marfa
+											nulla single-origin coffee squid. Exercitation +1 labore
+											velit, blog sartorial PBR leggings next level wes anderson
+											artisan four loko farm-to-table craft beer twee. Qui photo
+											booth letterpress, commodo enim craft beer mlkshk aliquip
+											jean shorts ullamco ad vinyl cillum PBR. Homo nostrud
+											organic, assumenda labore aesthetic magna delectus mollit.
+											Keytar helvetica VHS salvia yr, vero magna velit sapiente
+											labore stumptown. Vegan fanny pack odio cillum wes anderson
+											8-bit, sustainable jean shorts beard ut DIY ethical culpa
+											terry richardson biodiesel. Art party scenester stumptown,
+											tumblr butcher vero sint qui sapiente accusamus tattooed echo
+											park.</p>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="dropdown1"
+										aria-labelledby="dropdown1-tab">
+										<p>Etsy mixtape wayfarers, ethical wes anderson tofu
+											before they sold out mcsweeney's organic lomo retro fanny
+											pack lo-fi farm-to-table readymade. Messenger bag gentrify
+											pitchfork tattooed craft beer, iphone skateboard locavore
+											carles etsy salvia banksy hoodie helvetica. DIY synth PBR
+											banksy irony. Leggings gentrify squid 8-bit cred pitchfork.
+											Williamsburg banh mi whatever gluten-free, carles pitchfork
+											biodiesel fixie etsy retro mlkshk vice blog. Scenester cred
+											you probably haven't heard of them, vinyl craft beer blog
+											stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="dropdown2"
+										aria-labelledby="dropdown2-tab">
+										<p>Trust fund seitan letterpress, keytar raw denim
+											keffiyeh etsy art party before they sold out master cleanse
+											gluten-free squid scenester freegan cosby sweater. Fanny pack
+											portland seitan DIY, art party locavore wolf cliche high life
+											echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi
+											before they sold out farm-to-table VHS viral locavore cosby
+											sweater. Lomo wolf viral, mustache readymade thundercats
+											keffiyeh craft beer marfa ethical. Wolf salvia freegan,
+											sartorial keffiyeh echo park vegan.</p>
 									</div>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+			<footer class="site-section">
+				<div class="container">
+					<div class="row mt-2 justify-content-center">
+						<div class="col-md-7 text-center">
+							<p>
+								<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
+							</p>
 
-							<div class="col-xs-6 col-md-4">
-								<div class="card">
-									<div class="card-body">
-										<p class="card-title" style="color: blue;">최근 검색어 목록</p>
-										<div class="table-responsive">
-											<table id="recent-purchases-listing" class="table">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th>검색어</th>
-													</tr>
-												</thead>
+							<div>
+								<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
+							</div>
 
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td>닌텐도</td>
-													</tr>
-													<c:forEach items="${userdata}" var="userdata">
-														<tr>
-															<td>2</td>
-															<td>${userdata.userId}</td>
-														</tr>
-													</c:forEach>
+							<br>
+							<div>
+								<h6>대표 번호 : 010-5347-8469</h6>
+							</div>
+							<br>
 
-												</tbody>
-											</table>
-										</div>
-									</div>
+							<div>
+								<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
+							</div>
+
+							<div class="row mt-5 text-center" style="color: #9F6118;">
+								<div class="col">
+									<a href="#"><span class="m-2 icon-facebook"></span></a> <a
+										href="#"><span class="m-2 icon-twitter"></span></a> <a
+										href="#"><span class="m-2 icon-linkedin"></span></a> <a
+										href="#"><span class="m-2 icon-instagram"></span></a> <a
+										href="#"><span class="m-2 icon-skype"></span></a>
 								</div>
-
 							</div>
 						</div>
-					</section>
+					</div>
+
+					<div class="row mt-5 justify-content-center"
+						style="color: #9F6118;">
+						<h6 class="col-md-3">
+							<a href="https://policy.daangn.com/terms.html">이용약관</a>
+						</h6>
+						<h6 class="col-md-3">
+							<a href="https://policy.daangn.com/terms.html">개인정보처리방침</a>
+						</h6>
+						<h6 class="col-md-3">
+							<a href="https://policy.daangn.com/terms.html">공지사항</a>
+						</h6>
+						<h6>
+							<a href="https://policy.daangn.com/terms.html">About Us</a>
+						</h6>
+					</div>
+
+					<div class="row mt-5 justify-content-center">
+						<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
+					</div>
 				</div>
-				<!-- ///////////////////////////////------오른쪽 END------///////////////////////////////-->
-			</div>
-		</div>
+			</footer>
+		</main>
 	</div>
-	<!-- ///////////////////////////////------섹션 1 END------///////////////////////////////-->
-
-
-	<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
-
-	<!-- ///////////////////////////////------로그인 모달------///////////////////////////////-->
-	<div class="modal fade" id="loginDialog" tabindex="-1" role="dialog"
-		aria-labelledby="loginDialogLabel" aria-hidden="true">
-
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">Log In</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-
-				<div class="modal-body has-success has-feedback">
-					<form action="login.ing" method="post">
-
-						<table class="table">
-							<tr>
-								<td>사용자 ID</td>
-								<td><input type="text" name="userId" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status"
-									placeholder="ID를 입력" />
-									</td>
-							</tr>
-							<tr>
-								<td>PassWord</td>
-								<td><input type="password" name="userPassword"
-									class="form-control" placeholder="PassWord를 입력" /></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td><a href="#">아이디 찾기 / 비밀번호 찾기</a></td>
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">닫기</button>
-							<button class="btn btn-primary" type="submit">로그인</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------로그인 모달 END------///////////////////////////////-->
-
-
-	<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
-	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
-		aria-labelledby="setting" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">${userData.userName}님</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="Sign_in.ing" method="post">
-						<table class="table" style="text-align: center;">
-							<tr>
-								<td><button type="button"><a href="mypage.do">
-										<img src="<c:url value='/resources/icon/mypage.png'/>"
-											style="width: 250px; height: 250px;"></a>
-									</button></td>
-								<td>
-									<button type="button"><a href="logout.ing">
-										<img src="<c:url value='/resources/icon/exit.png'/>"
-											style="width: 250px; height: 250px;"></a>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>마이페이지</td>
-								<td>로그아웃</td>
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">닫기</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------회원가입 모달 END------///////////////////////////////-->
-
-	<!-- ///////////////////////////////------------모달 집합소END------------///////////////////////////////-->
 
 	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
 	<footer class="site-section">
@@ -426,9 +421,47 @@
 		});
 	</script>
 
+	<script>
+		/* 	$('#myTab a').click(function(e) {
+				e.preventDefault()
+				$(this).tab('show')
+			}) */
+		$('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {
+			e.target // newly activated tab
+			e.relatedTarget // previous active tab
+		})
+
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+			e.target // newly activated tab
+			e.relatedTarget // previous active tab
+		})
+
+		$('a[data-toggle="tab"]').on('hidden.bs.tab', function(e) {
+			e.target // newly activated tab
+			e.relatedTarget // previous active tab
+		})
+
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+			e.target // newly activated tab
+			e.relatedTarget // previous active tab
+		})
+	</script>
+
+	<script>
+		$('#myTab a').click(function(e) {
+			e.preventDefault()
+			$(this).tab('show')
+		})
+	</script>
+	<!-- 
+	<script>
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+			e.target // newly activated tab
+			e.relatedTarget // previous active tab
+		})
+	</script> -->
 
 	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
 </body>
 
 </html>
-

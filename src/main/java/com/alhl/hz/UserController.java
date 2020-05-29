@@ -66,7 +66,7 @@ public class UserController {
 			throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		
+
 		// id가 있는지 확인하고 해당 id에서 각종 정보를 검색합니다.
 		UserDTO selectDTO = userSer.userSelectOne(userdto);
 		// 아이디가 존재할 때
@@ -96,37 +96,16 @@ public class UserController {
 		}
 	}
 
-	
+
+	// 로그아웃
+
+	@RequestMapping("/logout.ing")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/index.do";
+	}
+
 	/*
-	 * 
-	 * // 로그인
-	 * 
-	 * @RequestMapping("/member_login.ing") public String
-	 * login_ing(HttpServletRequest request, Model model, HttpServletResponse
-	 * response, Member_dto dto) {
-	 * 
-	 * response.setContentType("text/html; charset=UTF-8");
-	 * 
-	 * System.out.println("member_login.ing()"); System.out.println("dto의id:" +
-	 * dto.getmId()); System.out.println("dto의pw:" + dto.getmPw());
-	 * 
-	 * Member_dto mLogin = memService.memberSelectOne(dto);
-	 * 
-	 * System.out.println(mLogin);
-	 * 
-	 * if (mLogin != null) { HttpSession session = request.getSession();
-	 * 
-	 * session.setAttribute("login_result", mLogin);
-	 * 
-	 * System.out.println(mLogin.getmName()); }
-	 * 
-	 * return "index"; }
-	 * 
-	 * // 로그아웃
-	 * 
-	 * @RequestMapping("/member_logout.ing") public String logout(HttpSession
-	 * session) { session.invalidate(); return "redirect:/index.do"; }
-	 * 
 	 * // 회원정보 수정
 	 * 
 	 * @RequestMapping("/member_modify.do") public String modify(HttpServletRequest
@@ -173,4 +152,5 @@ public class UserController {
 	 * HttpSession session = request.getSession(); session.invalidate(); } else {
 	 * System.out.println("탈퇴 실패"); } return "index"; }
 	 */
+
 }

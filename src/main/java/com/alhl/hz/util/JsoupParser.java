@@ -72,11 +72,12 @@ public class JsoupParser {
 			//같은 드라이버를 사용하여 시간을 단축합니다.
 			List<SearchDTO> dtos_jgn = parsing_JGN(word,driver);//중고나라 검색하는 메서드
 			List<SearchDTO> dtos_bgj = parsing_BGJ(word,driver);//번개장터 검색하는 메서드
-			
+			List<SearchDTO> dtos_dgm = parsing_DGM(word,driver);//당근마켓 검색하는 메서드
 			//전체 리스트
 			List<SearchDTO> dtos_ALL = new ArrayList<SearchDTO>();
 			dtos_ALL.addAll(dtos_jgn);
 			dtos_ALL.addAll(dtos_bgj);
+			dtos_ALL.addAll(dtos_dgm);
 			//driver.close();// 다쓰고난 드라이버는 종료합니다.
 			//driver.quit();// 모든 드라이버를 닫습니다.
 			return dtos_ALL;
@@ -223,6 +224,185 @@ public class JsoupParser {
 	}
 	
 	
+	//당근마켓(웹드라이버 받아서 검색하는 메서드) 
+		public static List<SearchDTO> parsing_DGM(String word,WebDriver wDriver){
+			//빈 리스트 생성
+			List<SearchDTO> dtos = new ArrayList<SearchDTO>();
+			String url="https://www.daangn.com/search/"+word;
+			String selector = "//section[@id='result']/div[1]";								// 선택자
+			//드라이버 로드
+			wDriver.get(url);
+			// Find the element
+			WebElement main_Element = wDriver.findElement(By.xpath(selector));
+			
+			//더보기 5번 누르기
+			for(int i=0;i<5;i++) {
+				try{
+				WebElement bElement = main_Element.findElement(By.xpath("div[@class='more-btn']"));
+				if(bElement != null) {
+					bElement.click();
+				}
+				Thread.sleep(200);
+				}catch(Exception e) {}
+			}
+			
+			List<WebElement> jElements = main_Element.findElements(By.xpath("div[@class='articles-wrap']/article"));
+			
+			//*********************************************************************************
+			
+			System.out.println("당근마켓 검색된 갯수:"+jElements.size());
+			
+			try {
+			for(WebElement element: jElements) {
+				SearchDTO dto = new SearchDTO();
+				//url 파싱
+				String url_str = element.findElement(By.xpath("a")).getAttribute("href");
+				dto.setSrchURL(url_str);
+				//이미지 url 파싱
+				String imgurl_str = element.findElement(By.tagName("img")).getAttribute("src");
+				dto.setSrchImageURL(imgurl_str);
+				//제목 파싱 
+				String title = element.findElement(By.className("article-title")).getText();
+				dto.setSrchTitle(title);
+				//사이트설정
+				dto.setSrchSiteName("당근마켓");
+				
+				//가격 파싱 
+				String strtemp = element.findElement(By.className("article-price")).getText();
+				strtemp = strtemp.replace(",", "");
+				strtemp = strtemp.replace("원", "");
+				strtemp = strtemp.replace("-", "");
+				strtemp = strtemp.replace("무료나눔", "");
+				try {
+					dto.setSrchPrice(Integer.parseInt(strtemp)); // 가격 입력
+				}catch (Exception e){
+					dto.setSrchPrice(0); // 형식에 안맞으면 그냥 0으로 입력
+				}
+				
+				if(dto.getSrchPrice() !=0) { // 가격이 0원이면 넣지않음
+					dtos.add(dto); // 리스트에 추가
+				}
+			}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return dtos;
+		}
+	
+	
+	
+	
+	
+	
+	
+	//각종 사이트들을 자동으로 파싱하는 메서드입니다.
+	public static List<SearchDTO> autoParsing(String word,HttpServletRequest request){
+		//각종 사이트들의 검색 결과를 담을 그릇 준비
+		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
+		System.out.println("크롤링 시작");
+		String url;
+		String selector;
+		
+		
+		//**********셀레니움 통합 검색***************
+		List<SearchDTO> dtos_selenium = parsing_Selenium_Session(word,request);
+		dtos.addAll(dtos_selenium); // 검색된 리스트 추가
+		
+		
+		
+		//*********************************중고나라 검색*************************************
+		//중고나라
+		//List<SearchDTO> dtos_JGN = parsing_JGN(word,request); // 셀레니움 검색 
+		//dtos.addAll(dtos_JGN); // 검색된 리스트 추가
+		//*********************************중고나라 끝*************************************
+		
+		//*********************************번개장터 검색*************************************
+		//번개장터
+		//List<SearchDTO> dtos_BGJ = parsing_BGJ(word,request); // 셀레니움 검색 
+		//dtos.addAll(dtos_BGJ); // 검색된 리스트 추가
+		
+		
+		//*********************************번개장터 끝*************************************
+		//*********************************당근마켓 검색*************************************
+		//당근마켓
+		/*
+		url="https://www.daangn.com/search/"+word;			// URL
+		selector = "article.flea-market-article.flat-card";	// 선택자
+		Elements titles = parsing_Jsoup(url,selector);					// 위 두가지를 가지고 크롤링
+		
+		System.out.println("당근마켓 검색된갯수:"+titles.size());
+		int count=titles.size();
+		for(Element element: titles) {
+			SearchDTO dto = new SearchDTO();
+			Elements els = new Elements();
+			if(element.children().get(0).tagName()== "a") { //첫번쨰 자식태그에 a태그가 아닌 hr태그가 있는 경우가 섞여서 존재해서 예외처리
+				els= element.children().get(0).children().get(1).children(); //첫번쨰 자식 가져오기
+				dto.setSrchURL("https://www.daangn.com"+element.children().get(0).attr("href"));//링크 입력
+				dto.setSrchImageURL(element.children().get(0).children().get(0).children().get(0).attr("src")); //이미지 소스 입력
+			}else {
+				els= element.children().get(1).children().get(1).children(); //두번쨰 자식 가져오기
+				dto.setSrchURL("https://www.daangn.com"+element.children().get(1).attr("href"));//링크 입력
+				dto.setSrchImageURL(element.children().get(1).children().get(0).children().get(0).attr("src"));//이미지 소스 입력
+			}
+			
+
+			dto.setSrchTitle(els.get(0).child(0).text()); // 제목 입력
+			dto.setSrchSiteName("당근마켓"); //검색 사이트명 입력
+			//가격 int형으로 변환/예외처리
+			String strtemp = els.get(2).text();
+			strtemp = strtemp.replace(",", "");
+			strtemp = strtemp.replace("원", "");
+			strtemp = strtemp.replace("-", "");
+			strtemp = strtemp.replace("무료나눔", "");
+			try {
+				dto.setSrchPrice(Integer.parseInt(strtemp)); // 가격 입력
+			}catch (Exception e){
+				//e.printStackTrace(); 
+				dto.setSrchPrice(0); // 형식에 안맞으면 그냥 0으로 입력
+			}
+			if(dto.getSrchPrice() !=0) {
+				dtos.add(dto); //찾은 레코드들을 차곡차곡 담습니다.
+			}
+		}
+		*/
+		//**********************************당근마켓 검색 끝***********************************
+		
+		Collections.sort(dtos); //마지막으로 모든 결과값들을 가격순으로 정렬합니다.
+		for(int i=0;i<dtos.size();i++) { // 가격순으로 인덱스 달아줌
+			dtos.get(i).setSrchIndex(i+1);
+		}
+		System.out.println("가격미정 제품을 제외한 총갯수:"+dtos.size()+"개");
+		System.out.println("크롤링 끝");
+		return dtos;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//	폐기
+	
+	//	이전에 각각 크롬드라이버를 부여해서 돌리던 셀레니움 모듈 
+	/*
+
 	//중고나라 파싱 메서드 - 셀레니움 웹드라이버 사용
 	public static List<SearchDTO> parsing_JGN(String word,HttpServletRequest request){
 		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
@@ -360,88 +540,9 @@ public class JsoupParser {
 					}
 			return dtos;
 		}
+		
+		*/
 	
-	
-	
-	
-	//각종 사이트들을 자동으로 파싱하는 메서드입니다.
-	public static List<SearchDTO> autoParsing(String word,HttpServletRequest request){
-		//각종 사이트들의 검색 결과를 담을 그릇 준비
-		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
-		System.out.println("크롤링 시작");
-		String url;
-		String selector;
-		
-		
-		//**********셀레니움 통합 검색***************
-		List<SearchDTO> dtos_selenium = parsing_Selenium_Session(word,request);
-		dtos.addAll(dtos_selenium); // 검색된 리스트 추가
-		
-		
-		
-		//*********************************중고나라 검색*************************************
-		//중고나라
-		//List<SearchDTO> dtos_JGN = parsing_JGN(word,request); // 셀레니움 검색 
-		//dtos.addAll(dtos_JGN); // 검색된 리스트 추가
-		//*********************************중고나라 끝*************************************
-		
-		//*********************************번개장터 검색*************************************
-		//번개장터
-		//List<SearchDTO> dtos_BGJ = parsing_BGJ(word,request); // 셀레니움 검색 
-		//dtos.addAll(dtos_BGJ); // 검색된 리스트 추가
-		
-		
-		//*********************************번개장터 끝*************************************
-		//*********************************당근마켓 검색*************************************
-		//당근마켓
-		url="https://www.daangn.com/search/"+word;			// URL
-		selector = "article.flea-market-article.flat-card";	// 선택자
-		Elements titles = parsing_Jsoup(url,selector);					// 위 두가지를 가지고 크롤링
-		
-		System.out.println("당근마켓 검색된갯수:"+titles.size());
-		int count=titles.size();
-		for(Element element: titles) {
-			SearchDTO dto = new SearchDTO();
-			Elements els = new Elements();
-			if(element.children().get(0).tagName()== "a") { //첫번쨰 자식태그에 a태그가 아닌 hr태그가 있는 경우가 섞여서 존재해서 예외처리
-				els= element.children().get(0).children().get(1).children(); //첫번쨰 자식 가져오기
-				dto.setSrchURL("https://www.daangn.com"+element.children().get(0).attr("href"));//링크 입력
-				dto.setSrchImageURL(element.children().get(0).children().get(0).children().get(0).attr("src")); //이미지 소스 입력
-			}else {
-				els= element.children().get(1).children().get(1).children(); //두번쨰 자식 가져오기
-				dto.setSrchURL("https://www.daangn.com"+element.children().get(1).attr("href"));//링크 입력
-				dto.setSrchImageURL(element.children().get(1).children().get(0).children().get(0).attr("src"));//이미지 소스 입력
-			}
-			
-			
-			dto.setSrchTitle(els.get(0).child(0).text()); // 제목 입력
-			dto.setSrchSiteName("당근마켓"); //검색 사이트명 입력
-			//가격 int형으로 변환/예외처리
-			String strtemp = els.get(2).text();
-			strtemp = strtemp.replace(",", "");
-			strtemp = strtemp.replace("원", "");
-			strtemp = strtemp.replace("-", "");
-			strtemp = strtemp.replace("무료나눔", "");
-			try {
-				dto.setSrchPrice(Integer.parseInt(strtemp)); // 가격 입력
-			}catch (Exception e){
-				//e.printStackTrace(); 
-				dto.setSrchPrice(0); // 형식에 안맞으면 그냥 0으로 입력
-			}
-			if(dto.getSrchPrice() !=0) {
-				dtos.add(dto); //찾은 레코드들을 차곡차곡 담습니다.
-			}
-		}
-		//**********************************당근마켓 검색 끝***********************************
-		
-		Collections.sort(dtos); //마지막으로 모든 결과값들을 가격순으로 정렬합니다.
-		for(int i=0;i<dtos.size();i++) { // 가격순으로 인덱스 달아줌
-			dtos.get(i).setSrchIndex(i+1);
-		}
-		System.out.println("가격미정 제품을 제외한 총갯수:"+dtos.size()+"개");
-		System.out.println("크롤링 끝");
-		return dtos;
-	}
 	
 	
 	

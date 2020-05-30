@@ -8,6 +8,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,16 +67,24 @@ public class SearchController {
 		model.addAttribute("parsing_dtos",dtos);
 		model.addAttribute("listCnt", dtos.size());
 		return "search_List";
-		}catch (NullPointerException e) {
-			e.printStackTrace();
+		}catch (UnreachableBrowserException e) {
+			//e.printStackTrace();
+			System.out.println("세션 상에 웹 드라이버가 없습니다.");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('드라이버 세션이 종료되었습니다. 로그아웃하고 다시 로그인 후 이용해주세요 ');</script>");
 			out.flush();
 			return "index";
-		}catch (Exception e) {
-			e.printStackTrace();
+		}catch (NullPointerException e) {
+			//e.printStackTrace();
+			System.out.println("세션이 없어 검색하지 못했습니다.");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 후 검색을 이용해주세요.');</script>");
+			out.flush();
+			return "index";
+		}catch(Exception e) {
+			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('예상치 못한 오류로 검색하지 못했습니다.\n다시 로그인해보세요.');</script>");
 			out.flush();
 			return "index";
 		}

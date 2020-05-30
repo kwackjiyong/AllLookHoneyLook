@@ -69,12 +69,12 @@
 
 				<!-- ///////////////////////////////------검색창------///////////////////////////////-->
 				<section
-					style="left: 150px; top: 20px; border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
+					class="col-md-7"style=" border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
 					<div style="position: relative; padding-right: 40px;">
-						<form action="search.do">
+						<form action="search.do" >
 							<input type="text" name="searchWord" class="form-control"
 								placeholder="검색어를 입력하세요 "
-								style="width: 600px; height: 45px; border: none; font-size: 18px; color: #9F6118;">
+								style="border: none; font-size: 18px; color: #9F6118;">
 							<button
 								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
 								<img src="<c:url value='/resources/icon/search.png'/>"
@@ -87,7 +87,7 @@
 
 				<!-- ///////////////////////////////------홈 & 로그인 & 회원가입------///////////////////////////////-->
 				<c:if test="${empty sessionScope.userData}">
-					<div class="collapse navbar-collapse" id="navbarResponsive">
+					<div class="collapse navbar-collapse col-md-3" id="navbarResponsive"">
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link js-scroll-trigger"
 								href="index.html">Home</a></li>

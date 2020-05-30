@@ -145,7 +145,267 @@
 		</header>
 
 
-		<main role="main">
+		<div class="site-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 sidebar">
+
+						<div class="sidebar-box">
+							<h2>마이페이지</h2>
+						</div>
+						<div class="sidebar-box">
+							<form action="#" class="search-form">
+								<div class="form-group">
+									<p>${userData.userName}님</p>
+									<br>
+									<p>생년월일 : ${userData.userBirth}</p>
+									<br>
+									<p>이메일 : ${userData.userEmail}</p>
+									<br>
+								</div>
+							</form>
+						</div>
+						<div class="sidebar-box">
+							<div class="categories">
+								<h3>Categories</h3>
+								<li><a href="#" data-toggle="collapse"
+									data-target="#QandA_form" aria-expanded="false"
+									aria-controls="QandA_form">1:1문의 <!-- <span>(12)</span> --></a></li>
+								<li><a href="#" data-toggle="collapse"
+									data-target="#modify_form" aria-expanded="false"
+									aria-controls="modify_form">회원정보 변경</a></li>
+								<li><a href="#">회원탈퇴</a></li>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8 blog-content">
+
+						<!-- ///////////////////////////////------1:1 문의 컬랩스------///////////////////////////////-->
+						<div class="collapse" id="QandA_form">
+							<div class="well">
+								<div class="comment-form-wrap pt-5">
+									<h3 class="mb-5">1:1문의</h3>
+									<form action="#" class="">
+										<div class="form-group">
+											<label for="name">이름 : ${userData.userName}</label>
+										</div>
+
+										<div class="form-group">
+											<label for="name">내역</label>
+											<table>
+												<tr>
+													<td>ddd</td>
+												</tr>
+											</table>
+										</div>
+
+
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary" value="수정"
+												style="background-color: #9F6118; color: white;">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- ///////////////////////////////------1:1 문의 END------///////////////////////////////-->
+
+						<!-- ///////////////////////////////------회원정보 수정 컬랩스------///////////////////////////////-->
+						<div class="collapse" id="modify_form">
+							<div class="well">
+								<div class="comment-form-wrap pt-5">
+									<h3 class="mb-5">회원정보수정</h3>
+									<form action="#" class="">
+										<div class="form-group">
+											<label for="name">이름 : ${userData.userName}</label>
+										</div>
+
+										<div class="form-group">
+											<label for="name">생년월일 : ${userData.userBirth}</label>
+										</div>
+
+										<div class="form-group">
+											<label for="email">비밀번호</label> <input type="password"
+												class="form-control" id="password">
+										</div>
+
+										<div class="form-group">
+											<label for="email">비밀번호 재확인</label> <input type="password"
+												class="form-control" id="password">
+										</div>
+
+										<div class="form-group">
+											<label for="email">Email *</label> <input type="email"
+												class="form-control" id="email">
+										</div>
+
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary" value="수정"
+												style="background-color: #9F6118; color: white;">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- ///////////////////////////////------회원정보 수정 컬랩스 END------///////////////////////////////-->
+
+						<!-- <div class="pt-5">
+							<h3 class="mb-5">6 Comments</h3>
+							<ul class="comment-list">
+								<li class="comment">
+									<div class="vcard bio">
+										<img src="images/person_2.jpg" alt="Image">
+									</div>
+									<div class="comment-body">
+										<h3>Jacob Smith</h3>
+										<div class="meta">January 9, 2018 at 2:21pm</div>
+										<p>When she reached the first hills of the Italic
+											Mountains, she had a last view back on the skyline of her
+											hometown Bookmarksgrove, the headline of Alphabet Village and
+											the subline of her own road, the Line Lane. Pityful a
+											rethoric question ran over her cheek, then she continued her
+											way.</p>
+										<p>
+											<a href="#" class="reply">Reply</a>
+										</p>
+									</div>
+								</li>
+
+								<li class="comment">
+									<div class="vcard bio">
+										<img src="images/person_3.jpg" alt="Image">
+									</div>
+									<div class="comment-body">
+										<h3>Chris Meyer</h3>
+										<div class="meta">January 9, 2018 at 2:21pm</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit. Pariatur quidem laborum necessitatibus, ipsam impedit
+											vitae autem, eum officia, fugiat saepe enim sapiente iste
+											iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+										<p>
+											<a href="#" class="reply">Reply</a>
+										</p>
+									</div>
+
+									<ul class="children">
+										<li class="comment">
+											<div class="vcard bio">
+												<img src="images/person_5.jpg" alt="Image">
+											</div>
+											<div class="comment-body">
+												<h3>Chintan Patel</h3>
+												<div class="meta">January 9, 2018 at 2:21pm</div>
+												<p>Far far away, behind the word mountains, far from the
+													countries Vokalia and Consonantia, there live the blind
+													texts. Separated they live in Bookmarksgrove right at the
+													coast of the Semantics, a large language ocean.</p>
+												<p>
+													<a href="#" class="reply">Reply</a>
+												</p>
+											</div>
+
+
+											<ul class="children">
+												<li class="comment">
+													<div class="vcard bio">
+														<img src="images/person_1.jpg" alt="Image">
+													</div>
+													<div class="comment-body">
+														<h3>Jean Doe</h3>
+														<div class="meta">January 9, 2018 at 2:21pm</div>
+														<p>A small river named Duden flows by their place and
+															supplies it with the necessary regelialia. It is a
+															paradisematic country, in which roasted parts of
+															sentences fly into your mouth.</p>
+														<p>
+															<a href="#" class="reply">Reply</a>
+														</p>
+													</div>
+
+													<ul class="children">
+														<li class="comment">
+															<div class="vcard bio">
+																<img src="images/person_4.jpg" alt="Image">
+															</div>
+															<div class="comment-body">
+																<h3>Ben Afflick</h3>
+																<div class="meta">January 9, 2018 at 2:21pm</div>
+																<p>Even the all-powerful Pointing has no control
+																	about the blind texts it is an almost unorthographic
+																	life One day however a small line of blind text by the
+																	name of Lorem Ipsum decided to leave for the far World
+																	of Grammar.</p>
+																<p>
+																	<a href="#" class="reply">Reply</a>
+																</p>
+															</div>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+
+								<li class="comment">
+									<div class="vcard bio">
+										<img src="images/person_1.jpg" alt="Image">
+									</div>
+									<div class="comment-body">
+										<h3>Jean Doe</h3>
+										<div class="meta">January 9, 2018 at 2:21pm</div>
+										<p>Even the all-powerful Pointing has no control about the
+											blind texts it is an almost unorthographic life One day
+											however a small line of blind text by the name of Lorem Ipsum
+											decided to leave for the far World of Grammar.</p>
+										<p>
+											<a href="#" class="reply">Reply</a>
+										</p>
+									</div>
+								</li>
+							</ul>
+							END comment-list
+
+							<div class="comment-form-wrap pt-5">
+								<h3 class="mb-5">Leave a comment</h3>
+								<form action="#" class="">
+									<div class="form-group">
+										<label for="name">Name *</label> <input type="text"
+											class="form-control" id="name">
+									</div>
+									<div class="form-group">
+										<label for="email">Email *</label> <input type="email"
+											class="form-control" id="email">
+									</div>
+									<div class="form-group">
+										<label for="website">Website</label> <input type="url"
+											class="form-control" id="website">
+									</div>
+
+									<div class="form-group">
+										<label for="message">Message</label>
+										<textarea name="" id="message" cols="30" rows="10"
+											class="form-control"></textarea>
+									</div>
+									<div class="form-group">
+										<input type="submit" value="Post Comment"
+											class="btn btn-primary btn-md text-white">
+									</div>
+
+								</form>
+							</div>
+						</div>
+ -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<!-- <main role="main">
 
 			<div class="contact_header jumbotron text-center"
 				style="background-color: #9F6118;"></div>
@@ -154,7 +414,7 @@
 					<div class="col-sm-12">
 						<div class="contact_form">
 
-							<!-- <div role="tabpanel">
+							<div role="tabpanel">
 								Nav tabs
 								<ul class="nav nav-tabs" role="tablist">
 									<li role="presentation" class="active tab_style"><a
@@ -180,7 +440,7 @@
 									<div role="tabpanel" class="tab-pane fade" id="settings">...</div>
 								</div>
 
-							</div> -->
+							</div>
 
 							<div class="bs-example bs-example-tabs" role="tabpanel"
 								data-example-id="togglable-tabs">
@@ -264,121 +524,65 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- ********************************************************** 푸터 영역  ************************************************************************-->
-			<footer class="site-section">
-				<div class="container">
-					<div class="row mt-2 justify-content-center">
-						<div class="col-md-7 text-center">
-							<p>
-								<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
-							</p>
+			</div> -->
+		<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+		<footer class="site-section">
+			<div class="container">
+				<div class="row mt-2 justify-content-center">
+					<div class="col-md-7 text-center">
+						<p>
+							<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
+						</p>
 
-							<div>
-								<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
-							</div>
+						<div>
+							<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
+						</div>
 
-							<br>
-							<div>
-								<h6>대표 번호 : 010-5347-8469</h6>
-							</div>
-							<br>
+						<br>
+						<div>
+							<h6>대표 번호 : 010-5347-8469</h6>
+						</div>
+						<br>
 
-							<div>
-								<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
-							</div>
+						<div>
+							<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
+						</div>
 
-							<div class="row mt-5 text-center" style="color: #9F6118;">
-								<div class="col">
-									<a href="#"><span class="m-2 icon-facebook"></span></a> <a
-										href="#"><span class="m-2 icon-twitter"></span></a> <a
-										href="#"><span class="m-2 icon-linkedin"></span></a> <a
-										href="#"><span class="m-2 icon-instagram"></span></a> <a
-										href="#"><span class="m-2 icon-skype"></span></a>
-								</div>
+						<div class="row mt-5 text-center" style="color: #9F6118;">
+							<div class="col">
+								<a href="#"><span class="m-2 icon-facebook"></span></a> <a
+									href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
+									class="m-2 icon-linkedin"></span></a> <a href="#"><span
+									class="m-2 icon-instagram"></span></a> <a href="#"><span
+									class="m-2 icon-skype"></span></a>
 							</div>
 						</div>
 					</div>
-
-					<div class="row mt-5 justify-content-center"
-						style="color: #9F6118;">
-						<h6 class="col-md-3">
-							<a href="https://policy.daangn.com/terms.html">이용약관</a>
-						</h6>
-						<h6 class="col-md-3">
-							<a href="https://policy.daangn.com/terms.html">개인정보처리방침</a>
-						</h6>
-						<h6 class="col-md-3">
-							<a href="https://policy.daangn.com/terms.html">공지사항</a>
-						</h6>
-						<h6>
-							<a href="https://policy.daangn.com/terms.html">About Us</a>
-						</h6>
-					</div>
-
-					<div class="row mt-5 justify-content-center">
-						<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
-					</div>
 				</div>
-			</footer>
+
+				<div class="row mt-5 justify-content-center" style="color: #9F6118;">
+					<h6 class="col-md-3">
+						<a href="https://policy.daangn.com/terms.html">이용약관</a>
+					</h6>
+					<h6 class="col-md-3">
+						<a href="https://policy.daangn.com/terms.html">개인정보처리방침</a>
+					</h6>
+					<h6 class="col-md-3">
+						<a href="https://policy.daangn.com/terms.html">공지사항</a>
+					</h6>
+					<h6>
+						<a href="https://policy.daangn.com/terms.html">About Us</a>
+					</h6>
+				</div>
+
+				<div class="row mt-5 justify-content-center">
+					<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
+				</div>
+			</div>
+		</footer>
 		</main>
 	</div>
 
-	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
-	<footer class="site-section">
-		<div class="container">
-			<div class="row mt-2 justify-content-center">
-				<div class="col-md-7 text-center">
-					<p>
-						<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
-					</p>
-
-					<div>
-						<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
-					</div>
-
-					<br>
-					<div>
-						<h6>대표 번호 : 010-5347-8469</h6>
-					</div>
-					<br>
-
-					<div>
-						<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
-					</div>
-
-					<div class="row mt-5 text-center">
-						<div class="col">
-							<a href="#"><span class="m-2 icon-facebook"></span></a> <a
-								href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
-								class="m-2 icon-linkedin"></span></a> <a href="#"><span
-								class="m-2 icon-instagram"></span></a> <a href="#"><span
-								class="m-2 icon-skype"></span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row mt-5 justify-content-center">
-				<h6 class="col-md-3">
-					<a href="about_us.do">이용약관</a>
-				</h6>
-				<h6 class="col-md-3">
-					<a href="#">개인정보처리방침</a>
-				</h6>
-				<h6 class="col-md-3">
-					<a href="#">공지사항</a>
-				</h6>
-				<h6>
-					<a href="about_us.do">About Us</a>
-				</h6>
-			</div>
-
-			<div class="row mt-5 justify-content-center">
-				<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
-			</div>
-		</div>
-	</footer>
 
 	<!-- *****************************   자바 스크립트 섹션     ***********************-->
 	<script

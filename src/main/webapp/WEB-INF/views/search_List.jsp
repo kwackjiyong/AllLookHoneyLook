@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- ///////////////////////////////------부트스트랩 링크------///////////////////////////////-->
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900"
 	rel="stylesheet">
@@ -40,6 +42,9 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+
+<!-- ///////////////////////////////------부트스트랩 링크 END------///////////////////////////////-->
+
 <!-- 테이블 템플릿꺼 -->
 <!-- DataTables CSS -->
 <link rel="stylesheet"
@@ -97,8 +102,13 @@
 				<c:if test="${not empty sessionScope.userData}">
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ml-auto">
-							<li class="nav-item" style = "margin-left:50px;margin-top: 10px;"><a class="nav-link js-scroll-trigger">${userData.userName} 님 <br> 환영합니다!</a></li>
-							<li class="nav-item" style = "padding-left: 50px; margin-top: 10px;"> <a class="nav-link js-scroll-trigger" data-toggle="modal"
+							<li class="nav-item" style="margin-left: 50px; margin-top: 10px;"><a
+								class="nav-link js-scroll-trigger">${userData.userName} 님 <br>
+									환영합니다!
+							</a></li>
+							<li class="nav-item"
+								style="padding-left: 50px; margin-top: 10px;"><a
+								class="nav-link js-scroll-trigger" data-toggle="modal"
 								data-target="#btnSetting" aria-haspopup="true"
 								aria-expanded="false" role="button"> <img
 									src="<c:url value='/resources/icon/settings.png'/>"
@@ -259,7 +269,7 @@
 		<!-- 첫번째 섹션 끝 -->
 	</div>
 	<!-- 전체 바디 끝 -->
-		<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
 	<footer class="site-section">
 		<div class="container">
 			<div class="row mt-2 justify-content-center">

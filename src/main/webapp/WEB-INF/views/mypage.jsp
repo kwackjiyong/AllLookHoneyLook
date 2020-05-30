@@ -45,6 +45,25 @@
 
 <!-- ///////////////////////////////------부트스트랩 링크 END------///////////////////////////////-->
 
+<!-- CSS only -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+
 <style>
 .tab_style {
 	width: 200px;
@@ -136,20 +155,10 @@
 		</nav>
 		<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
 
-		<header class="site-navbar js-sticky-header site-navbar-target"
-			role="banner" style="background-color: gray;">
-
-			<div class="container">
-				<div class="row align-items-center position-relative"></div>
-			</div>
-		</header>
-
-
 		<div class="site-section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 sidebar">
-
 						<div class="sidebar-box">
 							<h2>마이페이지</h2>
 						</div>
@@ -158,28 +167,332 @@
 								<div class="form-group">
 									<p>${userData.userName}님</p>
 									<br>
-									<p>생년월일 : ${userData.userBirth}</p>
+									<p>등급 : 꿀곰이</p>
 									<br>
-									<p>이메일 : ${userData.userEmail}</p>
+									<p>이용 혜택 : 50개 단위 검색</p>
+									<br>
+									<p>이용권 기한 : 2020-04-21 24:00 까지</p>
 									<br>
 								</div>
 							</form>
 						</div>
 						<div class="sidebar-box">
-							<div class="categories">
+							<div class="categories" id="myTab" role="tablist"">
 								<h3>Categories</h3>
-								<li><a href="#" data-toggle="collapse"
-									data-target="#QandA_form" aria-expanded="false"
-									aria-controls="QandA_form">1:1문의 <!-- <span>(12)</span> --></a></li>
-								<li><a href="#" data-toggle="collapse"
+<!-- 								<li><a href="#" data-toggle="collapse"
 									data-target="#modify_form" aria-expanded="false"
 									aria-controls="modify_form">회원정보 변경</a></li>
-								<li><a href="#">회원탈퇴</a></li>
+								<li><a href="#" data-toggle="collapse"
+									data-target="#service_form" aria-expanded="false"
+									aria-controls="service_form">고객센터<span>(12)</span></a></li>
+
+								<li><a href="#" data-toggle="collapse"
+									data-target="#QandA_form" aria-expanded="false"
+									aria-controls="QandA_form">1:1문의 <span>(12)</span></a></li> -->
+									
+									
+								<!-- <li><a class="nav-item nav-link active" id="modify_form" data-toggle="tab" href="#modify" role="tab" aria-controls="modify" aria-selected="true">회원정보 변경</a></li>
+												
+								<li><a class="nav-item nav-link active" id="service_form" data-toggle="tab" href="#service" role="tab" aria-controls="service" aria-selected="false">고객센터<span>(12)</span></a></li>
+
+								<li><a class="nav-item nav-link active" id="QandA_form" data-toggle="tab" href="#QandA" role="tab" aria-controls="QandA" aria-selected="false">1:1문의 <span>(12)</span></a></li>
+								
+								 -->
+    <div class="nav flex-column nav-tab" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">회원정보 변경</a>
+      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">고객센터</a>
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">1:1문의</a>
+      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+    </div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-8 blog-content">
 
+					<div class="col-md-8 blog-content">
+					
+					<div class="row">
+  
+  <div class="col-9">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><h3 class="mb-5">회원정보수정</h3>
+										<form action="#">
+											<div class="form-group">
+												<label for="name">이름 : ${userData.userName}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="name">생년월일 : ${userData.userBirth}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호 재확인</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">Email *</label> <input type="email"
+													class="form-control" id="email">
+											</div>
+
+											<div class="form-group">
+												<input type="submit" class="btn btn-primary" value="수정"
+													style="background-color: #9F6118; color: white;">
+											</div>
+
+										</form></div>
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><h3 class="mb-5">1:1문의</h3></div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+    </div>
+  </div>
+</div>
+						<%-- <div class="tab-content" id="nav-tabContent">
+  							<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  										<h3 class="mb-5">회원정보수정</h3>
+										<form action="#">
+											<div class="form-group">
+												<label for="name">이름 : ${userData.userName}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="name">생년월일 : ${userData.userBirth}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호 재확인</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">Email *</label> <input type="email"
+													class="form-control" id="email">
+											</div>
+
+											<div class="form-group">
+												<input type="submit" class="btn btn-primary" value="수정"
+													style="background-color: #9F6118; color: white;">
+											</div>
+
+										</form>
+  							</div>
+  
+  
+  							<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  							
+  							<div class="comment-form-wrap pt-5">
+									<h3 class="mb-5">1:1문의</h3>
+									<form action="#" class="">
+										<div class="form-group">
+											<label for="name">이름 : ${userData.userName}</label>
+										</div>
+
+										<div class="form-group">
+											<label for="name">내역</label>
+											<table>
+												<tr>
+													<td>ddd</td>
+												</tr>
+											</table>
+										</div>
+
+
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary" value="수정"
+												style="background-color: #9F6118; color: white;">
+										</div>
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary" value="회원탈퇴"
+												style="background-color: #9F6118; color: white;">
+										</div>
+
+									</form>
+								</div>
+  							
+  							</div>
+  <!-- 
+  
+ 							<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+ 							
+ 							</div>
+   -->
+  
+								</div> --%>
+						<%-- <div class="tab-content" id="modify_form">
+							<div class="tab-pane fade show active" id="modify"
+								role="tabpanel" aria-labelledby="modify_form">
+								<h3 class="mb-5">회원정보수정</h3>
+										<form action="#">
+											<div class="form-group">
+												<label for="name">이름 : ${userData.userName}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="name">생년월일 : ${userData.userBirth}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호 재확인</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">Email *</label> <input type="email"
+													class="form-control" id="email">
+											</div>
+
+											<div class="form-group">
+												<input type="submit" class="btn btn-primary" value="수정"
+													style="background-color: #9F6118; color: white;">
+											</div>
+
+										</form>
+							</div>
+							<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+								aria-labelledby="nav-profile-tab">...</div>
+							<div class="tab-pane fade" id="nav-contact" role="tabpanel"
+								aria-labelledby="nav-contact-tab">...</div>
+						</div> --%>
+
+						<%-- <div class="accordion" id="accordionExample">
+							<div class="card">
+								<div class="card-header" id="headingOne">
+									<h2 class="mb-0">회원정보수정</h2>
+								</div>
+
+								<div id="modify_form" class="collapse show"
+									aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div class="card-body">
+										<h3 class="mb-5">회원정보수정</h3>
+										<form action="#" class="">
+											<div class="form-group">
+												<label for="name">이름 : ${userData.userName}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="name">생년월일 : ${userData.userBirth}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호 재확인</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">Email *</label> <input type="email"
+													class="form-control" id="email">
+											</div>
+
+											<div class="form-group">
+												<input type="submit" class="btn btn-primary" value="수정"
+													style="background-color: #9F6118; color: white;">
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header" id="headingOne">
+									<h2 class="mb-0">1:1문의</h2>
+								</div>
+
+								<div id="QandA_form" class="collapse"
+									aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div class="card-body">
+											<div class="well">
+												<div class="comment-form-wrap pt-5">
+													<h3 class="mb-5">1:1문의</h3>
+													<form action="#" class="">
+														<div class="form-group">
+															<label for="name">이름 : ${userData.userName}</label>
+														</div>
+
+														<div class="form-group">
+															<label for="name">내역</label>
+															<table>
+																<tr>
+																	<td>ddd</td>
+																</tr>
+															</table>
+														</div>
+
+
+														<div class="form-group">
+															<input type="submit" class="btn btn-primary" value="수정"
+																style="background-color: #9F6118; color: white;">
+														</div>
+														<div class="form-group">
+															<input type="submit" class="btn btn-primary" value="회원탈퇴"
+																style="background-color: #9F6118; color: white;">
+														</div>
+
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> --%>
+						<%-- <!-- ///////////////////////////////------회원정보 수정 컬랩스------///////////////////////////////-->
+							<div class="collapse show" id="modify_form">
+								<div class="well">
+									<div class="comment-form-wrap pt-5">
+										<h3 class="mb-5">회원정보수정</h3>
+										<form action="#" class="">
+											<div class="form-group">
+												<label for="name">이름 : ${userData.userName}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="name">생년월일 : ${userData.userBirth}</label>
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">비밀번호 재확인</label> <input type="password"
+													class="form-control" id="password">
+											</div>
+
+											<div class="form-group">
+												<label for="email">Email *</label> <input type="email"
+													class="form-control" id="email">
+											</div>
+
+											<div class="form-group">
+												<input type="submit" class="btn btn-primary" value="수정"
+													style="background-color: #9F6118; color: white;">
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- ///////////////////////////////------회원정보 수정 컬랩스 END------///////////////////////////////-->
+ --%><%-- 
 						<!-- ///////////////////////////////------1:1 문의 컬랩스------///////////////////////////////-->
 						<div class="collapse" id="QandA_form">
 							<div class="well">
@@ -204,44 +517,8 @@
 											<input type="submit" class="btn btn-primary" value="수정"
 												style="background-color: #9F6118; color: white;">
 										</div>
-
-									</form>
-								</div>
-							</div>
-						</div>
-						<!-- ///////////////////////////////------1:1 문의 END------///////////////////////////////-->
-
-						<!-- ///////////////////////////////------회원정보 수정 컬랩스------///////////////////////////////-->
-						<div class="collapse" id="modify_form">
-							<div class="well">
-								<div class="comment-form-wrap pt-5">
-									<h3 class="mb-5">회원정보수정</h3>
-									<form action="#" class="">
 										<div class="form-group">
-											<label for="name">이름 : ${userData.userName}</label>
-										</div>
-
-										<div class="form-group">
-											<label for="name">생년월일 : ${userData.userBirth}</label>
-										</div>
-
-										<div class="form-group">
-											<label for="email">비밀번호</label> <input type="password"
-												class="form-control" id="password">
-										</div>
-
-										<div class="form-group">
-											<label for="email">비밀번호 재확인</label> <input type="password"
-												class="form-control" id="password">
-										</div>
-
-										<div class="form-group">
-											<label for="email">Email *</label> <input type="email"
-												class="form-control" id="email">
-										</div>
-
-										<div class="form-group">
-											<input type="submit" class="btn btn-primary" value="수정"
+											<input type="submit" class="btn btn-primary" value="회원탈퇴"
 												style="background-color: #9F6118; color: white;">
 										</div>
 
@@ -249,339 +526,128 @@
 								</div>
 							</div>
 						</div>
-						<!-- ///////////////////////////////------회원정보 수정 컬랩스 END------///////////////////////////////-->
+						<!-- ///////////////////////////////------1:1 문의 END------///////////////////////////////-->
 
-						<!-- <div class="pt-5">
-							<h3 class="mb-5">6 Comments</h3>
-							<ul class="comment-list">
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_2.jpg" alt="Image">
-									</div>
-									<div class="comment-body">
-										<h3>Jacob Smith</h3>
-										<div class="meta">January 9, 2018 at 2:21pm</div>
-										<p>When she reached the first hills of the Italic
-											Mountains, she had a last view back on the skyline of her
-											hometown Bookmarksgrove, the headline of Alphabet Village and
-											the subline of her own road, the Line Lane. Pityful a
-											rethoric question ran over her cheek, then she continued her
-											way.</p>
-										<p>
-											<a href="#" class="reply">Reply</a>
-										</p>
-									</div>
-								</li>
+ --%><%-- 
 
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_3.jpg" alt="Image">
-									</div>
-									<div class="comment-body">
-										<h3>Chris Meyer</h3>
-										<div class="meta">January 9, 2018 at 2:21pm</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-											vitae autem, eum officia, fugiat saepe enim sapiente iste
-											iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-										<p>
-											<a href="#" class="reply">Reply</a>
-										</p>
-									</div>
+						<!-- ///////////////////////////////------고객센터 컬랩스------///////////////////////////////-->
+						<div class="collapse" id="service_form">
+							<div class="well">
+								<div class="comment-form-wrap pt-5">
+									<h2>고객센터</h2>
+									<nav>
+										<div class="nav nav-tabs" id="nav-tab" role="tablist">
+											<a class="nav-item nav-link active" id="nav-home-tab"
+												data-toggle="tab" href="#nav-home" role="tab"
+												aria-controls="nav-home" aria-selected="true">이용권 안내</a> 
+												<a
+												class="nav-item nav-link" id="nav-profile-tab"
+												data-toggle="tab" href="#nav-profile" role="tab"
+												aria-controls="nav-profile" aria-selected="false">이용권
+												결제/환불</a> <a class="nav-item nav-link" id="nav-contact-tab"
+												data-toggle="tab" href="#nav-contact" role="tab"
+												aria-controls="nav-contact" aria-selected="false">1:1 문의</a>
+											<a class="nav-item nav-link" id="nav-contact-tab"
+												data-toggle="tab" href="#nav-contact" role="tab"
+												aria-controls="nav-contact" aria-selected="false">회원탈퇴</a>
+										</div>
+									</nav>
 
-									<ul class="children">
-										<li class="comment">
-											<div class="vcard bio">
-												<img src="images/person_5.jpg" alt="Image">
-											</div>
-											<div class="comment-body">
-												<h3>Chintan Patel</h3>
-												<div class="meta">January 9, 2018 at 2:21pm</div>
-												<p>Far far away, behind the word mountains, far from the
-													countries Vokalia and Consonantia, there live the blind
-													texts. Separated they live in Bookmarksgrove right at the
-													coast of the Semantics, a large language ocean.</p>
-												<p>
-													<a href="#" class="reply">Reply</a>
-												</p>
-											</div>
-
-
-											<ul class="children">
-												<li class="comment">
-													<div class="vcard bio">
-														<img src="images/person_1.jpg" alt="Image">
-													</div>
-													<div class="comment-body">
-														<h3>Jean Doe</h3>
-														<div class="meta">January 9, 2018 at 2:21pm</div>
-														<p>A small river named Duden flows by their place and
-															supplies it with the necessary regelialia. It is a
-															paradisematic country, in which roasted parts of
-															sentences fly into your mouth.</p>
-														<p>
-															<a href="#" class="reply">Reply</a>
-														</p>
-													</div>
-
-													<ul class="children">
-														<li class="comment">
-															<div class="vcard bio">
-																<img src="images/person_4.jpg" alt="Image">
-															</div>
-															<div class="comment-body">
-																<h3>Ben Afflick</h3>
-																<div class="meta">January 9, 2018 at 2:21pm</div>
-																<p>Even the all-powerful Pointing has no control
-																	about the blind texts it is an almost unorthographic
-																	life One day however a small line of blind text by the
-																	name of Lorem Ipsum decided to leave for the far World
-																	of Grammar.</p>
-																<p>
-																	<a href="#" class="reply">Reply</a>
-																</p>
-															</div>
-														</li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_1.jpg" alt="Image">
+									<div class="tab-content" id="nav-tabContent">
+										<div class="tab-pane fade show active" id="nav-home"
+											role="tabpanel" aria-labelledby="nav-home-tab">
+											<img src="<c:url value='/resources/icon/use.png'/>">
+										</div>
+										<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+											aria-labelledby="nav-profile-tab">...</div>
+										<div class="tab-pane fade" id="nav-contact" role="tabpanel"
+											aria-labelledby="nav-contact-tab">...</div>
 									</div>
-									<div class="comment-body">
-										<h3>Jean Doe</h3>
-										<div class="meta">January 9, 2018 at 2:21pm</div>
-										<p>Even the all-powerful Pointing has no control about the
-											blind texts it is an almost unorthographic life One day
-											however a small line of blind text by the name of Lorem Ipsum
-											decided to leave for the far World of Grammar.</p>
-										<p>
-											<a href="#" class="reply">Reply</a>
-										</p>
-									</div>
-								</li>
-							</ul>
-							END comment-list
+									<form action="#">
+										<table class="table table-horver">
+											<thead>
+												<tr>
+													<th>순서</th>
+													<th>대분류</th>
+													<th>중분류</th>
+													<th>제목</th>
+													<th>상태</th>
+													<th>등록일</th>
+												</tr>
+											</thead>
 
-							<div class="comment-form-wrap pt-5">
-								<h3 class="mb-5">Leave a comment</h3>
-								<form action="#" class="">
-									<div class="form-group">
-										<label for="name">Name *</label> <input type="text"
-											class="form-control" id="name">
-									</div>
-									<div class="form-group">
-										<label for="email">Email *</label> <input type="email"
-											class="form-control" id="email">
-									</div>
-									<div class="form-group">
-										<label for="website">Website</label> <input type="url"
-											class="form-control" id="website">
-									</div>
+											<tbody>
+											</tbody>
 
-									<div class="form-group">
-										<label for="message">Message</label>
-										<textarea name="" id="message" cols="30" rows="10"
-											class="form-control"></textarea>
-									</div>
-									<div class="form-group">
-										<input type="submit" value="Post Comment"
-											class="btn btn-primary btn-md text-white">
-									</div>
-
-								</form>
+											<tfoot>
+											</tfoot>
+										</table>
+									</form>
+								</div>
 							</div>
 						</div>
- -->
+						<!-- ///////////////////////////////------고객센터 컬랩스 END------///////////////////////////////-->
+ --%>
 					</div>
-
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+	<footer class="site-section">
+		<div class="container">
+			<div class="row mt-2 justify-content-center">
+				<div class="col-md-7 text-center">
+					<p>
+						<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
+					</p>
 
+					<div>
+						<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
+					</div>
 
-		<!-- <main role="main">
+					<br>
+					<div>
+						<h6>대표 번호 : 010-5347-8469</h6>
+					</div>
+					<br>
 
-			<div class="contact_header jumbotron text-center"
-				style="background-color: #9F6118;"></div>
-			<div class="contact_form_wrapper container mb-5">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="contact_form">
+					<div>
+						<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
+					</div>
 
-							<div role="tabpanel">
-								Nav tabs
-								<ul class="nav nav-tabs" role="tablist">
-									<li role="presentation" class="active tab_style"><a
-										href="#home" aria-controls="home" role="tab" data-toggle="tab"
-										aria-expanded="true">Home</a></li>
-									<li role="presentation" class="active" aria-expanded="false"><a
-										href="#profile" aria-controls="profile" role="tab"
-										data-toggle="tab">Profile</a></li>
-									<li role="presentation" class="active" aria-expanded="false"><a
-										href="#messages" aria-controls="messages" role="tab"
-										data-toggle="tab">Messages</a></li>
-									<li role="presentation" class="active" aria-expanded="false"><a
-										href="#settings" aria-controls="settings" role="tab"
-										data-toggle="tab">Settings</a></li>
-								</ul>
-
-								Tab panes
-								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane fade in active" id="home">아이디
-										비번 바꿀거야</div>
-									<div role="tabpanel" class="tab-pane fade" id="profile">회원탈퇴</div>
-									<div role="tabpanel" class="tab-pane fade" id="messages">...</div>
-									<div role="tabpanel" class="tab-pane fade" id="settings">...</div>
-								</div>
-
-							</div>
-
-							<div class="bs-example bs-example-tabs" role="tabpanel"
-								data-example-id="togglable-tabs">
-								<ul id="myTab" class="nav nav-tabs" role="tablist">
-									<li role="presentation" class="active"><a href="#home"
-										id="home-tab" role="tab" data-toggle="tab"
-										aria-controls="home" aria-expanded="true">Home</a></li>
-									<li role="presentation" class=""><a href="#profile"
-										role="tab" id="profile-tab" data-toggle="tab"
-										aria-controls="profile" aria-expanded="false">Profile</a></li>
-									<li role="presentation" class="dropdown"><a href="#"
-										id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"
-										aria-controls="myTabDrop1-contents" aria-expanded="false">Dropdown
-											<span class="caret"></span>
-									</a>
-										<ul class="dropdown-menu" role="menu"
-											aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-											<li><a href="#dropdown1" tabindex="-1" role="tab"
-												id="dropdown1-tab" data-toggle="tab"
-												aria-controls="dropdown1">@fat</a></li>
-											<li><a href="#dropdown2" tabindex="-1" role="tab"
-												id="dropdown2-tab" data-toggle="tab"
-												aria-controls="dropdown2">@mdo</a></li>
-										</ul></li>
-								</ul>
-								<div id="myTabContent" class="tab-content">
-									<div role="tabpanel" class="tab-pane fade active in" id="home"
-										aria-labelledby="home-tab">
-										<p>Raw denim you probably haven't heard of them jean
-											shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-											master cleanse. Mustache cliche tempor, williamsburg carles
-											vegan helvetica. Reprehenderit butcher retro keffiyeh
-											dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry
-											richardson ex squid. Aliquip placeat salvia cillum iphone.
-											Seitan aliquip quis cardigan american apparel, butcher
-											voluptate nisi qui.</p>
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="profile"
-										aria-labelledby="profile-tab">
-										<p>Food truck fixie locavore, accusamus mcsweeney's marfa
-											nulla single-origin coffee squid. Exercitation +1 labore
-											velit, blog sartorial PBR leggings next level wes anderson
-											artisan four loko farm-to-table craft beer twee. Qui photo
-											booth letterpress, commodo enim craft beer mlkshk aliquip
-											jean shorts ullamco ad vinyl cillum PBR. Homo nostrud
-											organic, assumenda labore aesthetic magna delectus mollit.
-											Keytar helvetica VHS salvia yr, vero magna velit sapiente
-											labore stumptown. Vegan fanny pack odio cillum wes anderson
-											8-bit, sustainable jean shorts beard ut DIY ethical culpa
-											terry richardson biodiesel. Art party scenester stumptown,
-											tumblr butcher vero sint qui sapiente accusamus tattooed echo
-											park.</p>
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="dropdown1"
-										aria-labelledby="dropdown1-tab">
-										<p>Etsy mixtape wayfarers, ethical wes anderson tofu
-											before they sold out mcsweeney's organic lomo retro fanny
-											pack lo-fi farm-to-table readymade. Messenger bag gentrify
-											pitchfork tattooed craft beer, iphone skateboard locavore
-											carles etsy salvia banksy hoodie helvetica. DIY synth PBR
-											banksy irony. Leggings gentrify squid 8-bit cred pitchfork.
-											Williamsburg banh mi whatever gluten-free, carles pitchfork
-											biodiesel fixie etsy retro mlkshk vice blog. Scenester cred
-											you probably haven't heard of them, vinyl craft beer blog
-											stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="dropdown2"
-										aria-labelledby="dropdown2-tab">
-										<p>Trust fund seitan letterpress, keytar raw denim
-											keffiyeh etsy art party before they sold out master cleanse
-											gluten-free squid scenester freegan cosby sweater. Fanny pack
-											portland seitan DIY, art party locavore wolf cliche high life
-											echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi
-											before they sold out farm-to-table VHS viral locavore cosby
-											sweater. Lomo wolf viral, mustache readymade thundercats
-											keffiyeh craft beer marfa ethical. Wolf salvia freegan,
-											sartorial keffiyeh echo park vegan.</p>
-									</div>
-								</div>
-							</div>
+					<div class="row mt-5 text-center" style="color: #9F6118;">
+						<div class="col">
+							<a href="#"><span class="m-2 icon-facebook"></span></a> <a
+								href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
+								class="m-2 icon-linkedin"></span></a> <a href="#"><span
+								class="m-2 icon-instagram"></span></a> <a href="#"><span
+								class="m-2 icon-skype"></span></a>
 						</div>
 					</div>
-				</div>
-			</div> -->
-		<!-- ********************************************************** 푸터 영역  ************************************************************************-->
-		<footer class="site-section">
-			<div class="container">
-				<div class="row mt-2 justify-content-center">
-					<div class="col-md-7 text-center">
-						<p>
-							<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
-						</p>
-
-						<div>
-							<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
-						</div>
-
-						<br>
-						<div>
-							<h6>대표 번호 : 010-5347-8469</h6>
-						</div>
-						<br>
-
-						<div>
-							<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
-						</div>
-
-						<div class="row mt-5 text-center" style="color: #9F6118;">
-							<div class="col">
-								<a href="#"><span class="m-2 icon-facebook"></span></a> <a
-									href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
-									class="m-2 icon-linkedin"></span></a> <a href="#"><span
-									class="m-2 icon-instagram"></span></a> <a href="#"><span
-									class="m-2 icon-skype"></span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mt-5 justify-content-center" style="color: #9F6118;">
-					<h6 class="col-md-3">
-						<a href="https://policy.daangn.com/terms.html">이용약관</a>
-					</h6>
-					<h6 class="col-md-3">
-						<a href="https://policy.daangn.com/terms.html">개인정보처리방침</a>
-					</h6>
-					<h6 class="col-md-3">
-						<a href="https://policy.daangn.com/terms.html">공지사항</a>
-					</h6>
-					<h6>
-						<a href="https://policy.daangn.com/terms.html">About Us</a>
-					</h6>
-				</div>
-
-				<div class="row mt-5 justify-content-center">
-					<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
 				</div>
 			</div>
-		</footer>
-		</main>
-	</div>
+
+			<div class="row mt-5 justify-content-center" style="color: #9F6118;">
+				<h6 class="col-md-3">
+					<a href="https://policy.daangn.com/terms.html">이용약관</a>
+				</h6>
+				<h6 class="col-md-3">
+					<a href="https://policy.daangn.com/terms.html">개인정보처리방침</a>
+				</h6>
+				<h6 class="col-md-3">
+					<a href="https://policy.daangn.com/terms.html">공지사항</a>
+				</h6>
+				<h6>
+					<a href="https://policy.daangn.com/terms.html">About Us</a>
+				</h6>
+			</div>
+
+			<div class="row mt-5 justify-content-center">
+				<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
+			</div>
+		</div>
+	</footer>
 
 
 	<!-- *****************************   자바 스크립트 섹션     ***********************-->
@@ -626,29 +692,7 @@
 	</script>
 
 	<script>
-		/* 	$('#myTab a').click(function(e) {
-				e.preventDefault()
-				$(this).tab('show')
-			}) */
-		$('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {
-			e.target // newly activated tab
-			e.relatedTarget // previous active tab
-		})
-
-		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-			e.target // newly activated tab
-			e.relatedTarget // previous active tab
-		})
-
-		$('a[data-toggle="tab"]').on('hidden.bs.tab', function(e) {
-			e.target // newly activated tab
-			e.relatedTarget // previous active tab
-		})
-
-		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-			e.target // newly activated tab
-			e.relatedTarget // previous active tab
-		})
+		$('a[href="#settings"]').tab('show');
 	</script>
 
 	<script>
@@ -657,13 +701,29 @@
 			$(this).tab('show')
 		})
 	</script>
-	<!-- 
+
+
+
 	<script>
-		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-			e.target // newly activated tab
-			e.relatedTarget // previous active tab
-		})
-	</script> -->
+		// 위 ajax를 통한 data.load는 따로 bootstrap에 정의된 기능이 아니기 때문에 구현해야한다.
+		// 메뉴가 선택되기 전의 이벤틀르 가져온다.
+		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+			// 선택되는 요소를 오브젝트화 한다.
+			$this = $(e.target);
+			// data-load가 false의 경우는 content에 data-load를 한다.
+			if (!$this.data("load")) {
+				// tab-content의 id를 취득한다.
+				var id = $this.attr("href");
+				// 페이지 로드를 한다.
+				$(id).load($this.data("url"));
+				// data-load를 true로 변환하여 중복 로딩이 없게 한다.
+				$this.data("load", true);
+			}
+		});
+		$('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {
+			// 여기에 load 삭제 기능을 넣어도 되고...
+		});
+	</script>
 
 	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
 </body>

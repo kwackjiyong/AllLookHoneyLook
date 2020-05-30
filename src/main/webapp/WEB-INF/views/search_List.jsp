@@ -40,6 +40,11 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+<!-- 테이블 템플릿꺼 -->
+<!-- DataTables CSS -->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -353,6 +358,40 @@
 
 
 	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
+
+
+	<!-- 테이블템플릿 자바스크립트 -->
+	<!-- DataTables JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
+				"scrollY" : 400,
+				"scrollCollapse" : true,
+				"pagingType" : "full_numbers",
+				"language" : {
+					search : "리스트 내 검색 : ",
+					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
+					"infoEmpty" : "검색 결과가 없습니다.",
+					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
+					"lengthMenu" : "_MENU_ 개씩 보기",
+					"paginate" : {
+						"first" : "처음",
+						"last" : "마지막",
+						"next" : "다음",
+						"previous" : "이전"
+					}
+
+				}
+
+			});
+		});
+	</script>
+
 </body>
 
 </html>

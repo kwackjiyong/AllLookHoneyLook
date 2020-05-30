@@ -77,8 +77,8 @@ public class JsoupParser {
 			List<SearchDTO> dtos_ALL = new ArrayList<SearchDTO>();
 			dtos_ALL.addAll(dtos_jgn);
 			dtos_ALL.addAll(dtos_bgj);
-			driver.close();// 다쓰고난 드라이버는 종료합니다.
-			driver.quit();// 모든 드라이버를 닫습니다.
+			//driver.close();// 다쓰고난 드라이버는 종료합니다.
+			//driver.quit();// 모든 드라이버를 닫습니다.
 			return dtos_ALL;
 		}
 	
@@ -124,8 +124,6 @@ public class JsoupParser {
 		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
 		String url = "https://m.joongna.com/search-list?searchword="+word; // URL
 		String selector = "//div[@class='pd_h15']";								// 선택자
-		
-		
 		// 드라이버 로드
 		wDriver.get(url);
 		// Find the element

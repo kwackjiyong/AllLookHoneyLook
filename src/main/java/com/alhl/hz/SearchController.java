@@ -1,5 +1,6 @@
 package com.alhl.hz;
 
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
@@ -22,6 +23,11 @@ public class SearchController {
 	
 	@RequestMapping(value = "search.do", method = RequestMethod.GET)
 	public String srchList(Locale locale, Model model,HttpServletRequest request,HttpServletResponse response)throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+		
+		try {
 		//이전페이지에서 요청한 검색어를 가져옵니다.
 		String word = request.getParameter("searchWord");
 		
@@ -60,5 +66,18 @@ public class SearchController {
 		model.addAttribute("parsing_dtos",dtos);
 		model.addAttribute("listCnt", dtos.size());
 		return "search_List";
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('드라이버 세션이 종료되었습니다. 로그아웃하고 다시 로그인 후 이용해주세요 ');</script>");
+			out.flush();
+			return "index";
+		}catch (Exception e) {
+			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인 후 검색을 이용해주세요.');</script>");
+			out.flush();
+			return "index";
+		}
 	}
 }

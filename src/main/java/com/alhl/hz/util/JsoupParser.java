@@ -10,6 +10,7 @@ import java.util.SortedSet;
 import java.util.function.Function;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -42,6 +43,51 @@ public class JsoupParser {
 		Elements titles = doc.select(selector);//선택자를 통해 문서객체에서 태그들을 가져옵니다.
 		return titles;
 	}
+	
+	//웹드라이버 (크롬)를 생성하여 세션에 부여하는 메서드
+	public static void webDriver_init(HttpServletRequest request){
+		// 서블릿 리퀘스트로부터 실제 프로젝트 경로를 받아옴
+		String path = request.getSession().getServletContext().getRealPath("");
+		path = path + "resources/chromedriver/chromedriver.exe";
+		System.out.println("리소스 드라이버 경로:" + path);
+		System.setProperty("webdriver.chrome.driver", path); // 크롬 드라이버 생성
+		// Driver 옵션추가
+		ChromeOptions options = new ChromeOptions();
+		options.setCapability("ignoreProtectedModeSettings", true);
+		options.addArguments("headless");
+		options.addArguments("disable-gpu");
+		options.addArguments("disable-infobars");
+		options.addArguments("--disable-extensions");
+		WebDriver driver = new ChromeDriver(options);
+		HttpSession session = request.getSession();
+		session.setAttribute("webdriver", driver);
+	}
+	
+	//Selenium으로 파싱하는 메서드 (웹드라이버를 세션으로 가져오는 버전
+		public static List<SearchDTO> parsing_Selenium_Session(String word,HttpServletRequest request) {
+			//리퀘스트(사용자요청)로부터 세션을 가져옵니다.
+			HttpSession session = request.getSession();
+			//지정 웹드라이버를 세션에서 가져옵니다.
+			WebDriver driver = (WebDriver) session.getAttribute("webdriver");
+			//같은 드라이버를 사용하여 시간을 단축합니다.
+			List<SearchDTO> dtos_jgn = parsing_JGN(word,driver);//중고나라 검색하는 메서드
+			List<SearchDTO> dtos_bgj = parsing_BGJ(word,driver);//번개장터 검색하는 메서드
+			
+			//전체 리스트
+			List<SearchDTO> dtos_ALL = new ArrayList<SearchDTO>();
+			dtos_ALL.addAll(dtos_jgn);
+			dtos_ALL.addAll(dtos_bgj);
+			driver.close();// 다쓰고난 드라이버는 종료합니다.
+			driver.quit();// 모든 드라이버를 닫습니다.
+			return dtos_ALL;
+		}
+	
+	
+	
+	
+	
+	
+	
 	
 	//Selenium으로 파싱하는 메서드
 	public static List<SearchDTO> parsing_Selenium(String word,HttpServletRequest request) {
@@ -330,7 +376,7 @@ public class JsoupParser {
 		
 		
 		//**********셀레니움 통합 검색***************
-		List<SearchDTO> dtos_selenium = parsing_Selenium(word,request);
+		List<SearchDTO> dtos_selenium = parsing_Selenium_Session(word,request);
 		dtos.addAll(dtos_selenium); // 검색된 리스트 추가
 		
 		

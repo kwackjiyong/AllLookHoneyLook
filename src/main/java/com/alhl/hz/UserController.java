@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alhl.hz.dto.UserDTO;
 import com.alhl.hz.service.IUserService;
+import com.alhl.hz.util.JsoupParser;
 
 /**
  * Handles requests for the application home page.
@@ -74,6 +75,7 @@ public class UserController {
 			if (selectDTO.getUserPassword().equals(userdto.getUserPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userData", selectDTO); // 유저 정보 한꺼번에 넣음
+				JsoupParser.webDriver_init(request); //세션에 웹드라이버 생성
 				model.addAttribute("userData", selectDTO); // 유저 정보 한꺼번에 넣음
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('" + userdto.getUserId() + "님 로그인 성공');</script>");

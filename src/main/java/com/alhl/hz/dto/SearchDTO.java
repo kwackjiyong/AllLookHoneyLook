@@ -8,6 +8,9 @@ public class SearchDTO implements Comparable<SearchDTO>{//정렬을 위한 인�
 	int srchPrice;
 	String srchSiteName;
 	
+	
+	
+	//해당 DTO를 SORT할 때 가격순으로 정렬할 것을 정의합니다.
 	@Override
     public int compareTo(SearchDTO s) {
         if (this.srchPrice < s.getSrchPrice()) {

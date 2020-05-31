@@ -8,6 +8,8 @@
 	<select id="SearchLog_USER" parameterType="UserDTO" resultType="SearchLogDTO">
 		SELECT * FROM searchlog 
 		WHERE userId = #{userId}
+		order by srchId 
+		desc
 	</select>
 	
 	<select id="SearchLog_HOT" resultType="SearchLogDTO">

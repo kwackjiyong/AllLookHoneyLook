@@ -18,8 +18,13 @@ public class SearchLogDao implements ISearchLogDao {
 	public SqlSessionTemplate mybatis;
 	@Override
 	public List<SearchLogDTO> userLogSelect(UserDTO userDTO){
-		return mybatis.selectList("searchLogMapper.SearchLog_USER");
+		return mybatis.selectList("searchLogMapper.SearchLog_USER",userDTO);
 	}
+	@Override
+	public List<SearchLogDTO> hotLogSelect(){
+		return mybatis.selectList("searchLogMapper.SearchLog_HOT");
+	}
+	
 	@Override
 	public int logInsert(SearchLogDTO dto) {
 		return mybatis.insert("searchLogMapper.SearchLog_INSERT",dto);

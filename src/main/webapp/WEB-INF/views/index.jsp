@@ -143,7 +143,7 @@
 								<div class="row">
 									<div class="col-md-6 col-lg-4">
 										<div class="pricing-v2 card px-5 p-4 mt-0">
-											<h5 class="font-weight-bold mb-0">오늘의 인기 매물</h5>
+											<h5 class="font-weight-bold mb-0">인기 검색어</h5>
 											<hr>
 											<div class="table-responsive">
 												<table id="recent-purchases-listing" class="table">
@@ -155,14 +155,10 @@
 													</thead>
 
 													<tbody>
-														<tr>
-															<td>1</td>
-															<td>닌텐도</td>
-														</tr>
-														<c:forEach items="${userdata}" var="userdata">
+														<c:forEach items="${hotlog}" var="hotlog">
 															<tr>
-																<td>2</td>
-																<td>${userdata.userId}</td>
+																<td>${hotlog.srchId}</td>
+																<td><a href="search.do?searchWord=${hotlog.srchWord}">${hotlog.srchWord}</a></td>
 															</tr>
 														</c:forEach>
 
@@ -175,7 +171,7 @@
 									<!--end of col-->
 									<div class="col-md-6 col-lg-4">
 										<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
-											<h5 class="font-weight-bold mb-0">최근 인기 매물</h5>
+											<h5 class="font-weight-bold mb-0">최근 검색 목록</h5>
 											<hr>
 											<div class="table-responsive">
 												<table id="recent-purchases-listing" class="table">
@@ -187,14 +183,10 @@
 													</thead>
 
 													<tbody>
-														<tr>
-															<td>1</td>
-															<td>닌텐도</td>
-														</tr>
-														<c:forEach items="${userdata}" var="userdata">
+														<c:forEach items="${userlog}" var="userlog">
 															<tr>
-																<td>2</td>
-																<td>${userdata.userId}</td>
+																<td>${userlog.srchId}</td>
+																<td><a href="search.do?searchWord=${userlog.srchWord}">${userlog.srchWord}</a></td>
 															</tr>
 														</c:forEach>
 
@@ -207,7 +199,7 @@
 									<!--end of col-->
 									<div class="col-md-6 col-lg-4">
 										<div class="pricing-v2 card px-5 p-4 mt-0">
-											<h5 class="font-weight-bold mb-0">최근검색</h5>
+											<h5 class="font-weight-bold mb-0">아직 미정</h5>
 											<hr>
 											<h3 class="price pt-2">
 												$26 <span>per user/ month</span>

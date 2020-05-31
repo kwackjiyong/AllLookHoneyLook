@@ -22,7 +22,10 @@ public class SearchLogService implements ISearchLogService {
 	public List<SearchLogDTO> userLogSelect(UserDTO userDTO){
 		return dao.userLogSelect(userDTO);
 	}
-	
+	@Override
+	public List<SearchLogDTO> hotLogSelect(){
+		return dao.hotLogSelect();
+	}
 	
 	@Override
 	public int logInsert(SearchLogDTO dto) {

@@ -99,10 +99,10 @@
 
 				<!-- ///////////////////////////////------검색창------///////////////////////////////-->
 
-				<section
-					class="col-md-7"style=" border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
+				<section class="col-md-7"
+					style="border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
 					<div style="position: relative; padding-right: 40px;">
-						<form action="search.do" >
+						<form action="search.do">
 							<input type="text" name="searchWord" class="form-control"
 								placeholder="검색어를 입력하세요 "
 								style="border: none; font-size: 18px; color: #9F6118;">
@@ -209,13 +209,14 @@
 							<tr>
 								<td colspan="2">
 									<div class="wrap">
-										<div>안녕하세요. 송희수 고객님, 올룩꿀룩입니다. 올룩꿀룩을 이용해주시고 관심 가져주신 고객님께 감사의
-											말씀 드립니다. 고객님의 아이디로 확인 시 4월 1일에 결제된 꿀곰이 이용권을 이용 중인 것으로
-											확인됩니다. 꿀곰이 이용권의 환불은 이용권의 이용기간 시작일 포함 7일 내 해지 신청한 상태로, 사용이력이 없는
-											경우 가능합니다. 고객님께서 이용 중인 이용권은 환불이 가능한 상태로 확인되어, 정확하게 환불처리
+										<div>안녕하세요. 송희수 고객님, 올룩꿀룩입니다. 올룩꿀룩을 이용해주시고 관심 가져주신 고객님께
+											감사의 말씀 드립니다. 고객님의 아이디로 확인 시 4월 1일에 결제된 꿀곰이 이용권을 이용 중인 것으로
+											확인됩니다. 꿀곰이 이용권의 환불은 이용권의 이용기간 시작일 포함 7일 내 해지 신청한 상태로, 사용이력이
+											없는 경우 가능합니다. 고객님께서 이용 중인 이용권은 환불이 가능한 상태로 확인되어, 정확하게 환불처리
 											완료되었습니다. 따라서 이용권은 종료되었고, 결제된 8,690원(부가세 10% 포함)의 휴대폰 결제금액에 대해
-											결제취소 요청하였사오니 안심하시기 바랍니다. 안내해 드린 내용이 고객님께 도움이 되셨기를 바라며, 더욱 노력하는 올룩꿀룩이 되겠습니다. 다른
-											궁금하신 사항이 있으시면 언제든지 [1:1문의]로 문의하시기 바랍니다. 감사합니다.</div>
+											결제취소 요청하였사오니 안심하시기 바랍니다. 안내해 드린 내용이 고객님께 도움이 되셨기를 바라며, 더욱
+											노력하는 올룩꿀룩이 되겠습니다. 다른 궁금하신 사항이 있으시면 언제든지 [1:1문의]로 문의하시기 바랍니다.
+											감사합니다.</div>
 									</div>
 								</td>
 							</tr>
@@ -285,7 +286,7 @@
 			</div>
 		</div>
 	</footer>
-<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
+	<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
 	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
 		aria-labelledby="setting" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
@@ -301,13 +302,15 @@
 					<form action="Sign_in.ing" method="post">
 						<table class="table" style="text-align: center;">
 							<tr>
-								<td><button type="button"><a href="mypage.do">
-										<img src="<c:url value='/resources/icon/mypage.png'/>"
+								<td><button type="button">
+										<a href="mypage.do"> <img
+											src="<c:url value='/resources/icon/mypage.png'/>"
 											style="width: 250px; height: 250px;"></a>
 									</button></td>
 								<td>
-									<button type="button"><a href="logout.ing">
-										<img src="<c:url value='/resources/icon/exit.png'/>"
+									<button type="button">
+										<a href="logout.ing"> <img
+											src="<c:url value='/resources/icon/exit.png'/>"
 											style="width: 250px; height: 250px;"></a>
 									</button>
 								</td>
@@ -327,8 +330,63 @@
 		</div>
 	</div>
 	<!-- ///////////////////////////////------setting 모달 END------///////////////////////////////-->
+<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+	<footer class="site-section">
+		<div class="container">
+			<div class="row mt-2 justify-content-center">
+				<div class="col-md-7 text-center">
+					<p>
+						<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
+					</p>
 
-	<!-- ********************************************************** 자바스크립트 영역  ************************************************************************-->
+					<div>
+						<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
+					</div>
+
+					<br>
+					<div>
+						<h6>대표 번호 : 010-5347-8469</h6>
+					</div>
+					<br>
+
+					<div>
+						<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
+					</div>
+
+					<div class="row mt-5 text-center">
+						<div class="col">
+							<a href="#"><span class="m-2 icon-facebook"></span></a> <a
+								href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
+								class="m-2 icon-linkedin"></span></a> <a href="#"><span
+								class="m-2 icon-instagram"></span></a> <a href="#"><span
+								class="m-2 icon-skype"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row mt-5 justify-content-center">
+				<h6 class="col-md-3">
+					<a href="about_us.do">이용약관</a>
+				</h6>
+				<h6 class="col-md-3">
+					<a href="#">개인정보처리방침</a>
+				</h6>
+				<h6 class="col-md-3">
+					<a href="#">공지사항</a>
+				</h6>
+				<h6>
+					<a href="about_us.do">About Us</a>
+				</h6>
+			</div>
+
+			<div class="row mt-5 justify-content-center">
+				<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
+			</div>
+		</div>
+	</footer>
+
+	<!-- *****************************   자바 스크립트 섹션     ***********************-->
 	<script
 		src="<c:url value='/resources/template/js/jquery-3.3.1.min.js'/>"></script>
 	<script
@@ -358,7 +416,6 @@
 
 	<script src="<c:url value='/resources/template/js/typed.js'/>"></script>
 
-
 	<script>
 		var typed = new Typed('.typed-words', {
 			strings : [ " 모든 중고제품을 여기서 만나보세요.", " 희수♥지용", " 다양한 카테고리로 검색해보세요",
@@ -372,38 +429,37 @@
 		});
 	</script>
 
+	<!-- 테이블템플릿 자바스크립트 -->
+	<!-- DataTables JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
-		$('a[href="#settings"]').tab('show');
-	</script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
+				"scrollY" : 400,
+				"scrollCollapse" : true,
+				"pagingType" : "full_numbers",
+				"language" : {
+					search : "리스트 내 검색 : ",
+					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
+					"infoEmpty" : "검색 결과가 없습니다.",
+					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
+					"lengthMenu" : "_MENU_ 개씩 보기",
+					"paginate" : {
+						"first" : "처음",
+						"last" : "마지막",
+						"next" : "다음",
+						"previous" : "이전"
+					}
 
-	<script>
-		$('#myTab a').click(function(e) {
-			e.preventDefault()
-			$(this).tab('show')
-		})
-	</script>
+				}
 
-
-
-	<script>
-		// 위 ajax를 통한 data.load는 따로 bootstrap에 정의된 기능이 아니기 때문에 구현해야한다.
-		// 메뉴가 선택되기 전의 이벤틀르 가져온다.
-		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-			// 선택되는 요소를 오브젝트화 한다.
-			$this = $(e.target);
-			// data-load가 false의 경우는 content에 data-load를 한다.
-			if (!$this.data("load")) {
-				// tab-content의 id를 취득한다.
-				var id = $this.attr("href");
-				// 페이지 로드를 한다.
-				$(id).load($this.data("url"));
-				// data-load를 true로 변환하여 중복 로딩이 없게 한다.
-				$this.data("load", true);
-			}
-		});
-		$('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {
-			// 여기에 load 삭제 기능을 넣어도 되고...
+			});
 		});
 	</script>
+	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->
 </body>
 </html>

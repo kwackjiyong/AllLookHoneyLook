@@ -68,21 +68,6 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
-				<section
-					class="col-md-7"style=" border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
-					<div style="position: relative; padding-right: 40px;">
-						<form action="search.do" >
-							<input type="text" name="searchWord" class="form-control"
-								placeholder="검색어를 입력하세요 "
-								style="border: none; font-size: 18px; color: #9F6118;">
-							<button
-								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
-								<img src="<c:url value='/resources/icon/search.png'/>"
-									style="position: absolute; top: 0; right: 0; width: 45px; height: 45px; fill: #FF8A3D; padding: 1px 1px;">
-							</button>
-						</form>
-					</div>
-				</section>
 
 				<c:if test="${empty sessionScope.userData}">
 					<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -167,7 +152,7 @@
 
 
 	</div>
-	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+<!-- ********************************************************** 푸터 영역  ************************************************************************-->
 	<footer class="site-section">
 		<div class="container">
 			<div class="row mt-2 justify-content-center">
@@ -190,7 +175,7 @@
 						<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
 					</div>
 
-					<div class="row mt-5 text-center" style="color: #9F6118;">
+					<div class="row mt-5 text-center">
 						<div class="col">
 							<a href="#"><span class="m-2 icon-facebook"></span></a> <a
 								href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
@@ -202,18 +187,18 @@
 				</div>
 			</div>
 
-			<div class="row mt-5 justify-content-center" style="color: #9F6118;">
+			<div class="row mt-5 justify-content-center">
 				<h6 class="col-md-3">
-					<a href="https://policy.daangn.com/terms.html">이용약관</a>
+					<a href="about_us.do">이용약관</a>
 				</h6>
 				<h6 class="col-md-3">
-					<a href="https://policy.daangn.com/terms.html">개인정보처리방침</a>
+					<a href="#">개인정보처리방침</a>
 				</h6>
 				<h6 class="col-md-3">
-					<a href="https://policy.daangn.com/terms.html">공지사항</a>
+					<a href="#">공지사항</a>
 				</h6>
 				<h6>
-					<a href="https://policy.daangn.com/terms.html">About Us</a>
+					<a href="about_us.do">About Us</a>
 				</h6>
 			</div>
 
@@ -222,50 +207,8 @@
 			</div>
 		</div>
 	</footer>
-<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
-	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
-		aria-labelledby="setting" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">${userData.userName}님</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="Sign_in.ing" method="post">
-						<table class="table" style="text-align: center;">
-							<tr>
-								<td><button type="button"><a href="mypage.do">
-										<img src="<c:url value='/resources/icon/mypage.png'/>"
-											style="width: 250px; height: 250px;"></a>
-									</button></td>
-								<td>
-									<button type="button"><a href="logout.ing">
-										<img src="<c:url value='/resources/icon/exit.png'/>"
-											style="width: 250px; height: 250px;"></a>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>마이페이지</td>
-								<td>로그아웃</td>
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">닫기</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------setting 모달 END------///////////////////////////////-->
 
-	<!-- ********************************************************** 자바스크립트 영역  ************************************************************************-->
+	<!-- *****************************   자바 스크립트 섹션     ***********************-->
 	<script
 		src="<c:url value='/resources/template/js/jquery-3.3.1.min.js'/>"></script>
 	<script
@@ -295,7 +238,6 @@
 
 	<script src="<c:url value='/resources/template/js/typed.js'/>"></script>
 
-
 	<script>
 		var typed = new Typed('.typed-words', {
 			strings : [ " 모든 중고제품을 여기서 만나보세요.", " 희수♥지용", " 다양한 카테고리로 검색해보세요",
@@ -309,39 +251,37 @@
 		});
 	</script>
 
+	<!-- 테이블템플릿 자바스크립트 -->
+	<!-- DataTables JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
-		$('a[href="#settings"]').tab('show');
-	</script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
+				"scrollY" : 400,
+				"scrollCollapse" : true,
+				"pagingType" : "full_numbers",
+				"language" : {
+					search : "리스트 내 검색 : ",
+					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
+					"infoEmpty" : "검색 결과가 없습니다.",
+					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
+					"lengthMenu" : "_MENU_ 개씩 보기",
+					"paginate" : {
+						"first" : "처음",
+						"last" : "마지막",
+						"next" : "다음",
+						"previous" : "이전"
+					}
 
-	<script>
-		$('#myTab a').click(function(e) {
-			e.preventDefault()
-			$(this).tab('show')
-		})
-	</script>
+				}
 
-
-
-	<script>
-		// 위 ajax를 통한 data.load는 따로 bootstrap에 정의된 기능이 아니기 때문에 구현해야한다.
-		// 메뉴가 선택되기 전의 이벤틀르 가져온다.
-		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-			// 선택되는 요소를 오브젝트화 한다.
-			$this = $(e.target);
-			// data-load가 false의 경우는 content에 data-load를 한다.
-			if (!$this.data("load")) {
-				// tab-content의 id를 취득한다.
-				var id = $this.attr("href");
-				// 페이지 로드를 한다.
-				$(id).load($this.data("url"));
-				// data-load를 true로 변환하여 중복 로딩이 없게 한다.
-				$this.data("load", true);
-			}
-		});
-		$('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {
-			// 여기에 load 삭제 기능을 넣어도 되고...
+			});
 		});
 	</script>
-
+	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->
 </body>
 </html>

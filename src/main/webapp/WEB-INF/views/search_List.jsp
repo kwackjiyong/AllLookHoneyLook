@@ -88,8 +88,6 @@
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link js-scroll-trigger"
-								href="index.html">Home</a></li>
-							<li class="nav-item"><a class="nav-link js-scroll-trigger"
 								href="sign_in.do">Sign In</a></li>
 
 							<li class="dropdown" id="service"><a class="nav-link"

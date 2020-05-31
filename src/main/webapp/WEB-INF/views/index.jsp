@@ -44,6 +44,11 @@
 	href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
 
 <!-- ///////////////////////////////------부트스트랩 링크 END------///////////////////////////////-->
+
+<!-- 테이블 템플릿꺼 -->
+<!-- DataTables CSS -->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -70,9 +75,6 @@
 			<c:if test="${empty sessionScope.userData}">
 				<div class="collapse navbar-collapse col-md-3" id="navbarResponsive"">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="sign_in.do">공지사항</a></li>
-
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
 							href="sign_in.do">회원가입</a></li>
 
@@ -104,7 +106,7 @@
 	<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
 
 	<main role="main">
-
+		<!-- ///////////////////////////////------Header------///////////////////////////////-->
 		<header class="space-md" style="background-color: #fff2de;">
 			<div class="container">
 				<div class="row d-flex align-items-center">
@@ -134,14 +136,7 @@
 							</section>
 							<!-- ///////////////////////////////------검색창 END------///////////////////////////////-->
 						</div>
-						
-						<c:if test="${empty sessionScope.userData}">
-						
-						
-						
-						</c:if>
-						
-						
+
 						<c:if test="${not empty sessionScope.userData}">
 							<div class="tab-pane fade active show" id="pricing-yearly"
 								role="tab" aria-selected="true">
@@ -245,7 +240,52 @@
 			</div>
 		</header>
 
-		<!-- ///////////////////////////////------섹션 1------///////////////////////////////-->
+		<!-- ///////////////////////////////------header END------///////////////////////////////-->
+
+		<c:if test="${empty sessionScope.userData}">
+			<section class="space-md bg-image-2 position-relative"
+				style="background-size: cover;">
+
+				<div class="container">
+					<div class="row" style="text-align: center;">
+						<div class="col-md-4 aos-init aos-animate" data-aos="fade-up"
+							data-aos-delay="0">
+							<div class="feature-92912">
+								<img src="<c:url value='/resources/icon/deadline.png'/>"
+									style="width: 150px; height: 150px;"> <br> <br>
+
+								<h3 class="pb-1">쉽고 빠르게!</h3>
+							</div>
+						</div>
+						<div class="col-md-4 aos-init aos-animate" data-aos="fade-up"
+							data-aos-delay="100">
+							<div class="feature-92912">
+								<img src="<c:url value='/resources/icon/search2.png'/>"
+									style="width: 150px; height: 150px;"> <br> <br>
+								<h3 class="pb-1">검색을 한번에!</h3>
+							</div>
+						</div>
+						<div class="col-md-4 aos-init aos-animate" data-aos="fade-up"
+							data-aos-delay="200">
+							<div class="feature-92912">
+								<img src="<c:url value='/resources/icon/heart-eyes.png'/>"
+									style="width: 150px; height: 150px;"> <br> <br>
+								<h3 class="pb-1">편하고 간편하게!</h3>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" style="float: right;">
+						<img src="<c:url value='/resources/icon/exit.png'/>"
+							style="width: 100px; height: 100px;">
+						<h3 class="pb-1">
+							<a href="sign_in.do">지금 만나러 가기!</a>
+						</h3>
+					</div>
+
+				</div>
+			</section>
+		</c:if>
 	</main>
 	<!-- ///////////////////////////////------main END------///////////////////////////////-->
 
@@ -260,7 +300,7 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">Log In</h5>
+					<h5 class="modal-title" id="loginDialogLabel">로그인</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">X</span>
@@ -280,17 +320,15 @@
 							<tr>
 								<td>PassWord</td>
 								<td><input type="password" name="userPassword"
-									class="form-control" placeholder="PassWord를 입력" /></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td><a href="#">아이디 찾기 / 비밀번호 찾기</a></td>
+									class="form-control" placeholder="PassWord를 입력" />
 							</tr>
 						</table>
 						<div class="modal-footer">
+							<span style="float: right;"><a href="#">아이디/비밀번호 찾기</a></span>
 							<button class="btn btn-secondary" type="button"
 								data-dismiss="modal">닫기</button>
-							<button class="btn btn-primary" type="submit">로그인</button>
+							<button type="submit"
+								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">로그인</button>
 						</div>
 					</form>
 				</div>
@@ -316,22 +354,14 @@
 					<form action="Sign_in.ing" method="post">
 						<table class="table" style="text-align: center;">
 							<tr>
-								<td><button type="button">
-										<a href="mypage.do"> <img
-											src="<c:url value='/resources/icon/mypage.png'/>"
-											style="width: 250px; height: 250px;"></a>
-									</button></td>
-								<td>
-									<button type="button">
-										<a href="logout.ing"> <img
-											src="<c:url value='/resources/icon/exit.png'/>"
-											style="width: 250px; height: 250px;"></a>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>마이페이지</td>
-								<td>로그아웃</td>
+								<td><img src="<c:url value='/resources/icon/mypage.png'/>"
+									class="feature-92912" onclick="location.href='mypage.do'"
+									style="width: 250px; height: 250px;">
+									<h3 class="pb-1">마이페이지</h3></td>
+								<td><img src="<c:url value='/resources/icon/logout.png'/>"
+									class="feature-92912" onclick="location.href='logout.ing'"
+									style="width: 250px; height: 250px;">
+									<h3 class="pb-1">로그아웃</h3></td>
 							</tr>
 						</table>
 						<div class="modal-footer">
@@ -390,7 +420,7 @@
 					<a href="#">개인정보처리방침</a>
 				</h6>
 				<h6 class="col-md-3">
-					<a href="#">공지사항</a>
+					<a href="notice_board.do">공지사항</a>
 				</h6>
 				<h6>
 					<a href="about_us.do">About Us</a>
@@ -429,8 +459,10 @@
 		src="<c:url value='/resources/template/js/isotope.pkgd.min.js'/>"></script>
 	<script src="<c:url value='/resources/template/js/aos.js'/>"></script>
 
+	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
 
 	<script src="<c:url value='/resources/template/js/typed.js'/>"></script>
+
 	<script>
 		var typed = new Typed('.typed-words', {
 			strings : [ " 모든 중고제품을 여기서 만나보세요.", " 희수♥지용", " 다양한 카테고리로 검색해보세요",
@@ -444,9 +476,37 @@
 		});
 	</script>
 
+	<!-- 테이블템플릿 자바스크립트 -->
+	<!-- DataTables JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
+				"scrollY" : 400,
+				"scrollCollapse" : true,
+				"pagingType" : "full_numbers",
+				"language" : {
+					search : "리스트 내 검색 : ",
+					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
+					"infoEmpty" : "검색 결과가 없습니다.",
+					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
+					"lengthMenu" : "_MENU_ 개씩 보기",
+					"paginate" : {
+						"first" : "처음",
+						"last" : "마지막",
+						"next" : "다음",
+						"previous" : "이전"
+					}
 
-	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
+				}
+
+			});
+		});
+	</script>
+	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->
 </body>
-
 </html>
-

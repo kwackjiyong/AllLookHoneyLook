@@ -49,189 +49,205 @@
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
-	<div class="site-wrap" id="home-section">
+	<!-- ///////////////////////////////------네비게이션 바 상단------///////////////////////////////-->
+	<nav class="navbar navbar-expand-lg fixed-top py-3 navbar-light"
+		id="mainNav">
+		<div class="container">
 
-		<!-- ///////////////////////////////------네비게이션 바 상단------///////////////////////////////-->
-		<nav class="navbar navbar-expand-lg fixed-top py-3 navbar-light"
-			id="mainNav">
+			<!-- ///////////////////////////////------올룩꿀룩 로고------///////////////////////////////-->
+			<a class="navbar-brand js-scroll-trigger" href="index.do"><img
+				src="<c:url value='/resources/icon/logo_alhl2.png'/>"></a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- ///////////////////////////////------올룩꿀룩 로고 END------///////////////////////////////-->
+
+
+			<!-- ///////////////////////////////------홈 & 로그인 & 회원가입------///////////////////////////////-->
+			<c:if test="${empty sessionScope.userData}">
+				<div class="collapse navbar-collapse col-md-3" id="navbarResponsive"">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link js-scroll-trigger"
+							href="sign_in.do">공지사항</a></li>
+
+						<li class="nav-item"><a class="nav-link js-scroll-trigger"
+							href="sign_in.do">회원가입</a></li>
+
+						<li class="dropdown" id="service"><a class="nav-link"
+							data-toggle="modal" data-target="#loginDialog"
+							aria-haspopup="true" aria-expanded="false" role="button">로그인</a></li>
+					</ul>
+				</div>
+			</c:if>
+
+			<c:if test="${not empty sessionScope.userData}">
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item" style="margin-left: 50px; margin-top: 10px;"><a
+							class="nav-link js-scroll-trigger">${userData.userName} 님
+								환영합니다! </a></li>
+						<li class="nav-item" style="padding-left: 50px; margin-top: 10px;"><a
+							class="nav-link js-scroll-trigger" data-toggle="modal"
+							data-target="#btnSetting" aria-haspopup="true"
+							aria-expanded="false" role="button"> <img
+								src="<c:url value='/resources/icon/settings.png'/>"
+								style="width: 45px; height: 45px;"></a></li>
+					</ul>
+				</div>
+			</c:if>
+			<!-- ///////////////////////////////------홈 & 로그인 & 회원가입 END------///////////////////////////////-->
+		</div>
+	</nav>
+	<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
+
+	<main role="main">
+
+		<header class="space-md" style="background-color: #fff2de;">
 			<div class="container">
+				<div class="row d-flex align-items-center">
+					<div class="container">
+						<div class="row d-flex justify-content-center text-center">
+							<div class="col-md-10 mb-3">
+								<h3 class="h1">
+									<span class="typed-words">안녕하세요! 올룩꿀룩입니다 </span>
+								</h3>
+							</div>
+						</div>
+						<div class="row justify-content-center mb-5">
+							<!-- ///////////////////////////////------검색창------///////////////////////////////-->
+							<section class="col-md-7"
+								style="border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
+								<div style="position: relative; padding-right: 40px;">
+									<form action="search.do">
+										<input type="text" name="searchWord" placeholder="검색어를 입력하세요 "
+											style="background-color: transparent; width: 100%; border: none; outline: none; color: #9F6118; font-size: 18px; padding: 10px;">
+										<button
+											style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+											<img src="<c:url value='/resources/icon/search.png'/>"
+												style="position: absolute; top: 0; right: 0; width: 45px; height: 45px; fill: #FF8A3D; padding: 1px 1px;">
+										</button>
+									</form>
+								</div>
+							</section>
+							<!-- ///////////////////////////////------검색창 END------///////////////////////////////-->
+						</div>
+						
+						<c:if test="${empty sessionScope.userData}">
+						
+						
+						
+						</c:if>
+						
+						
+						<c:if test="${not empty sessionScope.userData}">
+							<div class="tab-pane fade active show" id="pricing-yearly"
+								role="tab" aria-selected="true">
+								<div class="row">
+									<div class="col-md-6 col-lg-4">
+										<div class="pricing-v2 card px-5 p-4 mt-0">
+											<h5 class="font-weight-bold mb-0">오늘의 인기 매물</h5>
+											<hr>
+											<div class="table-responsive">
+												<table id="recent-purchases-listing" class="table">
+													<thead>
+														<tr>
+															<th>#</th>
+															<th>검색어</th>
+														</tr>
+													</thead>
 
-				<!-- ///////////////////////////////------올룩꿀룩 로고------///////////////////////////////-->
-				<a class="navbar-brand js-scroll-trigger" href="index.do"><img
-					src="<c:url value='/resources/icon/logo_alhl2.png'/>"></a>
+													<tbody>
+														<tr>
+															<td>1</td>
+															<td>닌텐도</td>
+														</tr>
+														<c:forEach items="${userdata}" var="userdata">
+															<tr>
+																<td>2</td>
+																<td>${userdata.userId}</td>
+															</tr>
+														</c:forEach>
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarResponsive" aria-controls="navbarResponsive"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<!-- ///////////////////////////////------올룩꿀룩 로고 END------///////////////////////////////-->
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<!--end card-->
+									</div>
+									<!--end of col-->
+									<div class="col-md-6 col-lg-4">
+										<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
+											<h5 class="font-weight-bold mb-0">최근 인기 매물</h5>
+											<hr>
+											<div class="table-responsive">
+												<table id="recent-purchases-listing" class="table">
+													<thead>
+														<tr>
+															<th>#</th>
+															<th>검색어</th>
+														</tr>
+													</thead>
 
-				<!-- ///////////////////////////////------검색창------///////////////////////////////-->
-				<section
-					class="col-md-7"style=" border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
-					<div style="position: relative; padding-right: 40px;">
-						<form action="search.do" >
-							<input type="text" name="searchWord" class="form-control"
-								placeholder="검색어를 입력하세요 "
-								style="border: none; font-size: 18px; color: #9F6118;">
-							<button
-								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
-								<img src="<c:url value='/resources/icon/search.png'/>"
-									style="position: absolute; top: 0; right: 0; width: 45px; height: 45px; fill: #FF8A3D; padding: 1px 1px;">
-							</button>
-						</form>
+													<tbody>
+														<tr>
+															<td>1</td>
+															<td>닌텐도</td>
+														</tr>
+														<c:forEach items="${userdata}" var="userdata">
+															<tr>
+																<td>2</td>
+																<td>${userdata.userId}</td>
+															</tr>
+														</c:forEach>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<!--end card-->
+									</div>
+									<!--end of col-->
+									<div class="col-md-6 col-lg-4">
+										<div class="pricing-v2 card px-5 p-4 mt-0">
+											<h5 class="font-weight-bold mb-0">최근검색</h5>
+											<hr>
+											<h3 class="price pt-2">
+												$26 <span>per user/ month</span>
+											</h3>
+											<p class="small">Maximum 3 user</p>
+											<div class="price-btn">
+												<a class="btn btn-outline-primary" href="#">Start Free
+													Trial</a>
+												<ul class="feature-list">
+													<li class="font-size-14"><span
+														class="fa fa-check text-purple mr-2"></span> Community
+														support</li>
+													<li class="font-size-14"><span
+														class="fa fa-check text-purple mr-2"></span> 400+ pages</li>
+													<li class="font-size-14"><span
+														class="fa fa-check text-purple mr-2"></span> 100+ header
+														variations</li>
+												</ul>
+											</div>
+										</div>
+										<!--end card-->
+									</div>
+									<!--end of col-->
+								</div>
+								<!--end of row-->
+							</div>
+						</c:if>
 					</div>
-				</section>
-				<!-- ///////////////////////////////------검색창 END------///////////////////////////////-->
-
-				<!-- ///////////////////////////////------홈 & 로그인 & 회원가입------///////////////////////////////-->
-				<c:if test="${empty sessionScope.userData}">
-					<div class="collapse navbar-collapse col-md-3" id="navbarResponsive"">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link js-scroll-trigger"
-								href="index.html">Home</a></li>
-							<li class="nav-item"><a class="nav-link js-scroll-trigger"
-								href="sign_in.do">Sign In</a></li>
-
-							<li class="dropdown" id="service"><a class="nav-link"
-								data-toggle="modal" data-target="#loginDialog"
-								aria-haspopup="true" aria-expanded="false" role="button">Login</a></li>
-						</ul>
-					</div>
-				</c:if>
-
-				<c:if test="${not empty sessionScope.userData}">
-					<div class="collapse navbar-collapse" id="navbarResponsive">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item" style="margin-left: 50px; margin-top: 10px;"><a
-								class="nav-link js-scroll-trigger">${userData.userName} 님 <br>
-									환영합니다!
-							</a></li>
-							<li class="nav-item"
-								style="padding-left: 50px; margin-top: 10px;"><a
-								class="nav-link js-scroll-trigger" data-toggle="modal"
-								data-target="#btnSetting" aria-haspopup="true"
-								aria-expanded="false" role="button"> <img
-									src="<c:url value='/resources/icon/settings.png'/>"
-									style="width: 45px; height: 45px;"></a></li>
-						</ul>
-					</div>
-				</c:if>
-				<!-- ///////////////////////////////------홈 & 로그인 & 회원가입 END------///////////////////////////////-->
-			</div>
-		</nav>
-		<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
-
-		<header class="site-navbar js-sticky-header site-navbar-target"
-			role="banner" style="background-color: gray;">
-
-			<div class="container">
-				<div class="row align-items-center position-relative"></div>
+				</div>
 			</div>
 		</header>
 
-
 		<!-- ///////////////////////////////------섹션 1------///////////////////////////////-->
-		<div class="ftco-blocks-cover-1">
-			<div class="site-section-cover half-bg">
-
-				<!-- ///////////////////////////////------왼쪽------///////////////////////////////-->
-				<div class="container" style="float: left; width: 50%;">
-					<br> <br> <br> <br>
-					<section class="row align-items-center justify-content-center">
-						<div class="col-xs-6 relative align-self-center">
-
-							<!-- 배너 문구 -->
-							<div class="form-group">
-								<h4 class="mb-7 text-primary font-weight-bold"
-									data-aos="fade-up">
-									<span class="typed-words">안녕하세요! 올룩꿀룩입니다 </span>.
-								</h4>
-							</div>
-						</div>
-					</section>
-				</div>
-				<!-- ///////////////////////////////------왼쪽 END------///////////////////////////////-->
-
-				<!-- ///////////////////////////////------오른쪽------///////////////////////////////-->
-				<div class="container" style="float: right; width: 50%;">
-					<br> <br> <br> <br>
-					<section style="width: 100%;">
-						<br> <br>
-						<div class="row">
-							<div class="col-xs-6 col-md-4">
-								<div class="card">
-									<div class="card-body">
-										<p class="card-title" style="color: blue;">인기 검색어 순위</p>
-										<div class="table-responsive">
-											<table id="recent-purchases-listing" class="table">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th>검색어</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td>닌텐도</td>
-													</tr>
-													<c:forEach items="${userdata}" var="userdata">
-														<tr>
-															<td>2</td>
-															<td>${userdata.userId}</td>
-														</tr>
-													</c:forEach>
-
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-xs-6 col-md-4">
-								<div class="card">
-									<div class="card-body">
-										<p class="card-title" style="color: blue;">최근 검색어 목록</p>
-										<div class="table-responsive">
-											<table id="recent-purchases-listing" class="table">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th>검색어</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td>닌텐도</td>
-													</tr>
-													<c:forEach items="${userdata}" var="userdata">
-														<tr>
-															<td>2</td>
-															<td>${userdata.userId}</td>
-														</tr>
-													</c:forEach>
-
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</section>
-				</div>
-				<!-- ///////////////////////////////------오른쪽 END------///////////////////////////////-->
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------섹션 1 END------///////////////////////////////-->
+	</main>
+	<!-- ///////////////////////////////------main END------///////////////////////////////-->
 
 
 	<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
@@ -257,9 +273,9 @@
 						<table class="table">
 							<tr>
 								<td>사용자 ID</td>
-								<td><input type="text" name="userId" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status"
-									placeholder="ID를 입력" />
-									</td>
+								<td><input type="text" name="userId" class="form-control"
+									id="inputSuccess2" aria-describedby="inputSuccess2Status"
+									placeholder="ID를 입력" /></td>
 							</tr>
 							<tr>
 								<td>PassWord</td>
@@ -300,13 +316,15 @@
 					<form action="Sign_in.ing" method="post">
 						<table class="table" style="text-align: center;">
 							<tr>
-								<td><button type="button"><a href="mypage.do">
-										<img src="<c:url value='/resources/icon/mypage.png'/>"
+								<td><button type="button">
+										<a href="mypage.do"> <img
+											src="<c:url value='/resources/icon/mypage.png'/>"
 											style="width: 250px; height: 250px;"></a>
 									</button></td>
 								<td>
-									<button type="button"><a href="logout.ing">
-										<img src="<c:url value='/resources/icon/exit.png'/>"
+									<button type="button">
+										<a href="logout.ing"> <img
+											src="<c:url value='/resources/icon/exit.png'/>"
 											style="width: 250px; height: 250px;"></a>
 									</button>
 								</td>

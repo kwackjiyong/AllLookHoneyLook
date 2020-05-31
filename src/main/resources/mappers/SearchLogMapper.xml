@@ -10,11 +10,21 @@
 		WHERE userId = #{userId}
 	</select>
 	
+	<select id="SearchLog_HOT" resultType="SearchLogDTO">
+		SELECT srchWord  
+		FROM searchlog 
+		group by srchWord 
+		order by COUNT(srchWord)
+		desc
+	</select>
+	
+	
+	
 	<insert id="SearchLog_INSERT" parameterType="SearchLogDTO" >
 		INSERT INTO searchlog
-		(srchId,userId,srchWord,srchTime)
+		(userId,srchWord,srchTime)
 		VALUES
-		(#{srchId}, #{userId}, #{srchWord},#{srchTime})
+		(#{userId}, #{srchWord},#{srchTime})
 	</insert>
 
 

@@ -70,9 +70,78 @@ public class HomeController {
 			System.out.println("userdto : "+userdto.getUserId());
 			model.addAttribute("userData", userdto);
 		}
-		
-		
 
 		return "mypage";
 	}
+	
+	@RequestMapping(value = "/help_one.do", method = RequestMethod.GET)
+	public String help_one(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+		
+		if ((UserDTO) session.getAttribute("userData") != null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("userData");
+			System.out.println("userdto : "+userdto.getUserId());
+			model.addAttribute("userData", userdto);
+		}
+
+		return "help_one";
+	}
+	
+	@RequestMapping(value = "/help_one_suggest.ing", method = RequestMethod.GET)
+	public String help_one_suggest(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+		
+		if ((UserDTO) session.getAttribute("userData") != null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("userData");
+			System.out.println("userdto : "+userdto.getUserId());
+			model.addAttribute("userData", userdto);
+		}
+
+		return "mypage";
+	}
+	@RequestMapping(value = "/myhelp_board.do", method = RequestMethod.GET)
+	public String myhelp_board(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+		
+		if ((UserDTO) session.getAttribute("userData") != null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("userData");
+			System.out.println("userdto : "+userdto.getUserId());
+			model.addAttribute("userData", userdto);
+		}
+
+		return "myhelp_board";
+	}
+	/*
+	 * @RequestMapping(value = "/help_one.do", method = RequestMethod.GET) public
+	 * String help_one(HttpServletRequest request, HttpServletResponse response,
+	 * Model model) throws Exception {
+	 * 
+	 * response.setContentType("text/html; charset=UTF-8");
+	 * request.setCharacterEncoding("UTF-8");
+	 * response.setCharacterEncoding("UTF-8");
+	 * 
+	 * HttpSession session = request.getSession();
+	 * 
+	 * if ((UserDTO) session.getAttribute("userData") != null) { UserDTO userdto =
+	 * (UserDTO) session.getAttribute("userData");
+	 * System.out.println("userdto : "+userdto.getUserId());
+	 * model.addAttribute("userData", userdto); }
+	 * 
+	 * return "help_one"; }
+	 */
 }

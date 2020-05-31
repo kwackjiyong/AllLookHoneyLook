@@ -156,157 +156,79 @@
 
 		<div class="site-section">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-4 sidebar">
-						<div class="sidebar-box">
-							<h2>마이페이지</h2>
-						</div>
-						<div class="sidebar-box">
-							<form action="#" class="search-form">
-								<div class="form-group">
-									<p>${userData.userName}님</p>
-									<br>
-									<p>등급 : 꿀곰이</p>
-									<br>
-									<p>이용 혜택 : 50개 단위 검색</p>
-									<br>
-									<p>이용권 기한 : 2020-04-21 24:00 까지</p>
-									<br>
-								</div>
-							</form>
-						</div>
-						<div class="sidebar-box">
-							<div class="categories" id="myTab" role="tablist">
-								<h3>Categories</h3>
-								<div class="nav flex-column nav-tab" id="v-pills-tab"
-									role="tablist" aria-orientation="vertical">
-									<a class="nav-link active" id="v-pills-home-tab"
-										data-toggle="pill" href="#v-pills-home" role="tab"
-										aria-controls="v-pills-home" aria-selected="true">회원정보 변경</a>
-									<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
-										href="#v-pills-profile" role="tab"
-										aria-controls="v-pills-profile" aria-selected="false">고객센터</a>
-									<a class="nav-link" id="v-pills-messages-tab"
-										data-toggle="pill" href="#v-pills-messages" role="tab"
-										aria-controls="v-pills-messages" aria-selected="false">1:1문의</a>
-									<a class="nav-link" id="v-pills-settings-tab"
-										data-toggle="pill" href="#v-pills-settings" role="tab"
-										aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-								</div>
+				<table class="table table-bordered">
+					<tr>
+						<th scope="row"><div class="wrap">아이디</div></th>
+						<td colspan="3"><div class="wrap">
+								<span class="text">thd*****</span>
+							</div></td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="wrap">휴대폰</div></th>
+						<td><div class="wrap">
+								<span class="text">010-53**-84**</span>
+							</div></td>
+						<th scope="row"><div class="wrap">이메일</div></th>
+						<td><div class="wrap">
+								<span class="text">th******@gmail.com</span>
+							</div></td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="wrap">제목</div></th>
+						<td colspan="3"><div class="wrap">
+								<span class="text">4월1일날 스트리밍 결제 이후 서비스 이용을 안했습니다.
+									환불(결제취소) 부탁드리겠습니다.</span>
+							</div></td>
+					</tr>
+					<tr>
+						<th><div class="wrap">내용</div></th>
+						<td colspan="3">
+							<div class="wrap">
+								<span class="text"> 4월1일날 스트리밍 결제 이후 서비스 이용을 안했습니다.
+									환불(결제취소) 부탁드리겠습니다. </span>
 							</div>
-						</div>
-					</div>
+						</td>
+					</tr>
 
-					<div class="col-md-8 blog-content">
-						<!-- <div class="row"> -->
-							<!-- <div class="col-9"> -->
-								<div class="tab-content" id="v-pills-tabContent">
-									<div class="tab-pane fade show active" id="v-pills-home"
-										role="tabpanel" aria-labelledby="v-pills-home-tab">
-										<h3 class="mb-5">회원정보수정</h3>
-										<form action="#">
-											<div class="form-group">
-												<label for="name">이름 : ${userData.userName}</label>
-											</div>
+					</tbody>
 
-											<div class="form-group">
-												<label for="name">생년월일 : ${userData.userBirth}</label>
-											</div>
+				</table>
 
-											<div class="form-group">
-												<label for="email">비밀번호</label> <input type="password"
-													class="form-control" id="password">
-											</div>
-
-											<div class="form-group">
-												<label for="email">비밀번호 재확인</label> <input type="password"
-													class="form-control" id="password">
-											</div>
-
-											<div class="form-group">
-												<label for="email">Email *</label> <input type="email"
-													class="form-control" id="email">
-											</div>
-
-											<div class="form-group">
-												<input type="submit" class="btn btn-primary" value="수정"
-													style="background-color: #9F6118; color: white;"> <input
-													type="submit" class="btn btn-primary" value="회원탈퇴"
-													style="background-color: #9F6118; color: white;">
-											</div>
-
-										</form>
+				<div>
+					<table class="table table-bordered" style="height: 400;">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><div class="wrap">
+										<span class="icon_gray icon_gray_arrow_right"></span>문의하신 내용에
+										대한 멜론 답변입니다
+									</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 최종답변 -->
+							<tr>
+								<td colspan="2">
+									<div class="wrap">
+										<div>안녕하세요. 송희수 고객님, 올룩꿀룩입니다. 올룩꿀룩을 이용해주시고 관심 가져주신 고객님께 감사의
+											말씀 드립니다. 고객님의 아이디로 확인 시 4월 1일에 결제된 꿀곰이 이용권을 이용 중인 것으로
+											확인됩니다. 꿀곰이 이용권의 환불은 이용권의 이용기간 시작일 포함 7일 내 해지 신청한 상태로, 사용이력이 없는
+											경우 가능합니다. 고객님께서 이용 중인 이용권은 환불이 가능한 상태로 확인되어, 정확하게 환불처리
+											완료되었습니다. 따라서 이용권은 종료되었고, 결제된 8,690원(부가세 10% 포함)의 휴대폰 결제금액에 대해
+											결제취소 요청하였사오니 안심하시기 바랍니다. 안내해 드린 내용이 고객님께 도움이 되셨기를 바라며, 더욱 노력하는 올룩꿀룩이 되겠습니다. 다른
+											궁금하신 사항이 있으시면 언제든지 [1:1문의]로 문의하시기 바랍니다. 감사합니다.</div>
 									</div>
-									<div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-										aria-labelledby="v-pills-profile-tab">
-										<h2>고객센터</h2>
-										<nav>
-											<div class="nav nav-tabs" id="nav-tab" role="tablist" style = "width:100%;">
-												<a class="nav-item nav-link active" id="nav-home-tab"
-													data-toggle="tab" href="#nav-home" role="tab"
-													aria-controls="nav-home" aria-selected="true">이용권 안내</a> <a
-													class="nav-item nav-link" id="nav-profile-tab"
-													data-toggle="tab" href="#nav-profile" role="tab"
-													aria-controls="nav-profile" aria-selected="false">이용권
-													결제/환불</a> <a class="nav-item nav-link" id="nav-contact-tab"
-													data-toggle="tab" href="#nav-contact" role="tab"
-													aria-controls="nav-contact" aria-selected="false">자주하는
-													질문</a> <a class="nav-item nav-link" id="nav-contact-tab"
-													data-toggle="tab" href="#nav-contact" role="tab"
-													aria-controls="nav-contact" aria-selected="false">나의문의
-													내역</a>
-											</div>
-										</nav>
-										<div class="tab-content" id="nav-tabContent">
-											<div class="tab-pane fade show active" id="nav-home"
-												role="tabpanel" aria-labelledby="nav-home-tab">
-												<img src="<c:url value='/resources/icon/use.png'/>">
-											</div>
-											<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-												aria-labelledby="nav-profile-tab">...</div>
-											<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-												aria-labelledby="nav-contact-tab">...</div>
-										</div>
-									</div>
-									<div class="tab-pane fade" id="v-pills-messages"
-										role="tabpanel" aria-labelledby="v-pills-messages-tab">
-										<form action="#">
-											<table class="table table-horver">
-												<thead>
-													<tr>
-														<th>순서</th>
-														<th>제목</th>
-														<th>상태</th>
-														<th>등록일</th>
-													</tr>
-												</thead>
+								</td>
+							</tr>
+						</tbody>
 
-												<tbody>
-												<td><a href = "myhelp_board.do">나의문의</a></td>
-												</tbody>
-
-												<tfoot>
-												</tfoot>
-											</table>
-											<button type="button" class="btn btn-primary"
-												style="background-color: #9F6118; color: white;" onclick="location.href='help_one.do'" >
-												1:1문의하기
-												</button>
-										</form></div>
-									<div class="tab-pane fade" id="v-pills-settings"
-										role="tabpanel" aria-labelledby="v-pills-settings-tab">
-										
-									</div>
-								</div>
-							<!-- </div> -->
-						<!-- </div> -->
-					</div>
+					</table>
 				</div>
 			</div>
+
+
 		</div>
 	</div>
 
-	<!-- ///////////////////////////////------섹션 1 END------///////////////////////////////-->
 
 	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
 	<footer class="site-section">
@@ -363,7 +285,6 @@
 			</div>
 		</div>
 	</footer>
-
 <!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
 	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
 		aria-labelledby="setting" aria-hidden="true">
@@ -406,7 +327,6 @@
 		</div>
 	</div>
 	<!-- ///////////////////////////////------setting 모달 END------///////////////////////////////-->
-
 
 	<!-- ********************************************************** 자바스크립트 영역  ************************************************************************-->
 	<script
@@ -485,7 +405,5 @@
 			// 여기에 load 삭제 기능을 넣어도 되고...
 		});
 	</script>
-
 </body>
-
 </html>

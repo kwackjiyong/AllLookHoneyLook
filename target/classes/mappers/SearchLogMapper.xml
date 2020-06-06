@@ -20,7 +20,18 @@
 		desc
 	</select>
 	
-	
+	<select id="SearchLog_AGE" parameterType="UserDTO" resultType="SearchLogDTO">
+		SELECT srchWord  
+		FROM searchlog
+		where userId in 
+		<foreach item="item" index="index" collection="list"
+      		open="(" separator="," close=")">
+        		#{item.userId}
+  		</foreach>
+		group by srchWord
+		order by COUNT(srchWord)
+		desc
+	</select>
 	
 	<insert id="SearchLog_INSERT" parameterType="SearchLogDTO" >
 		INSERT INTO searchlog

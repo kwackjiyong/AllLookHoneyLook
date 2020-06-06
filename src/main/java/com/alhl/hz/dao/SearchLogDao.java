@@ -29,4 +29,26 @@ public class SearchLogDao implements ISearchLogDao {
 	public int logInsert(SearchLogDTO dto) {
 		return mybatis.insert("searchLogMapper.SearchLog_INSERT",dto);
 	}
+	
+	@Override
+	public List<SearchLogDTO> userLogSelect_AGE(UserDTO userDTO){
+		//사용자의 앞뒤 5년을 구합니다.
+		//기존 생일 데이터
+		java.sql.Date orginBirth = userDTO.getUserBirth();
+		// 계산을 위해 long형태로 바꿉니다.
+		long originBirth_l = orginBirth.getTime();
+		// 5년치 long 타입의 크기
+		long fiveYears = 157766400000L;
+		// 생일보다 5년전을 구합니다.
+		java.sql.Timestamp minDate = new java.sql.Timestamp(originBirth_l - fiveYears);
+		// 생일보다 5년후를 구합니다.
+		java.sql.Date maxDate = new java.sql.Date(originBirth_l + fiveYears);
+		//위에서 구한 값으로 최소 최대 연령을 특정합니다.
+		UserDTO dto = new UserDTO();
+		
+		dto.setCreatTime(minDate);
+		dto.setUserBirth(maxDate);
+		
+		return mybatis.selectList("searchLogMapper.SearchLog_AGE",dto);
+	}
 }

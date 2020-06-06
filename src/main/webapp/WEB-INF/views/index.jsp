@@ -196,33 +196,39 @@
 										</div>
 										<!--end card-->
 									</div>
+									
+									
+									
 									<!--end of col-->
 									<div class="col-md-6 col-lg-4">
-										<div class="pricing-v2 card px-5 p-4 mt-0">
-											<h5 class="font-weight-bold mb-0">아직 미정</h5>
+										<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
+											<h5 class="font-weight-bold mb-0">연령별 검색어</h5>
 											<hr>
-											<h3 class="price pt-2">
-												$26 <span>per user/ month</span>
-											</h3>
-											<p class="small">Maximum 3 user</p>
-											<div class="price-btn">
-												<a class="btn btn-outline-primary" href="#">Start Free
-													Trial</a>
-												<ul class="feature-list">
-													<li class="font-size-14"><span
-														class="fa fa-check text-purple mr-2"></span> Community
-														support</li>
-													<li class="font-size-14"><span
-														class="fa fa-check text-purple mr-2"></span> 400+ pages</li>
-													<li class="font-size-14"><span
-														class="fa fa-check text-purple mr-2"></span> 100+ header
-														variations</li>
-												</ul>
+											<div class="table-responsive">
+												<table id="recent-purchases-listing" class="table">
+													<thead>
+														<tr>
+															<th>#</th>
+															<th>검색어</th>
+														</tr>
+													</thead>
+
+													<tbody>
+														<c:forEach items="${agelog}" var="agelog">
+															<tr>
+																<td>${agelog.srchId}</td>
+																<td><a href="search.do?searchWord=${agelog.srchWord}">${agelog.srchWord}</a></td>
+															</tr>
+														</c:forEach>
+
+													</tbody>
+												</table>
 											</div>
 										</div>
 										<!--end card-->
 									</div>
-									<!--end of col-->
+									
+									
 								</div>
 								<!--end of row-->
 							</div>

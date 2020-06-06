@@ -29,14 +29,5 @@
 	
 	
 	
-	<!-- 지용이 추가한 내용 -->
-	<select id="userSelect_AGE" parameterType="UserDTO" resultType="UserDTO">
-		SELECT * 
-		FROM USERDATA 
-		<![CDATA[
-		WHERE userBirth > #{userBirth} AND userBirth  < #{userBirth}+315532800000
-		]]> 
-	</select>	
-	
 	
 </mapper>

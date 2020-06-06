@@ -10,4 +10,5 @@ public interface ISearchLogDao {
 	public List<SearchLogDTO> userLogSelect(UserDTO userDTO);
 	public List<SearchLogDTO> hotLogSelect();
 	public int logInsert(SearchLogDTO dto);
+	public List<SearchLogDTO> userLogSelect_AGE(UserDTO userDTO);
 }

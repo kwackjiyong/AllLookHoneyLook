@@ -58,11 +58,16 @@ public class HomeController {
 			model.addAttribute("userData", userdto);
 			List<SearchLogDTO> srchdto_hot = srchSer.hotLogSelect(); //인기검색어
 			List<SearchLogDTO> srchdto_user = srchSer.userLogSelect(userdto); //유저의 최근 검색어
+			List<SearchLogDTO> srchdto_age = srchSer.userLogSelect_AGE(userdto);//유저의 연령대로 분석한 인기검색어
+			System.out.println("사용자 생일:"+userdto.getUserBirth());
 			if(srchdto_hot.size() >= 5) {
 				srchdto_hot = srchdto_hot.subList(0, 4);
 			}
 			if(srchdto_user.size() >= 5) {
 				srchdto_user = srchdto_user.subList(0, 4);
+			}
+			if(srchdto_age.size() >= 5) {
+				srchdto_age = srchdto_age.subList(0, 4);
 			}
 			for(int i=0;i<srchdto_hot.size();i++) {
 				srchdto_hot.get(i).setSrchId(i+1);
@@ -70,9 +75,13 @@ public class HomeController {
 			for(int i=0;i<srchdto_user.size();i++) {
 				srchdto_user.get(i).setSrchId(i+1);
 			}
+			for(int i=0;i<srchdto_age.size();i++) {
+				srchdto_age.get(i).setSrchId(i+1);
+			}
 			
 			model.addAttribute("hotlog", srchdto_hot);
 			model.addAttribute("userlog", srchdto_user);
+			model.addAttribute("agelog", srchdto_age);
 		}
 
 		return "index";

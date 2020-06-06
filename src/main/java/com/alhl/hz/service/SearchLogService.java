@@ -32,4 +32,8 @@ public class SearchLogService implements ISearchLogService {
 		return dao.logInsert(dto);
 	}
 	
+	@Override
+	public List<SearchLogDTO> userLogSelect_AGE(UserDTO userDTO){
+		return dao.userLogSelect_AGE(userDTO);
+	}
 }

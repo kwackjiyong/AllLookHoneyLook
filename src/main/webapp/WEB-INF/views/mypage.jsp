@@ -203,8 +203,9 @@
 								<div class="tab-content" id="v-pills-tabContent">
 									<div class="tab-pane fade show active" id="v-pills-home"
 										role="tabpanel" aria-labelledby="v-pills-home-tab">
-										<h3 class="mb-5">회원정보수정</h3>
+										<div class = "row">
 										<form action="#">
+										<div class="form-group"><h3 class="mb-5">회원정보수정</h3></div>
 											<div class="form-group">
 												<label for="name">이름 : ${userData.userName}</label>
 											</div>
@@ -229,13 +230,12 @@
 											</div>
 
 											<div class="form-group">
-												<input type="submit" class="btn btn-primary" value="수정"
-													style="background-color: #9F6118; color: white;"> <input
-													type="submit" class="btn btn-primary" value="회원탈퇴"
-													style="background-color: #9F6118; color: white;">
+												<button type="submit"
+								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">수정</button> <button type="submit"
+								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">회원탈퇴</button>
 											</div>
-
 										</form>
+										</div>
 									</div>
 									<div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
 										aria-labelledby="v-pills-profile-tab">

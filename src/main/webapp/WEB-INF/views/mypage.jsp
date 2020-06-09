@@ -99,10 +99,10 @@
 
 				<!-- ///////////////////////////////------검색창------///////////////////////////////-->
 
-				<section
-					class="col-md-7"style=" border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
+				<section class="col-md-7"
+					style="border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
 					<div style="position: relative; padding-right: 40px;">
-						<form action="search.do" >
+						<form action="search.do">
 							<input type="text" name="searchWord" class="form-control"
 								placeholder="검색어를 입력하세요 "
 								style="border: none; font-size: 18px; color: #9F6118;">
@@ -186,89 +186,91 @@
 									<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
 										href="#v-pills-profile" role="tab"
 										aria-controls="v-pills-profile" aria-selected="false">고객센터</a>
-									<a class="nav-link" id="v-pills-messages-tab"
-										data-toggle="pill" href="#v-pills-messages" role="tab"
-										aria-controls="v-pills-messages" aria-selected="false">1:1문의</a>
-									<a class="nav-link" id="v-pills-settings-tab"
+									<!-- 	<a class="nav-link" id="v-pills-settings-tab"
 										data-toggle="pill" href="#v-pills-settings" role="tab"
-										aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+										aria-controls="v-pills-settings" aria-selected="false">Settings</a> -->
 								</div>
 							</div>
+							<a class="nav-link" href="myhelp_board_list.do">1:1문의</a>
 						</div>
 					</div>
 
 					<div class="col-md-8 blog-content">
 						<!-- <div class="row"> -->
-							<!-- <div class="col-9"> -->
-								<div class="tab-content" id="v-pills-tabContent">
-									<div class="tab-pane fade show active" id="v-pills-home"
-										role="tabpanel" aria-labelledby="v-pills-home-tab">
-										<div class = "row">
-										<form action="#">
-										<div class="form-group"><h3 class="mb-5">회원정보수정</h3></div>
-											<div class="form-group">
-												<label for="name">이름 : ${userData.userName}</label>
-											</div>
-
-											<div class="form-group">
-												<label for="name">생년월일 : ${userData.userBirth}</label>
-											</div>
-
-											<div class="form-group">
-												<label for="email">비밀번호</label> <input type="password"
-													class="form-control" id="password">
-											</div>
-
-											<div class="form-group">
-												<label for="email">비밀번호 재확인</label> <input type="password"
-													class="form-control" id="password">
-											</div>
-
-											<div class="form-group">
-												<label for="email">Email *</label> <input type="email"
-													class="form-control" id="email">
-											</div>
-
-											<div class="form-group">
-												<button type="submit"
-								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">수정</button> <button type="submit"
-								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">회원탈퇴</button>
-											</div>
-										</form>
+						<!-- <div class="col-9"> -->
+						<div class="tab-content" id="v-pills-tabContent">
+							<div class="tab-pane fade show active" id="v-pills-home"
+								role="tabpanel" aria-labelledby="v-pills-home-tab">
+								<div class="row">
+									<form action="#">
+										<div class="form-group">
+											<h3 class="mb-5">회원정보수정</h3>
 										</div>
-									</div>
-									<div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-										aria-labelledby="v-pills-profile-tab">
-										<h2>고객센터</h2>
-										<nav>
-											<div class="nav nav-tabs" id="nav-tab" role="tablist" style = "width:100%;">
-												<a class="nav-item nav-link active" id="nav-home-tab"
-													data-toggle="tab" href="#nav-home" role="tab"
-													aria-controls="nav-home" aria-selected="true">이용권 안내</a> <a
-													class="nav-item nav-link" id="nav-profile-tab"
-													data-toggle="tab" href="#nav-profile" role="tab"
-													aria-controls="nav-profile" aria-selected="false">이용권
-													결제/환불</a> <a class="nav-item nav-link" id="nav-contact-tab"
-													data-toggle="tab" href="#nav-contact" role="tab"
-													aria-controls="nav-contact" aria-selected="false">자주하는
-													질문</a> <a class="nav-item nav-link" id="nav-contact-tab"
+										<div class="form-group">
+											<label for="name">이름 : ${userData.userName}</label>
+										</div>
+
+										<div class="form-group">
+											<label for="name">생년월일 : ${userData.userBirth}</label>
+										</div>
+
+										<div class="form-group">
+											<label for="email">비밀번호</label> <input type="password"
+												class="form-control" id="password">
+										</div>
+
+										<div class="form-group">
+											<label for="email">비밀번호 재확인</label> <input type="password"
+												class="form-control" id="password">
+										</div>
+
+										<div class="form-group">
+											<label for="email">Email *</label> <input type="email"
+												class="form-control" id="email">
+										</div>
+
+										<div class="form-group">
+											<button type="submit"
+												style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">수정</button>
+											<button type="submit"
+												style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">회원탈퇴</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+								aria-labelledby="v-pills-profile-tab">
+								<h2>고객센터</h2>
+								<nav>
+									<div class="nav nav-tabs" id="nav-tab" role="tablist"
+										style="width: 100%;">
+										<a class="nav-item nav-link active" id="nav-home-tab"
+											data-toggle="tab" href="#nav-home" role="tab"
+											aria-controls="nav-home" aria-selected="true">이용권 안내</a> <a
+											class="nav-item nav-link" id="nav-profile-tab"
+											data-toggle="tab" href="#nav-profile" role="tab"
+											aria-controls="nav-profile" aria-selected="false">이용권
+											결제/환불</a> <a class="nav-item nav-link" id="nav-contact-tab"
+											data-toggle="tab" href="#nav-contact" role="tab"
+											aria-controls="nav-contact" aria-selected="false">자주하는 질문</a>
+										<!--  <a class="nav-item nav-link" id="nav-contact-tab"
 													data-toggle="tab" href="#nav-contact" role="tab"
 													aria-controls="nav-contact" aria-selected="false">나의문의
-													내역</a>
-											</div>
-										</nav>
-										<div class="tab-content" id="nav-tabContent">
-											<div class="tab-pane fade show active" id="nav-home"
-												role="tabpanel" aria-labelledby="nav-home-tab">
-												<img src="<c:url value='/resources/icon/use.png'/>">
-											</div>
-											<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-												aria-labelledby="nav-profile-tab">...</div>
-											<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-												aria-labelledby="nav-contact-tab">...</div>
-										</div>
+													내역</a> -->
 									</div>
-									<div class="tab-pane fade" id="v-pills-messages"
+								</nav>
+								<div class="tab-content" id="nav-tabContent">
+									<div class="tab-pane fade show active" id="nav-home"
+										role="tabpanel" aria-labelledby="nav-home-tab">
+										<img src="<c:url value='/resources/icon/use.png'/>">
+									</div>
+									<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+										aria-labelledby="nav-profile-tab">...</div>
+									<div class="tab-pane fade" id="nav-contact" role="tabpanel"
+										aria-labelledby="nav-contact-tab">...</div>
+								</div>
+							</div>
+							<!-- <div class="tab-pane fade" id="v-pills-messages"
 										role="tabpanel" aria-labelledby="v-pills-messages-tab">
 										<form action="#">
 											<table class="table table-horver">
@@ -292,13 +294,11 @@
 												style="background-color: #9F6118; color: white;" onclick="location.href='help_one.do'" >
 												1:1문의하기
 												</button>
-										</form></div>
-									<div class="tab-pane fade" id="v-pills-settings"
-										role="tabpanel" aria-labelledby="v-pills-settings-tab">
-										
-									</div>
-								</div>
-							<!-- </div> -->
+										</form></div> -->
+							<div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+								aria-labelledby="v-pills-settings-tab"></div>
+						</div>
+						<!-- </div> -->
 						<!-- </div> -->
 					</div>
 				</div>
@@ -364,7 +364,7 @@
 		</div>
 	</footer>
 
-<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
+	<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
 	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
 		aria-labelledby="setting" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
@@ -380,13 +380,15 @@
 					<form action="Sign_in.ing" method="post">
 						<table class="table" style="text-align: center;">
 							<tr>
-								<td><button type="button"><a href="mypage.do">
-										<img src="<c:url value='/resources/icon/mypage.png'/>"
+								<td><button type="button">
+										<a href="mypage.do"> <img
+											src="<c:url value='/resources/icon/mypage.png'/>"
 											style="width: 250px; height: 250px;"></a>
 									</button></td>
 								<td>
-									<button type="button"><a href="logout.ing">
-										<img src="<c:url value='/resources/icon/exit.png'/>"
+									<button type="button">
+										<a href="logout.ing"> <img
+											src="<c:url value='/resources/icon/exit.png'/>"
 											style="width: 250px; height: 250px;"></a>
 									</button>
 								</td>

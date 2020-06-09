@@ -119,31 +119,48 @@
 					<div class="row">
 						<div class="col-12 col-sm-6">
 							<div class="form-group">
-							
+
 								<h4>1:1문의</h4>
 								<label>${userData.userName}</label>
 							</div>
 						</div>
 					</div>
-					<div class="row mt-2">
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label>제목</label> <input type="text" class="form-control">
-							</div>
-						</div>
-					</div>
-					<div class="row mt-2">
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label>내용</label>
-								<textarea class="form-control"> </textarea>
-							</div>
-						</div>
-					</div>
+
+					<table class="table table-bordered">
+						<tr>
+							<th scope="row"><div class="wrap">아이디</div></th>
+							<td colspan="3"><div class="wrap">
+									<span class="text">thd*****</span>
+								</div></td>
+						</tr>
+						<tr>
+							<th scope="row"><div class="wrap">제목</div></th>
+							<td colspan="3"><div class="wrap">
+									<input type="text" class="form-control">
+								</div></td>
+						</tr>
+						<tr>
+							<th><div class="wrap">내용</div></th>
+							<td colspan="3">
+								<div class="wrap">
+									<textarea class="form-control" style="height: 300px;"></textarea>
+								</div>
+							</td>
+						</tr>
+
+						</tbody>
+
+					</table>
 					<div class="row text-center mt-2">
 						<div class="col-sm-12">
-							<button class="btn btn-md btn-primary" onclick="location.href='javascript:history.back()'">취소하기</button>
-							<button class="btn btn-md btn-primary" onclick="location.href='help_one_suggest.ing'">문의하기</button>
+							<button type="submit"
+								onclick="location.href='javascript:history.back()'"
+								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+								취소하기</button>
+							<button type="submit"
+								onclick="location.href='help_one_suggest.ing'"
+								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+								문의하기</button>
 						</div>
 					</div>
 				</div>
@@ -152,7 +169,7 @@
 
 
 	</div>
-<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
 	<footer class="site-section">
 		<div class="container">
 			<div class="row mt-2 justify-content-center">

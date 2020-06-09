@@ -155,4 +155,95 @@ public class UserController {
 	 * System.out.println("탈퇴 실패"); } return "index"; }
 	 */
 
+	
+	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
+	public String mypage_do(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+
+		if ((UserDTO) session.getAttribute("userData") != null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("userData");
+			System.out.println("userdto : " + userdto.getUserId());
+			model.addAttribute("userData", userdto);
+		}
+
+		return "mypage";
+	}
+
+	@RequestMapping(value = "/myboard_write.do", method = RequestMethod.GET)
+	public String myboard_write(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+
+		if ((UserDTO) session.getAttribute("userData") != null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("userData");
+			System.out.println("userdto : " + userdto.getUserId());
+			model.addAttribute("userData", userdto);
+		}
+
+		return "myboard_write";
+	}
+
+	@RequestMapping(value = "/help_one_suggest.ing", method = RequestMethod.GET)
+	public String help_one_suggest(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws Exception {
+
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+
+		if ((UserDTO) session.getAttribute("userData") != null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("userData");
+			System.out.println("userdto : " + userdto.getUserId());
+			model.addAttribute("userData", userdto);
+		}
+
+		return "myhelp_board_list";
+	}
+
+	@RequestMapping(value = "/myhelp_board.do", method = RequestMethod.GET)
+	public String myhelp_board(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+
+		if ((UserDTO) session.getAttribute("userData") != null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("userData");
+			System.out.println("userdto : " + userdto.getUserId());
+			model.addAttribute("userData", userdto);
+		}
+
+		return "myhelp_board";
+	}
+	
+	@RequestMapping(value = "/myhelp_board_list.do", method = RequestMethod.GET)
+	public String myhelp_board_list(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		HttpSession session = request.getSession();
+
+		if ((UserDTO) session.getAttribute("userData") != null) {
+			UserDTO userdto = (UserDTO) session.getAttribute("userData");
+			System.out.println("userdto : " + userdto.getUserId());
+			model.addAttribute("userData", userdto);
+		}
+
+		return "myhelp_board_list";
+	}
 }

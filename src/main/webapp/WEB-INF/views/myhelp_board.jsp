@@ -193,7 +193,6 @@
 					</tbody>
 
 				</table>
-
 				<div>
 					<table class="table table-bordered" style="height: 400;">
 						<thead>

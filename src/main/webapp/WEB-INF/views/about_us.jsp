@@ -134,13 +134,100 @@
 			</div> --%>
 		</main>
 	</div>
+		<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
+
+	<!-- ///////////////////////////////------로그인 모달------///////////////////////////////-->
+	<div class="modal fade" id="loginDialog" tabindex="-1" role="dialog"
+		aria-labelledby="loginDialogLabel" aria-hidden="true">
+
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginDialogLabel">로그인</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+				</div>
+
+				<div class="modal-body has-success has-feedback">
+					<form action="login.ing" method="post">
+
+						<table class="table">
+							<tr>
+								<td>사용자 ID</td>
+								<td><input type="text" name="userId" class="form-control"
+									id="inputSuccess2" aria-describedby="inputSuccess2Status"
+									placeholder="ID를 입력" /></td>
+							</tr>
+							<tr>
+								<td>PassWord</td>
+								<td><input type="password" name="userPassword"
+									class="form-control" placeholder="PassWord를 입력" />
+							</tr>
+						</table>
+						<div class="modal-footer">
+							<span style="float: right;"><a href="#">아이디/비밀번호 찾기</a></span>
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">닫기</button>
+							<button type="submit"
+								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">로그인</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ///////////////////////////////------로그인 모달 END------///////////////////////////////-->
+
+
+	<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
+	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
+		aria-labelledby="setting" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginDialogLabel">${userData.userName}님</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="Sign_in.ing" method="post">
+						<table class="table" style="text-align: center;">
+							<tr>
+								<td><img src="<c:url value='/resources/icon/mypage.png'/>"
+									class="feature-92912" onclick="location.href='mypage.do'"
+									style="width: 250px; height: 250px;">
+									<h3 class="pb-1">마이페이지</h3></td>
+								<td><img src="<c:url value='/resources/icon/logout.png'/>"
+									class="feature-92912" onclick="location.href='logout.ing'"
+									style="width: 250px; height: 250px;">
+									<h3 class="pb-1">로그아웃</h3></td>
+							</tr>
+						</table>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">닫기</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ///////////////////////////////------setting 모달 END------///////////////////////////////-->
+
+	<!-- ///////////////////////////////------------모달 집합소END------------///////////////////////////////-->
+
 	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
-	<footer class="site-section">
+	<footer class="site-section" style="background-color: #fff2de;">
 		<div class="container">
 			<div class="row mt-2 justify-content-center">
 				<div class="col-md-7 text-center">
 					<p>
-						<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
+						<img src="<c:url value='/resources/icon/logo_alhl3.png'/>">
 					</p>
 
 					<div>
@@ -177,7 +264,7 @@
 					<a href="#">개인정보처리방침</a>
 				</h6>
 				<h6 class="col-md-3">
-					<a href="#">공지사항</a>
+					<a href="notice_board.do">공지사항</a>
 				</h6>
 				<h6>
 					<a href="about_us.do">About Us</a>
@@ -216,8 +303,10 @@
 		src="<c:url value='/resources/template/js/isotope.pkgd.min.js'/>"></script>
 	<script src="<c:url value='/resources/template/js/aos.js'/>"></script>
 
+	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
 
 	<script src="<c:url value='/resources/template/js/typed.js'/>"></script>
+
 	<script>
 		var typed = new Typed('.typed-words', {
 			strings : [ " 모든 중고제품을 여기서 만나보세요.", " 희수♥지용", " 다양한 카테고리로 검색해보세요",
@@ -231,8 +320,37 @@
 		});
 	</script>
 
+	<!-- 테이블템플릿 자바스크립트 -->
+	<!-- DataTables JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
+				"scrollY" : 400,
+				"scrollCollapse" : true,
+				"pagingType" : "full_numbers",
+				"language" : {
+					search : "리스트 내 검색 : ",
+					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
+					"infoEmpty" : "검색 결과가 없습니다.",
+					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
+					"lengthMenu" : "_MENU_ 개씩 보기",
+					"paginate" : {
+						"first" : "처음",
+						"last" : "마지막",
+						"next" : "다음",
+						"previous" : "이전"
+					}
 
-	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
+				}
+
+			});
+		});
+	</script>
+	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->
 </body>
-
 </html>

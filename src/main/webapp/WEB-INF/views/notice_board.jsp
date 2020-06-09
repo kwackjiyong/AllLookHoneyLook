@@ -44,6 +44,11 @@
 	href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
 
 <!-- ///////////////////////////////------부트스트랩 링크 END------///////////////////////////////-->
+
+<!-- 테이블 템플릿꺼 -->
+<!-- DataTables CSS -->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -70,9 +75,6 @@
 			<c:if test="${empty sessionScope.userData}">
 				<div class="collapse navbar-collapse col-md-3" id="navbarResponsive"">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="sign_in.do">공지사항</a></li>
-
 						<li class="nav-item"><a class="nav-link js-scroll-trigger"
 							href="sign_in.do">회원가입</a></li>
 
@@ -102,40 +104,303 @@
 		</div>
 	</nav>
 	<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
+
 	<main role="main">
 		<section class="space-md bg-image-2 position-relative"
 			style="background-size: cover;">
-
 			<div class="container">
-				<div style="text-align: center;">
-					<form action="#">
-						<table class="table table-horver">
-							<thead>
-								<tr>
-									<th>순서</th>
-									<th>제목</th>
-									<th>상태</th>
-									<th>등록일</th>
-								</tr>
-							</thead>
+				<div class="row">
+					<div class="col-md-12">
+						<nav>
+							<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+								<a class="nav-item nav-link active" id="nav-home-tab"
+									data-toggle="tab" href="#nav-home" role="tab"
+									aria-controls="nav-home" aria-selected="true">공지사항</a> <a
+									class="nav-item nav-link" id="nav-profile-tab"
+									data-toggle="tab" href="#nav-profile" role="tab"
+									aria-controls="nav-profile" aria-selected="false">자주하는질문</a> <a
+									class="nav-item nav-link" id="nav-contact-tab"
+									data-toggle="tab" href="#nav-contact" role="tab"
+									aria-controls="nav-contact" aria-selected="false">이용권안내</a>
+							</div>
+						</nav>
 
-							<tbody>
 
-								<td>1</td>
-							</tbody>
+						<div class="tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active" id="nav-home"
+								role="tabpanel" aria-labelledby="nav-home-tab">
+								<table class="table" cellspacing="0">
+									<thead>
+										<tr>
+											<th>순서</th>
+											<th>분류</th>
+											<th>제목</th>
+											<th>조회</th>
+											<th>등록일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><a href="#">Work 1</a></td>
+											<td>Doe</td>
+											<td>john@example.com</td>
+										</tr>
+										<tr>
+											<td><a href="#">Work 2</a></td>
+											<td>Moe</td>
+											<td>mary@example.com</td>
+										</tr>
+										<tr>
+											<td><a href="#">Work 3</a></td>
+											<td>Dooley</td>
+											<td>july@example.com</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+								aria-labelledby="nav-profile-tab">
+								<table class="table" cellspacing="0">
+									<thead>
+										<tr>
+											<th>Project Name</th>
+											<th>Employer</th>
+											<th>Time</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><a href="#">Work 1</a></td>
+											<td>Doe</td>
+											<td>john@example.com</td>
+										</tr>
+										<tr>
+											<td><a href="#">Work 2</a></td>
+											<td>Moe</td>
+											<td>mary@example.com</td>
+										</tr>
+										<tr>
+											<td><a href="#">Work 3</a></td>
+											<td>Dooley</td>
+											<td>july@example.com</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="tab-pane fade" id="nav-contact" role="tabpanel"
+								aria-labelledby="nav-contact-tab">
+								<img src="<c:url value='/resources/icon/use.png'/>">
+							</div>
+							<button type="submit" onclick="location.href='notice_manager.do'"
+				style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+				공지하기(관리자만)</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<%-- <div class="container">
+				<div class="row">
+					<div class="sidebar-box">
+						<h2>고객센터</h2>
+					</div>
+					<ul class="nav nav-tabs">
+						<li class="nav-item"><a class="nav-link active"
+							data-toggle="tab" href="#qwe2">공지사항</a></li>
+						<li class="nav-item"><a class="nav-link" data-toggle="tab"
+							href="#qwe">이용권 안내</a></li>
+						<li class="nav-item"><a class="nav-link" data-toggle="tab"
+							href="#asd">이용권 결제/환불</a></li>
+						<li class="nav-item"><a class="nav-link" data-toggle="tab"
+							href="#zxc">자주하는 질문</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade show active" id="qwe2">
+							
+							<div>
+							<table class="table table-horver">
+								<thead>
+									<tr>
+										<th>순서</th>
+										<th>제목</th>
+										<th>상태</th>
+										<th>등록일</th>
+									</tr>
+								</thead>
 
-							<tfoot>
-							</tfoot>
+								<tbody>
+								</tbody>
+
+								<tfoot>
+								</tfoot>
+							</table>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="qwe">
+							<p>
+								<img src="<c:url value='/resources/icon/use.png'/>">.
+							</p>
+						</div>
+						<div class="tab-pane fade" id="asd">
+							<p></p>
+						</div>
+						<div class="tab-pane fade" id="zxc">
+							<p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut
+								mattis leo, vel fermentum tellus. Sed sagittis rhoncus
+								venenatis. Quisque commodo consectetur faucibus. Aenean eget
+								ultricies justo.</p>
+						</div>
+					</div>
+				</div>
+			</div> --%>
+			<!-- ///////////////////////////////------고객센터 컬랩스 END------///////////////////////////////-->
+
+			
+		</section>
+	</main>
+	<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
+
+	<!-- ///////////////////////////////------로그인 모달------///////////////////////////////-->
+	<div class="modal fade" id="loginDialog" tabindex="-1" role="dialog"
+		aria-labelledby="loginDialogLabel" aria-hidden="true">
+
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginDialogLabel">로그인</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+				</div>
+
+				<div class="modal-body has-success has-feedback">
+					<form action="login.ing" method="post">
+
+						<table class="table">
+							<tr>
+								<td>사용자 ID</td>
+								<td><input type="text" name="userId" class="form-control"
+									id="inputSuccess2" aria-describedby="inputSuccess2Status"
+									placeholder="ID를 입력" /></td>
+							</tr>
+							<tr>
+								<td>PassWord</td>
+								<td><input type="password" name="userPassword"
+									class="form-control" placeholder="PassWord를 입력" />
+							</tr>
 						</table>
-						<button type="submit" onclick="location.href='notice_manager.do'"
-							style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-							공지하기(관리자만)</button>
+						<div class="modal-footer">
+							<span style="float: right;"><a href="#">아이디/비밀번호 찾기</a></span>
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">닫기</button>
+							<button type="submit"
+								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">로그인</button>
+						</div>
 					</form>
 				</div>
 			</div>
-		</section>
-	</main>
-	<!-- ********************************************************** 자바스크립트 영역  ************************************************************************-->
+		</div>
+	</div>
+	<!-- ///////////////////////////////------로그인 모달 END------///////////////////////////////-->
+
+
+	<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
+	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
+		aria-labelledby="setting" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginDialogLabel">${userData.userName}님</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="Sign_in.ing" method="post">
+						<table class="table" style="text-align: center;">
+							<tr>
+								<td><img src="<c:url value='/resources/icon/mypage.png'/>"
+									class="feature-92912" onclick="location.href='mypage.do'"
+									style="width: 250px; height: 250px;">
+									<h3 class="pb-1">마이페이지</h3></td>
+								<td><img src="<c:url value='/resources/icon/logout.png'/>"
+									class="feature-92912" onclick="location.href='logout.ing'"
+									style="width: 250px; height: 250px;">
+									<h3 class="pb-1">로그아웃</h3></td>
+							</tr>
+						</table>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">닫기</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ///////////////////////////////------setting 모달 END------///////////////////////////////-->
+
+	<!-- ///////////////////////////////------------모달 집합소END------------///////////////////////////////-->
+
+	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
+	<footer class="site-section" style="background-color: #fff2de;">
+		<div class="container">
+			<div class="row mt-2 justify-content-center">
+				<div class="col-md-7 text-center">
+					<p>
+						<img src="<c:url value='/resources/icon/logo_alhl3.png'/>">
+					</p>
+
+					<div>
+						<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
+					</div>
+
+					<br>
+					<div>
+						<h6>대표 번호 : 010-5347-8469</h6>
+					</div>
+					<br>
+
+					<div>
+						<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
+					</div>
+
+					<div class="row mt-5 text-center">
+						<div class="col">
+							<a href="#"><span class="m-2 icon-facebook"></span></a> <a
+								href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
+								class="m-2 icon-linkedin"></span></a> <a href="#"><span
+								class="m-2 icon-instagram"></span></a> <a href="#"><span
+								class="m-2 icon-skype"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row mt-5 justify-content-center">
+				<h6 class="col-md-3">
+					<a href="about_us.do">이용약관</a>
+				</h6>
+				<h6 class="col-md-3">
+					<a href="#">개인정보처리방침</a>
+				</h6>
+				<h6 class="col-md-3">
+					<a href="notice_board.do">공지사항</a>
+				</h6>
+				<h6>
+					<a href="about_us.do">About Us</a>
+				</h6>
+			</div>
+
+			<div class="row mt-5 justify-content-center">
+				<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
+			</div>
+		</div>
+	</footer>
+
+	<!-- *****************************   자바 스크립트 섹션     ***********************-->
 	<script
 		src="<c:url value='/resources/template/js/jquery-3.3.1.min.js'/>"></script>
 	<script
@@ -165,7 +430,6 @@
 
 	<script src="<c:url value='/resources/template/js/typed.js'/>"></script>
 
-
 	<script>
 		var typed = new Typed('.typed-words', {
 			strings : [ " 모든 중고제품을 여기서 만나보세요.", " 희수♥지용", " 다양한 카테고리로 검색해보세요",
@@ -179,38 +443,37 @@
 		});
 	</script>
 
+	<!-- 테이블템플릿 자바스크립트 -->
+	<!-- DataTables JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
-		$('a[href="#settings"]').tab('show');
-	</script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
+				"scrollY" : 400,
+				"scrollCollapse" : true,
+				"pagingType" : "full_numbers",
+				"language" : {
+					search : "리스트 내 검색 : ",
+					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
+					"infoEmpty" : "검색 결과가 없습니다.",
+					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
+					"lengthMenu" : "_MENU_ 개씩 보기",
+					"paginate" : {
+						"first" : "처음",
+						"last" : "마지막",
+						"next" : "다음",
+						"previous" : "이전"
+					}
 
-	<script>
-		$('#myTab a').click(function(e) {
-			e.preventDefault()
-			$(this).tab('show')
-		})
-	</script>
+				}
 
-
-
-	<script>
-		// 위 ajax를 통한 data.load는 따로 bootstrap에 정의된 기능이 아니기 때문에 구현해야한다.
-		// 메뉴가 선택되기 전의 이벤틀르 가져온다.
-		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-			// 선택되는 요소를 오브젝트화 한다.
-			$this = $(e.target);
-			// data-load가 false의 경우는 content에 data-load를 한다.
-			if (!$this.data("load")) {
-				// tab-content의 id를 취득한다.
-				var id = $this.attr("href");
-				// 페이지 로드를 한다.
-				$(id).load($this.data("url"));
-				// data-load를 true로 변환하여 중복 로딩이 없게 한다.
-				$this.data("load", true);
-			}
-		});
-		$('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {
-			// 여기에 load 삭제 기능을 넣어도 되고...
+			});
 		});
 	</script>
+	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->
 </body>
 </html>

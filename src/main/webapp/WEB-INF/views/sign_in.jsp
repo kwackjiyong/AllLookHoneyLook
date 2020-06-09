@@ -357,7 +357,11 @@
 		// id = "id_reg" / name = "userId"
 		var pw_1 = $('#pw_1').val();
 		var pw_2 = $('#pw_2').val();
-		if(pw_1 == pw_2){
+		if(pw_1 == '' || pw_2 == ''){
+			$('#pw_check').text("비밀번호를 입력해주세요");
+			$('#pw_check').css('color', 'red');
+			$("#reg_submit").attr("disabled", true);
+		}else if(pw_1 == pw_2){
 			$('#pw_check').text('비밀번호가 일치합니다.');
 			$('#pw_check').css('color', 'blue');
 			$("#reg_submit").attr("disabled", false);				

@@ -9,4 +9,5 @@ public interface IUserDao {
 	public List<UserDTO> userSelect();
 	public UserDTO userSelectOne(UserDTO dto);
 	int userInsert(UserDTO dto);
+	public int userIdCheck(UserDTO dto);
 }

@@ -31,4 +31,8 @@ public class UserService implements IUserService {
 		return dao.userInsert(dto);
 	}
 	
+	@Override
+	public int userIdCheck(UserDTO dto){
+		return dao.userIdCheck(dto);
+	}
 }

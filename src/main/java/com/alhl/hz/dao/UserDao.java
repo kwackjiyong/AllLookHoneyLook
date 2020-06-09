@@ -30,11 +30,28 @@ public class UserDao implements IUserDao {
 	public int userInsert(UserDTO dto) {
 		// TODO Auto-generated method stub
 		dto.setUserPassword(SHA256.getSHA256(dto.getUserPassword()));
+		java.sql.Timestamp creatTime = new java.sql.Timestamp(new java.util.Date().getTime()); //현재시간을 구해서 넣음
+		dto.setCreatTime(creatTime);
 		return mybatis.insert("userMapper.userInsert", dto);
 	}
 	@Override
 	public List<UserDTO> userSelect() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	
+	@Override
+	public int userIdCheck(UserDTO dto) {
+		int result = 1;
+		UserDTO resDTO = mybatis.selectOne("userMapper.userSelectOne", dto);
+		
+		try {
+			resDTO.getUserId(); 
+		}catch(NullPointerException e) { //널값이면 중복아님
+			result = 0; 
+		}
+		System.out.println("결과:"+result);
+		return result;
 	}
 }

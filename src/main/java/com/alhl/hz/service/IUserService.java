@@ -11,4 +11,8 @@ public interface IUserService {
 	public UserDTO userSelectOne(UserDTO dto);
 
 	public int userInsert(UserDTO dto);
+	
+	public int userIdCheck(UserDTO dto);
+	
+	
 }

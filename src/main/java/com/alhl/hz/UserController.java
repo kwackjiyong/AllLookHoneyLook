@@ -1,6 +1,7 @@
 package com.alhl.hz;
 
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -44,21 +47,65 @@ public class UserController {
 	@RequestMapping(value = "/sign_in.ing", method = RequestMethod.POST)
 	public void sign_in(HttpServletRequest request, HttpServletResponse response, Model model, UserDTO userdto)
 			throws Exception {
-
+		
 		response.setContentType("text/html; charset=UTF-8");
-
-		if (userSer.userInsert(userdto) == 1) {// 회원가입성공
+		
+		try {
+			if(userdto.getUserId() == "") {
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('id를 입력하세요 (회원가입실패)');</script>");
+				out.println("<script>history.back();</script>");
+				out.flush();
+				return;
+			}else if(userdto.getUserName() == ""){
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('이름을 입력해주세요 (회원가입실패)');</script>");
+				out.println("<script>history.back();</script>");
+				out.flush();
+				return;
+			}else if(userdto.getUserBirth() == null){
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('생년월일을 입력해주세요 (회원가입실패)');</script>");
+				out.println("<script>history.back();</script>");
+				out.flush();
+				return;
+			}else if(userdto.getUserPassword() == ""){
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('패스워드를 입력해주세요 (회원가입실패)');</script>");
+				out.println("<script>history.back();</script>");
+				out.flush();
+				return;
+			}else if(userdto.getUserEmail() == ""){
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('이메일을 입력해주세요(회원가입실패)');</script>");
+				out.println("<script>history.back();</script>");
+				out.flush();
+				return;
+			}else if(!userdto.getUserPassword().equals(userdto.getUserEmailHash())){
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('재확인 비밀번호가 다릅니다.(회원가입실패)');</script>");
+				out.println("<script>history.back();</script>");
+				out.flush();
+				return;
+			}else{
+			
+			
+			userSer.userInsert(userdto);
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('" + userdto.getUserName() + "님 회원가입 완료를 축하드립니다.');</script>");
 			out.flush();
-		} else {
+			}
+			
+		}catch(Exception e){
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('회원가입 실패');</script>");
+			out.println("<script>alert('정보를 다시 입력해주세요 (회원가입실패)');</script>");
+			out.flush();
+		}finally {
+			PrintWriter out = response.getWriter();
+			out.println("<script>location.href='index.do'</script>");
 			out.flush();
 		}
-		PrintWriter out = response.getWriter();
-		out.println("<script>location.href='index.do'</script>");
-		out.flush();
+		
 	}
 
 	// 로그인

@@ -149,42 +149,46 @@
 							<form action="sign_in.ing" method="post">
 
 								<table class="table">
-									<tr>
-										<td>Name</td>
-										<td><input type="text" name="userName"
-											class="form-control" placeholder="이름 입력" /></td>
-									</tr>
-
+									
 									<tr>
 										<td>ID</td>
-										<td><input type="text" name="userId" class="form-control"
-											placeholder="ID를 입력" /></td>
+										<td><input type="text" name="userId" id="user_id" class="form-control"
+											placeholder="ID를 입력" />
+											<div id="id_check"></div></td>
 									</tr>
 									<tr>
 										<td>PassWord</td>
-										<td><input type="password" name="userPassword"
+										<td><input type="password" name="userPassword" id="pw_1"
 											class="form-control" placeholder="PassWord를 입력" /></td>
 									</tr>
 									<tr>
-										<td></td>
-										<td><input type="password" class="form-control"
-											placeholder="PassWord를 재입력" /></td>
+										<td>재입력</td>
+										<td><input type="password" name="userEmailHash"
+										 class="form-control" id="pw_2"
+											placeholder="PassWord를 재입력" />
+											<div id="pw_check"></div></td></td>
 									</tr>
-
 									<tr>
-										<td>Birth</td>
+										<td>이름</td>
+										<td><input type="text" name="userName"
+											class="form-control" placeholder="이름 입력" /></td>
+									</tr>
+									
+									<tr>
+										<td>생년월일</td>
 										<td><input type="date" name="userBirth"
-											class="form-control" placeholder="생년월일(19xx-xx-xx)" /></td>
+											class="form-control" value="1999-01-01"/></td>
 									</tr>
 
 									<tr>
-										<td>Gender</td>
-										<td><input type="radio" name="userGender" value="1" />남<input
+										<td>성별</td>
+										<td><input type="radio" name="userGender" value="1" checked="checked"/>남
+										  &nbsp;<input
 											type="radio" name="userGender" value="2" />여</td>
 									</tr>
 
 									<tr>
-										<td>Email</td>
+										<td>이메일</td>
 										<td><input type="text" name="userEmail"
 											class="form-control" placeholder="Email 입력" /></td>
 									</tr>
@@ -192,7 +196,7 @@
 								<div class="modal-footer">
 									<button class="btn btn-secondary" type="button"
 										data-dismiss="modal">닫기</button>
-									<button class="btn btn-primary" type="submit">회원가입</button>
+									<button class="btn btn-primary" id="reg_submit" disabled="disabled" type="submit" style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">회원가입</button>
 								</div>
 							</form>
 						</div>
@@ -300,9 +304,72 @@
 			showCursor : true
 		});
 	</script>
-
+	
+	
 
 	<script src="<c:url value='/resources/template/js/main.js'/>"></script>
+	<script>
+	var idJ = /^[a-z0-9]{4,12}$/;
+	var checkPoint = 0;
+	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#user_id").blur(function() {
+		// id = "id_reg" / name = "userId"
+		var user_id = $('#user_id').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/idCheck.ing?userId='+ user_id,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data == 1) {
+						// 1 : 아이디가 중복되는 문구
+						$("#id_check").text("사용중인 아이디입니다.");
+						$("#id_check").css("color", "red");
+						$("#reg_submit").attr("disabled", true);
+					} else {
+						if(idJ.test(user_id)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#id_check").text("사용 가능합니다.");
+							$("#id_check").css("color", "blue");
+							$("#reg_submit").attr("disabled", false);
+				
+						} else if(user_id == ""){
+							
+							$('#id_check').text('아이디를 입력해주세요');
+							$('#id_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);				
+							
+						} else {
+							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다");
+							$('#id_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);
+						}
+						
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+			});
+		});
+	
+	
+	$("#pw_2").blur(function() {
+		// id = "id_reg" / name = "userId"
+		var pw_1 = $('#pw_1').val();
+		var pw_2 = $('#pw_2').val();
+		if(pw_1 == pw_2){
+			$('#pw_check').text('비밀번호가 일치합니다.');
+			$('#pw_check').css('color', 'blue');
+			$("#reg_submit").attr("disabled", false);				
+			
+		} else {
+			$('#pw_check').text("비밀번호가 일치하지않습니다.");
+			$('#pw_check').css('color', 'red');
+			$("#reg_submit").attr("disabled", true);
+		}
+	});
+</script>
+	
 </body>
 
 </html>

@@ -16,9 +16,9 @@
 		id="userSelectOne">SELECT * FROM USERDATA WHERE userId=#{userId} </select>
 
 	<insert parameterType="UserDTO" id="userInsert">INSERT INTO USERDATA
-		(userId,userName,userPassword,userBirth,userGender,userEmail)
+		(userId,userName,userPassword,userBirth,creatTime,userGender,userEmail)
 		VALUES
-		(#{userId}, #{userName}, #{userPassword},#{userBirth},#{userGender},#{userEmail})
+		(#{userId}, #{userName}, #{userPassword},#{userBirth},#{creatTime},#{userGender},#{userEmail})
 	</insert>
 
 	<update parameterType="UserDTO" id="userModify">UPDATE USERDATA SET

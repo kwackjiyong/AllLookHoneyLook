@@ -197,8 +197,6 @@
 										<!--end card-->
 									</div>
 									
-									
-									
 									<!--end of col-->
 									<div class="col-md-6 col-lg-4">
 										<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
@@ -376,12 +374,12 @@
 	<!-- ///////////////////////////////------------모달 집합소END------------///////////////////////////////-->
 
 	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
-	<footer class="site-section">
+	<footer class="site-section" style="background-color: #fff2de;">
 		<div class="container">
 			<div class="row mt-2 justify-content-center">
 				<div class="col-md-7 text-center">
 					<p>
-						<img src="<c:url value='/resources/icon/logo_alhl.png'/>">
+						<img src="<c:url value='/resources/icon/logo_alhl3.png'/>">
 					</p>
 
 					<div>

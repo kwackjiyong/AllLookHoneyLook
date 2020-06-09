@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- [DB연결 사용법] 1. SQL문 작성 하고 다음과 같은 양식으로 만들어준다. -->
+<!-- sql문 작성 -->
+<mapper namespace="noticeMapper">
+
+	<!-- 게시판 전체 불러옴 -->
+	<select id = "noticeSelectAll" resultType="NoticeDTO">
+		SELECT * FROM POST
+	</select>
+	
+	<!-- 관리자 글작성 -->
+	<insert parameterType = "NoticeDTO" id="noticeInsert">
+		INSERT INTO POST
+		(postId,userId,title,contents,serviceId,createTime)
+		VALUES
+		(#{postId}, #{userId}, #{title},#{contents},#{serviceId},#{createTime}) 
+	</insert>
+	
+	<!-- 관리자 글수정 -->
+	<update parameterType = "NoticeDTO" id="noticeUpdate">
+		UPDATE POST SET
+		userId=#{userId},title=#{title},contents=#{contents},serviceId=#{serviceId},createTime=#{createTime}
+		WHERE postId=#{postId} 
+	</update>
+	
+	<!-- 관리자 글삭제 -->
+	<insert parameterType = "NoticeDTO" id="noticeDelete">
+		delete from post where postId
+	</insert>
+</mapper>

@@ -8,8 +8,11 @@ public class NoticeDTO {
 	private String userId;
 	private String title;
 	private String contents;
+	private int viewcnt;
 	private int serviceId;
 	private Timestamp creatTime;
+	private String sContents;
+	
 	
 	public int getPostId() {
 		return postId;
@@ -35,6 +38,12 @@ public class NoticeDTO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+	public int getViewcnt() {
+		return viewcnt;
+	}
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
 	public int getServiceId() {
 		return serviceId;
 	}
@@ -47,6 +56,18 @@ public class NoticeDTO {
 	public void setCreatTime(Timestamp creatTime) {
 		this.creatTime = creatTime;
 	}
+	public String getsContents() {
+		return sContents;
+	}
+	public void setsContents(String sContents) {
+		this.sContents = sContents;
+	}
+	@Override
+	public String toString() {
+		return "NoticeDTO [postId=" + postId + ", userId=" + userId + ", title=" + title + ", contents=" + contents
+				+ ", viewcnt=" + viewcnt + ", serviceId=" + serviceId + ", creatTime=" + creatTime + "]";
+	}
+	
 	
 	
 }

@@ -148,13 +148,7 @@
 								role="tablist" aria-orientation="vertical">
 								<a class="nav-link active" id="v-pills-home-tab"
 									data-toggle="pill" href="#v-pills-home" role="tab"
-									aria-controls="v-pills-home" aria-selected="true">회원정보 변경</a> <a
-									class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
-									href="#v-pills-profile" role="tab"
-									aria-controls="v-pills-profile" aria-selected="false">고객센터</a>
-									<a class="nav-link" id="v-pills-settings-tab"
-										data-toggle="pill" href="#v-pills-settings" role="tab"
-										aria-controls="v-pills-settings" aria-selected="false">공지사항</a>
+									aria-controls="v-pills-home" aria-selected="true">회원정보 변경</a>
 							</div>
 						</div>
 						<a class="nav-link" href="notice_board.do">고객지원센터</a>

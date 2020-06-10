@@ -120,50 +120,47 @@
 						</div>
 					</div>
 
-					<form action="notice_manager_write.ing" method="POST">
+					<form action="admin_Notice_Writing" method="POST">
 						<table class="table table-bordered">
 							<tr>
 								<th scope="row"><div class="wrap">관리자</div></th>
 								<td colspan="3"><div class="wrap">
-										<span class="text">${userData.userId}</span>
+										<span class="text">${sessionScope.userData.userId}</span>
 									</div></td>
 							</tr>
 							<tr>
 								<th scope="row"><div class="wrap">대분류</div></th>
 								<td colspan="3">
-								<div class="wrap">
-										<label class="chic_type01 on">
-										<input type="radio" name="cate1" id="cate1" value="NODE0000000004"
-											class="d_cate1" checked="checked" value = "1">서비스이용 문의/오류</label>
-										<label class="chic_type01 ot">
-										<input type="radio" name="cate1" id="cate1" value="NODE0000000005"
-											class="d_cate1" value = "2">결제/해지/환불</label> 
-										<label class="chic_type01 ot2">
-										<input type="radio" name="cate1" id="cate1" value="NODE0000000008"
-											class="d_cate1" value = "3">이벤트</label> 
-										<label class="chic_type01">
-										<input type="radio" name="cate1" id="cate1" value="NODE0000000006"
-											class="d_cate1" value = "4">이용권 사용문의</label> 
-										<label class="chic_type01 ot3">
-										<input type="radio" name="cate1" id="cate1" value="NODE0000000007"
-											class="d_cate1" value = "5">회원정보</label>
-										<label class="chic_type01">
-										<input type="radio" name="cate1" id="cate1" value="NODE0000000009"
-											class="d_cate1" value = "6">기타</label>
-								</div>
+									<div class="wrap">
+										<label class="chic_type01 on"> <input type="radio"
+											name="serviceId" checked="checked" value=1>서비스이용
+											문의/오류
+										</label> <label class="chic_type01 ot"> <input type="radio"
+											name="serviceId" class="d_cate1" value=2>결제/해지/환불
+										</label> <label class="chic_type01 ot2"> <input type="radio"
+											name="serviceId" class="d_cate1" value=3>이벤트
+										</label> <label class="chic_type01"> <input type="radio"
+											name="serviceId" class="d_cate1" value=4>이용권 사용문의
+										</label> <label class="chic_type01 ot3"> <input type="radio"
+											name="serviceId" class="d_cate1" value=5>회원정보
+										</label> <label class="chic_type01"> <input type="radio"
+											name="serviceId" class="d_cate1" value=6>기타
+										</label>
+									</div>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row"><div class="wrap">제목</div></th>
 								<td colspan="3"><div class="wrap">
-										<input type="text" class="form-control" name = "title">
+										<input type="text" class="form-control" name="title">
 									</div></td>
 							</tr>
 							<tr>
 								<th><div class="wrap">내용</div></th>
 								<td colspan="3">
 									<div class="wrap">
-										<textarea class="form-control" style="height: 300px;"name = "contents"></textarea>
+										<textarea class="form-control" style="height: 300px;"
+											name="contents"></textarea>
 									</div>
 								</td>
 							</tr>
@@ -174,12 +171,11 @@
 
 						<div class="row text-center mt-2">
 							<div class="col-sm-12">
-								<button type="submit"
+								<button type="button"
 									onclick="location.href='javascript:history.back()'"
 									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 									취소하기</button>
 								<button type="submit"
-									onclick="location.href='help_one_suggest.ing'"
 									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 									문의하기</button>
 							</div>

@@ -6,22 +6,27 @@
 <mapper namespace="noticeMapper">
 
 	<!-- 게시판 전체 불러옴 -->
-	<select id = "noticeSelectAll" resultType="NoticeDTO">
-		SELECT * FROM POST
+	<select id = "SelectAll" resultType="NoticeDTO">
+		SELECT postId,userId,title,contents,viewcnt,(SELECT sContents FROM SERVICEID WHERE sId = ps.serviceId) as sContents,creatTime FROM POST as ps
+	</select>
+	
+	<!-- 게시판 하나 불러옴 상세보기 -->
+	<select id = "noticeSelectOne" resultType="NoticeDTO">
+		SELECT * FROM POST where postId=#{postId}
 	</select>
 	
 	<!-- 관리자 글작성 -->
-	<insert parameterType = "NoticeDTO" id="noticeInsert">
+	<insert parameterType ="NoticeDTO" id="noticeCreate">
 		INSERT INTO POST
-		(postId,userId,title,contents,serviceId,createTime)
+		(postId,userId,title,contents,viewcnt,serviceId,creatTime)
 		VALUES
-		(#{postId}, #{userId}, #{title},#{contents},#{serviceId},#{createTime}) 
+		(#{postId}, #{userId}, #{title}, #{contents}, #{viewcnt}, #{serviceId}, #{creatTime}) 
 	</insert>
 	
 	<!-- 관리자 글수정 -->
 	<update parameterType = "NoticeDTO" id="noticeUpdate">
 		UPDATE POST SET
-		userId=#{userId},title=#{title},contents=#{contents},serviceId=#{serviceId},createTime=#{createTime}
+		userId=#{userId},title=#{title},contents=#{contents},viewcnt=#{viewcnt},serviceId=#{serviceId},createTime=#{createTime}
 		WHERE postId=#{postId} 
 	</update>
 	
@@ -29,4 +34,11 @@
 	<insert parameterType = "NoticeDTO" id="noticeDelete">
 		delete from post where postId
 	</insert>
+	
+	<!-- 조회수 증가처리 -->
+	<update id="increaseViewcnt" parameterType = "NoticeDTO">
+		UPDATE POST SET
+		VIEWCNT = VIEWCNT+1
+		WHERE postId=#{postId}
+	</update>
 </mapper>

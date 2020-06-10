@@ -135,26 +135,22 @@
 											<th>순서</th>
 											<th>분류</th>
 											<th>제목</th>
+											<th>작성자</th>
 											<th>조회</th>
 											<th>등록일</th>
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${list}" var="dto">
 										<tr>
-											<td><a href="#">Work 1</a></td>
-											<td>Doe</td>
-											<td>john@example.com</td>
+											<td>${dto.postId}</td>
+											<td>${dto.sContents}</td>
+											<td><a href="read?postId=${dto.postId}">${dto.title}</a></td>
+											<td>${dto.userId}</td>
+											<td>${dto.viewcnt}</td>
+											<td>${dto.creatTime}</td>
 										</tr>
-										<tr>
-											<td><a href="#">Work 2</a></td>
-											<td>Moe</td>
-											<td>mary@example.com</td>
-										</tr>
-										<tr>
-											<td><a href="#">Work 3</a></td>
-											<td>Dooley</td>
-											<td>july@example.com</td>
-										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -191,7 +187,7 @@
 								aria-labelledby="nav-contact-tab">
 								<img src="<c:url value='/resources/icon/use.png'/>">
 							</div>
-							<button type="submit" onclick="location.href='notice_manager.do'"
+							<button type="button" onclick="location.href='notice_Form.do'"
 				style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 				공지하기(관리자만)</button>
 						</div>

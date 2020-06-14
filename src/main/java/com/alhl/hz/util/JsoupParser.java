@@ -245,9 +245,13 @@ public class JsoupParser {
 				Thread.sleep(200);
 				}catch(Exception e) {}
 			}
-			
-			List<WebElement> jElements = main_Element.findElements(By.xpath("div[@class='articles-wrap']/article"));
-			
+			List<WebElement> jElements = new ArrayList();
+			try {
+				jElements = main_Element.findElements(By.xpath("div[@class='articles-wrap']/article"));
+			}catch(Exception e) {//오류시 0.5초 텀 더 주고 다시 긁기 
+				try {Thread.sleep(500);}catch(Exception ee){}
+				jElements = main_Element.findElements(By.xpath("div[@class='articles-wrap']/article"));
+			}
 			//*********************************************************************************
 			
 			System.out.println("당근마켓 검색된 갯수:"+jElements.size());

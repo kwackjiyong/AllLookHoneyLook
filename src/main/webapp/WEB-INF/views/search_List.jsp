@@ -119,26 +119,27 @@
 	</nav>
 	<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
 
-
 		<!-- 첫번째 섹션 -->
-	<div class="site-section half-bg">
+	<section class="space-md bg-image-2 position-relative"
+				style="background-size: cover;">
 		<div class="container">
 			<div class="panel panel-default">
 				<div class="panel-heading">"${searchWord}" 검색 결과 ${listCnt}개</div>
+				<br>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<table width="100%" class="table table-hover table-responsive"
 						id="datalist">
 						<thead>
-							<tr>
-								<th width="5%">가격순</th>
+							<tr style="background-color:#9F6118;color: fff2de;">
+								<th width="5%">#</th>
 								<th width="10%">이미지</th>
 								<th width="65%">제목</th>
 								<th width="10%">가격</th>
 								<th width="10%">사이트</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody style="background-color:#fff2de;">
 							<c:if test="${0 == counter}">
 
 								<tr>
@@ -149,13 +150,13 @@
 							</c:if>
 							<c:forEach items="${parsing_dtos}" var="pars_list">
 
-								<tr>
+								<tr onclick="window.open('${pars_list.srchURL}')">
 									<td>${pars_list.srchIndex}</td>
 									<td><img src="${pars_list.srchImageURL}" width=50
 										height=50></td>
-									<td><a href="${pars_list.srchURL}" target="_sub">${pars_list.srchTitle}</a></td>
+									<td>${pars_list.srchTitle}</td>
 									<td>${frmt.format(pars_list.srchPrice)}원</td>
-									<td>${pars_list.srchSiteName}</td>
+									<td><b>${pars_list.srchSiteName}</b></td>
 								</tr>
 							</c:forEach>
 
@@ -164,7 +165,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 	<!-- 첫번째 섹션 끝 -->
 	<!-- 전체 바디 끝 -->
 		<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->

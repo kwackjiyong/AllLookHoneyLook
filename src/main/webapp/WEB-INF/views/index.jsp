@@ -156,13 +156,13 @@
 				<div class="row" style="text-align: center;">
 					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
 							data-aos-delay="0">
-						<div class="pricing-v2 card px-5 p-4 mt-0">
+						<div class="pricing-v2 card px-5 p-4 mt-0"  style="background-color:#fff2de;">
 							<h5 class="font-weight-bold mb-0">인기 검색어</h5>
 							<hr>
-							<div class="table-responsive">
-								<table id="recent-purchases-listing" class="table table-hover">
+							<div class="table-responsive" >
+								<table id="recent-purchases-listing" class="table table-hover"> 
 									<thead>
-										<tr>
+										<tr style="background-color:#9F6118; color: fff2de;" >
 											<th>#</th>
 											<th>검색어</th>
 										</tr>
@@ -184,13 +184,13 @@
 					<!--end of col-->
 					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
 							data-aos-delay="100">
-						<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
+						<div class="pricing-v2 card px-5 p-4 mt-0"  style="background-color:#fff2de;">
 							<h5 class="font-weight-bold mb-0">최근 검색 목록</h5>
 							<hr>
 							<div class="table-responsive">
 								<table id="recent-purchases-listing" class="table table-hover">
 									<thead>
-										<tr>
+										<tr style="background-color:#9F6118;color: fff2de;">
 											<th>#</th>
 											<th>검색어</th>
 										</tr>
@@ -212,13 +212,13 @@
 					<!--end of col-->
 					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
 							data-aos-delay="200">
-						<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
+						<div class="pricing-v2 card px-5 p-4 mt-0"  style="background-color:#fff2de;">
 							<h5 class="font-weight-bold mb-0">연령별 인기 검색어</h5>
 							<hr>
 							<div class="table-responsive">
 								<table id="recent-purchases-listing" class="table table-hover">
 									<thead>
-										<tr>
+										<tr style="background-color:#9F6118;color: fff2de;" >
 											<th>#</th>
 											<th>검색어</th>
 										</tr>

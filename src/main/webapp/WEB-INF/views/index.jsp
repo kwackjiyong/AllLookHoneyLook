@@ -122,7 +122,8 @@
 							<!-- ///////////////////////////////------검색창------///////////////////////////////-->
 							<section class="col-md-7"
 								style="border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
-								<div style="position: relative; padding-right: 40px;">
+								
+								<div style="position: relative; padding-right: 40px; ">
 									<form action="search.do">
 										<input type="text" name="searchWord" placeholder="검색어를 입력하세요 "
 											style="background-color: transparent; width: 100%; border: none; outline: none; color: #9F6118; font-size: 18px; padding: 10px;">
@@ -133,111 +134,114 @@
 										</button>
 									</form>
 								</div>
+								<button type="button" onclick="location.href='search_Random.do'"
+											style="background-color: #9F6118; border: 1px solid transparent; 
+											outline: none; color: white; margin: 0px 4px; padding: 6px 12px; 
+											border-radius: .25rem; float:right;">심심할 땐 랜덤 검색~★</button>
 							</section>
 							<!-- ///////////////////////////////------검색창 END------///////////////////////////////-->
 						</div>
 
-						<c:if test="${not empty sessionScope.userData}">
-							<div class="tab-pane fade active show" id="pricing-yearly"
-								role="tab" aria-selected="true">
-								<div class="row">
-									<div class="col-md-6 col-lg-4">
-										<div class="pricing-v2 card px-5 p-4 mt-0">
-											<h5 class="font-weight-bold mb-0">인기 검색어</h5>
-											<hr>
-											<div class="table-responsive">
-												<table id="recent-purchases-listing" class="table">
-													<thead>
-														<tr>
-															<th>#</th>
-															<th>검색어</th>
-														</tr>
-													</thead>
-
-													<tbody>
-														<c:forEach items="${hotlog}" var="hotlog">
-															<tr>
-																<td>${hotlog.srchId}</td>
-																<td><a href="search.do?searchWord=${hotlog.srchWord}">${hotlog.srchWord}</a></td>
-															</tr>
-														</c:forEach>
-
-													</tbody>
-												</table>
-											</div>
-										</div>
-										<!--end card-->
-									</div>
-									<!--end of col-->
-									<div class="col-md-6 col-lg-4">
-										<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
-											<h5 class="font-weight-bold mb-0">최근 검색 목록</h5>
-											<hr>
-											<div class="table-responsive">
-												<table id="recent-purchases-listing" class="table">
-													<thead>
-														<tr>
-															<th>#</th>
-															<th>검색어</th>
-														</tr>
-													</thead>
-
-													<tbody>
-														<c:forEach items="${userlog}" var="userlog">
-															<tr>
-																<td>${userlog.srchId}</td>
-																<td><a href="search.do?searchWord=${userlog.srchWord}">${userlog.srchWord}</a></td>
-															</tr>
-														</c:forEach>
-
-													</tbody>
-												</table>
-											</div>
-										</div>
-										<!--end card-->
-									</div>
-									
-									<!--end of col-->
-									<div class="col-md-6 col-lg-4">
-										<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
-											<h5 class="font-weight-bold mb-0">연령별 검색어</h5>
-											<hr>
-											<div class="table-responsive">
-												<table id="recent-purchases-listing" class="table">
-													<thead>
-														<tr>
-															<th>#</th>
-															<th>검색어</th>
-														</tr>
-													</thead>
-
-													<tbody>
-														<c:forEach items="${agelog}" var="agelog">
-															<tr>
-																<td>${agelog.srchId}</td>
-																<td><a href="search.do?searchWord=${agelog.srchWord}">${agelog.srchWord}</a></td>
-															</tr>
-														</c:forEach>
-
-													</tbody>
-												</table>
-											</div>
-										</div>
-										<!--end card-->
-									</div>
-									
-									
-								</div>
-								<!--end of row-->
-							</div>
-						</c:if>
+						
 					</div>
 				</div>
 			</div>
 		</header>
 
 		<!-- ///////////////////////////////------header END------///////////////////////////////-->
+		<c:if test="${not empty sessionScope.userData}">
+			<section class="space-md bg-image-2 position-relative"
+				style="background-size: cover;">
+				<div class="container">
+				<div class="row" style="text-align: center;">
+					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
+							data-aos-delay="0">
+						<div class="pricing-v2 card px-5 p-4 mt-0">
+							<h5 class="font-weight-bold mb-0">인기 검색어</h5>
+							<hr>
+							<div class="table-responsive">
+								<table id="recent-purchases-listing" class="table table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>검색어</th>
+										</tr>
+									</thead>
 
+									<tbody>
+										<c:forEach items="${hotlog}" var="hotlog">
+											<tr>
+												<td>${hotlog.srchId}</td>
+												<td onclick="location.href='search.do?searchWord=${hotlog.srchWord}'">${hotlog.srchWord}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--end card-->
+					</div>
+					<!--end of col-->
+					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
+							data-aos-delay="100">
+						<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
+							<h5 class="font-weight-bold mb-0">최근 검색 목록</h5>
+							<hr>
+							<div class="table-responsive">
+								<table id="recent-purchases-listing" class="table table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>검색어</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${userlog}" var="userlog">
+											<tr>
+												<td>${userlog.srchId}</td>
+												<td onclick="location.href='search.do?searchWord=${userlog.srchWord}'">${userlog.srchWord}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--end card-->
+					</div>
+
+					<!--end of col-->
+					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
+							data-aos-delay="200">
+						<div class="pricing-v2 card px-5 p-4 mt-0 bg-light">
+							<h5 class="font-weight-bold mb-0">연령별 인기 검색어</h5>
+							<hr>
+							<div class="table-responsive">
+								<table id="recent-purchases-listing" class="table table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>검색어</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${agelog}" var="agelog">
+											<tr>
+												<td>${agelog.srchId}</td>
+												<td onclick="location.href='search.do?searchWord=${agelog.srchWord}'">${agelog.srchWord}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--end card-->
+					</div>
+
+				</div>
+				<!--end of row-->
+			</div>
+			</section>
+		</c:if>
 		<c:if test="${empty sessionScope.userData}">
 			<section class="space-md bg-image-2 position-relative"
 				style="background-size: cover;">

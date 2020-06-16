@@ -20,6 +20,19 @@
 		desc
 	</select>
 	
+	
+	<select id="SearchLog_1000" resultType="SearchLogDTO">
+		SELECT srchWord
+		FROM searchlog
+		group by srchWord
+		limit 1000
+	</select>
+	
+	
+	
+	
+	
+	
 	<select id="SearchLog_AGE" parameterType="UserDTO" resultType="SearchLogDTO">
 		SELECT srchWord
 		FROM searchlog

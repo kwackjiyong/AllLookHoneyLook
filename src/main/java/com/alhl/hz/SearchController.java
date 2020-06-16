@@ -2,6 +2,7 @@ package com.alhl.hz;
 
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alhl.hz.dto.SearchDTO;
 import com.alhl.hz.dto.SearchLogDTO;
@@ -36,15 +38,15 @@ public class SearchController {
 	
 	
 	@RequestMapping(value = "search.do", method = RequestMethod.GET)
-	public String srchList(Locale locale, Model model,HttpServletRequest request,HttpServletResponse response)throws Exception {
+	public String srchList(Locale locale, Model model,HttpServletRequest request,HttpServletResponse response,@RequestParam String searchWord)throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 		
         
         
-        String word = request.getParameter("searchWord");
-		model.addAttribute("searchWord", word);
+        //String word = request.getParameter("searchWord");
+		model.addAttribute("searchWord", searchWord);
         
 		try {
 		//이전페이지에서 요청한 검색어를 가져옵니다.
@@ -53,7 +55,7 @@ public class SearchController {
 			SearchLogDTO srchdto = new SearchLogDTO();
 			UserDTO userdto = (UserDTO)session.getAttribute("userData");
 			srchdto.setUserId(userdto.getUserId());
-			srchdto.setSrchWord(word);
+			srchdto.setSrchWord(searchWord);
 			srchdto.setSrchTime(new java.sql.Timestamp(System.currentTimeMillis())); // 현재시간
 			srchSer.logInsert(srchdto); // 검색 로그를 남깁니다.
 		}else {
@@ -66,7 +68,7 @@ public class SearchController {
 		
 		
 		//Jsoup 클래스로 요청한 단어로 검색을 한결과를 가져옵니다.
-		List<SearchDTO> dtos= JsoupParser.autoParsing(word,request);
+		List<SearchDTO> dtos= JsoupParser.autoParsing(searchWord,request);
 		model.addAttribute("counter", dtos.size());
 		
 		//금액 형식 객체
@@ -98,4 +100,26 @@ public class SearchController {
 			return "index";
 		}
 	}
+	
+	
+	
+	@RequestMapping(value = "search_Random.do", method = RequestMethod.GET)
+	public String srchList_Random(Locale locale, Model model,HttpServletRequest request,HttpServletResponse response)throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+		
+        //일단 최신 검색어 종류 최대 1000개 가져옴
+        List<SearchLogDTO> dtos =srchSer.logSelect_1000();
+        //랜덤하게 섞어줌
+        Collections.shuffle(dtos);
+        //랜덤하게 섞인 리스트중 첫번째 것을 가져옴
+        String searchWord = dtos.get(0).getSrchWord();
+        
+        //검색시작
+        return srchList(locale,  model, request, response,searchWord);
+		
+	}
+	
+	
 }

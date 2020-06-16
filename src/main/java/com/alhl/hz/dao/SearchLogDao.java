@@ -51,4 +51,10 @@ public class SearchLogDao implements ISearchLogDao {
 		
 		return mybatis.selectList("searchLogMapper.SearchLog_AGE",dto);
 	}
+	
+	@Override
+	public List<SearchLogDTO> logSelect_1000(){
+		return mybatis.selectList("SearchLog_1000");
+	}
+	
 }

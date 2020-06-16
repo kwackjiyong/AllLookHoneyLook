@@ -11,4 +11,5 @@ public interface ISearchLogService {
 	public List<SearchLogDTO> hotLogSelect();
 	public int logInsert(SearchLogDTO dto);
 	public List<SearchLogDTO> userLogSelect_AGE(UserDTO userDTO);
+	public List<SearchLogDTO> logSelect_1000();
 }

@@ -296,7 +296,7 @@ public class JsoupParser {
 	public static List<SearchDTO> autoParsing(String word,HttpServletRequest request){
 		//각종 사이트들의 검색 결과를 담을 그릇 준비
 		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
-		System.out.println("크롤링 시작");
+		System.out.println("검색어 ["+word+"] 크롤링 시작");
 		String url;
 		String selector;
 		

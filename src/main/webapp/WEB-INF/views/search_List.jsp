@@ -121,144 +121,51 @@
 
 
 		<!-- 첫번째 섹션 -->
-		<div class="site-section">
-			<div class="container">
+	<div class="site-section half-bg">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">"${searchWord}" 검색 결과 ${listCnt}개</div>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+					<table width="100%" class="table table-hover table-responsive"
+						id="datalist">
+						<thead>
+							<tr>
+								<th width="5%">가격순</th>
+								<th width="10%">이미지</th>
+								<th width="65%">제목</th>
+								<th width="10%">가격</th>
+								<th width="10%">사이트</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:if test="${0 == counter}">
 
-				<div class="row justify-content-center">
+								<tr>
+									<td></td>
+									<td>검색 결과가 존재하지 않습니다.</td>
+								</tr>
 
-					<%-- <!-- 리스트 1-->
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="card-body">
-								<p class="card-title" style="color: blue;">"${searchWord}"
-									검색 결과 ${listCnt}개</p>
-								<div class="table-responsive">
-									<table id="recent-purchases-listing " class="table table-hover">
-										<thead>
-											<tr align="center">
-												<th>index</th>
-												<th>이미지</th>
-												<th>제목</th>
-												<th>가격</th>
-												<th>사이트</th>
-											</tr>
-										</thead>
+							</c:if>
+							<c:forEach items="${parsing_dtos}" var="pars_list">
 
-										<tbody>
-											<c:if test="${0 == counter}">
+								<tr>
+									<td>${pars_list.srchIndex}</td>
+									<td><img src="${pars_list.srchImageURL}" width=50
+										height=50></td>
+									<td><a href="${pars_list.srchURL}" target="_sub">${pars_list.srchTitle}</a></td>
+									<td>${frmt.format(pars_list.srchPrice)}원</td>
+									<td>${pars_list.srchSiteName}</td>
+								</tr>
+							</c:forEach>
 
-												<tr>
-													<td></td>
-													<td>검색 결과가 존재하지 않습니다.</td>
-												</tr>
-
-											</c:if>
-											<c:forEach items="${list}" var="list">
-
-												<tr align="center" style="text-align: center;">
-													<td>${list.srchIndex}</td>
-													<td><img src="${list.srchImageURL}" width=50 height=50></td>
-													<td><a href="${list.srchURL}" target="_sub">${list.srchTitle}</a></td>
-													<td>${frmt.format(list.srchPrice)}원</td>
-													<td>${list.srchSiteName}</td>
-												</tr>
-											</c:forEach>
-
-										</tbody>
-									</table>
-									<table class="table">
-										<tr>
-											<td></td>
-											<td style="float: center;">
-												<div class="btn-group" role="group"
-													aria-label="Basic example">
-													<c:if test="${1 != listPageNum}">
-														<button type="button" class="btn btn-primary btn-sm"
-															onclick="javascript:location.href='search.do?searchWord=${searchWord}&pageNum=1';">처음</button>
-														<button type="button" class="btn btn-primary btn-sm"
-															onclick="javascript:location.href='search.do?searchWord=${searchWord}&pageNum=${listPageNum-1}';">이전</button>
-													</c:if>
-													<c:forEach items="${listPageNumList}" var="page">
-														<button type="button"
-															class="btn btn-outline-primary btn-sm"
-															onclick="javascript:location.href='search.do?searchWord=${searchWord}&pageNum=${page}';">
-															<c:choose>
-																<c:when test="${page == listPageNum}">
-																		√
-																		</c:when>
-																<c:otherwise>
-																		${page}
-																		</c:otherwise>
-															</c:choose>
-														</button>
-
-													</c:forEach>
-													<c:if test="${listPageNumList_lastNum != listPageNum}">
-														<button type="button" class="btn btn-primary btn-sm"
-															onclick="javascript:location.href='search.do?searchWord=${searchWord}&pageNum=${listPageNum+1}';">다음</button>
-														<button type="button" class="btn btn-primary btn-sm"
-															onclick="javascript:location.href='search.do?searchWord=${searchWord}&pageNum=${listPageNumList_lastNum}';">끝</button>
-													</c:if>
-												</div>
-											</td>
-											<td></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 리스트 끝 --> --%>
-				</div>
-
-			</div>
-
-			<div class="site-section half-bg">
-				<div class="container">
-					<div class="panel panel-default">
-						<div class="panel-heading">"${searchWord}" 검색 결과 ${listCnt}개</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							<table width="100%" class="table table-hover table-responsive"
-								id="example">
-								<thead>
-									<tr>
-										<th width="5%">가격순</th>
-										<th width="10%">이미지</th>
-										<th width="65%">제목</th>
-										<th width="10%">가격</th>
-										<th width="10%">사이트</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:if test="${0 == counter}">
-
-										<tr>
-											<td></td>
-											<td>검색 결과가 존재하지 않습니다.</td>
-										</tr>
-
-									</c:if>
-									<c:forEach items="${parsing_dtos}" var="pars_list">
-
-										<tr>
-											<td>${pars_list.srchIndex}</td>
-											<td><img src="${pars_list.srchImageURL}" width=50
-												height=50></td>
-											<td><a href="${pars_list.srchURL}" target="_sub">${pars_list.srchTitle}</a></td>
-											<td>${frmt.format(pars_list.srchPrice)}원</td>
-											<td>${pars_list.srchSiteName}</td>
-										</tr>
-									</c:forEach>
-
-								</tbody>
-							</table>
-						</div>
-					</div>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-		<!-- 첫번째 섹션 끝 -->
+	</div>
+	<!-- 첫번째 섹션 끝 -->
 	<!-- 전체 바디 끝 -->
 		<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
 
@@ -454,7 +361,7 @@
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
 		$(document).ready(function() {
-			$('#example').DataTable({
+			$('#datalist').DataTable({
 				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
 				"scrollY" : 400,
 				"scrollCollapse" : true,

@@ -11,7 +11,7 @@
 	</select>
 	
 	<!-- 게시판 하나 불러옴 상세보기 -->
-	<select id = "noticeSelectOne" resultType="NoticeDTO">
+	<select id = "noticeSelectOne" resultType="NoticeDTO" parameterType ="NoticeDTO">
 		SELECT * FROM POST where postId=#{postId}
 	</select>
 	
@@ -26,8 +26,8 @@
 	<!-- 관리자 글수정 -->
 	<update parameterType = "NoticeDTO" id="noticeUpdate">
 		UPDATE POST SET
-		userId=#{userId},title=#{title},contents=#{contents},viewcnt=#{viewcnt},serviceId=#{serviceId},createTime=#{createTime}
-		WHERE postId=#{postId} 
+		title=#{title},contents=#{contents},serviceId=#{serviceId}
+		WHERE postId=#{postId}
 	</update>
 	
 	<!-- 관리자 글삭제 -->

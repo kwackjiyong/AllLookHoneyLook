@@ -108,149 +108,82 @@
 	<main role="main">
 		<section class="space-md bg-image-2 position-relative"
 			style="background-size: cover;">
+
 			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<nav>
-							<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-								<a class="nav-item nav-link active" id="nav-home-tab"
-									data-toggle="tab" href="#nav-home" role="tab"
-									aria-controls="nav-home" aria-selected="true">공지사항</a> <a
-									class="nav-item nav-link" id="nav-profile-tab"
-									data-toggle="tab" href="#nav-profile" role="tab"
-									aria-controls="nav-profile" aria-selected="false">자주하는질문</a> <a
-									class="nav-item nav-link" id="nav-contact-tab"
-									data-toggle="tab" href="#nav-contact" role="tab"
-									aria-controls="nav-contact" aria-selected="false">이용권안내</a>
-							</div>
-						</nav>
+				<div class="contact_form">
+					<div class="row">
+						<div class="col-12 col-sm-6">
+							<div class="form-group">
 
-
-						<div class="tab-content" id="nav-tabContent">
-							<div class="tab-pane fade show active" id="nav-home"
-								role="tabpanel" aria-labelledby="nav-home-tab">
-								<table class="table" cellspacing="0">
-									<thead>
-										<tr>
-											<th>순서</th>
-											<th>분류</th>
-											<th>제목</th>
-											<th>작성자</th>
-											<th>조회</th>
-											<th>등록일</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:forEach items="${list}" var="dto">
-										<tr>
-											<td>${dto.postId}</td>
-											<td>${dto.sContents}</td>
-											<td><a href="notice_view.do?postId=${dto.postId}">${dto.title}</a></td>
-											<td>${dto.userId}</td>
-											<td>${dto.viewcnt}</td>
-											<td>${dto.creatTime}</td>
-										</tr>
-									</c:forEach>
-									</tbody>
-								</table>
+								<h2>공지사항</h2>
 							</div>
-							<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-								aria-labelledby="nav-profile-tab">
-								<table class="table" cellspacing="0">
-									<thead>
-										<tr>
-											<th>Project Name</th>
-											<th>Employer</th>
-											<th>Time</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td><a href="#">Work 1</a></td>
-											<td>Doe</td>
-											<td>john@example.com</td>
-										</tr>
-										<tr>
-											<td><a href="#">Work 2</a></td>
-											<td>Moe</td>
-											<td>mary@example.com</td>
-										</tr>
-										<tr>
-											<td><a href="#">Work 3</a></td>
-											<td>Dooley</td>
-											<td>july@example.com</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-								aria-labelledby="nav-contact-tab">
-								<img src="<c:url value='/resources/icon/use.png'/>">
-							</div>
-							<button type="button" onclick="location.href='notice_Form.do'"
-				style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-				공지하기(관리자만)</button>
 						</div>
 					</div>
+
+					<form action="notice_update.ing" method="POST">
+						<table class="table table-bordered">
+							<tr>
+								<th scope="row"><div class="wrap">관리자</div></th>
+								<td colspan="3"><div class="wrap">
+										<span class="text">${sessionScope.userData.userId}</span>
+									</div></td>
+							</tr>
+							<tr>
+								<th scope="row"><div class="wrap">대분류</div></th>
+								<td colspan="3">
+									<div class="wrap">
+										<label class="chic_type01 on"> <input type="radio"
+											name="serviceId" checked="checked" value=1>서비스이용
+											문의/오류
+										</label> <label class="chic_type01 ot"> <input type="radio"
+											name="serviceId" class="d_cate1" value=2>결제/해지/환불
+										</label> <label class="chic_type01 ot2"> <input type="radio"
+											name="serviceId" class="d_cate1" value=3>이벤트
+										</label> <label class="chic_type01"> <input type="radio"
+											name="serviceId" class="d_cate1" value=4>이용권 사용문의
+										</label> <label class="chic_type01 ot3"> <input type="radio"
+											name="serviceId" class="d_cate1" value=5>회원정보
+										</label> <label class="chic_type01"> <input type="radio"
+											name="serviceId" class="d_cate1" value=6>기타
+										</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><div class="wrap">제목</div></th>
+								<td colspan="3"><div class="wrap">
+										 <input type="text" class="form-control" name="title" value = "${dto.title }">
+									</div></td>
+							</tr>
+							<tr>
+								<th><div class="wrap">내용</div></th>
+								<td colspan="3">
+									<div class="wrap">
+									<textarea class="form-control" style="height: 300px;"
+											name="contents">${dto.contents }</textarea>
+										
+									</div>
+								</td>
+							</tr>
+
+							</tbody>
+
+						</table>
+
+						<div class="row text-center mt-2">
+							<div class="col-sm-12">
+								<input type = "hidden" name = "postId" value = "${dto.postId }">
+								<button type="submit"
+									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+									수정하기</button>
+								<button type="button" onclick="location.href='notice_delete.ing'"
+									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+									삭제하기</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
-			<%-- <div class="container">
-				<div class="row">
-					<div class="sidebar-box">
-						<h2>고객센터</h2>
-					</div>
-					<ul class="nav nav-tabs">
-						<li class="nav-item"><a class="nav-link active"
-							data-toggle="tab" href="#qwe2">공지사항</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#qwe">이용권 안내</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#asd">이용권 결제/환불</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#zxc">자주하는 질문</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane fade show active" id="qwe2">
-							
-							<div>
-							<table class="table table-horver">
-								<thead>
-									<tr>
-										<th>순서</th>
-										<th>제목</th>
-										<th>상태</th>
-										<th>등록일</th>
-									</tr>
-								</thead>
-
-								<tbody>
-								</tbody>
-
-								<tfoot>
-								</tfoot>
-							</table>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="qwe">
-							<p>
-								<img src="<c:url value='/resources/icon/use.png'/>">.
-							</p>
-						</div>
-						<div class="tab-pane fade" id="asd">
-							<p></p>
-						</div>
-						<div class="tab-pane fade" id="zxc">
-							<p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut
-								mattis leo, vel fermentum tellus. Sed sagittis rhoncus
-								venenatis. Quisque commodo consectetur faucibus. Aenean eget
-								ultricies justo.</p>
-						</div>
-					</div>
-				</div>
-			</div> --%>
-			<!-- ///////////////////////////////------고객센터 컬랩스 END------///////////////////////////////-->
-
-			
 		</section>
 	</main>
 	<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->

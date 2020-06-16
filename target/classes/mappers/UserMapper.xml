@@ -10,24 +10,28 @@
 	</select>
 
 	<select resultType="UserDTO" parameterType="UserDTO"
-		id="userSelectAll">SELECT * FROM USERDATA </select>
+		id="userSelectAll">SELECT * FROM USERDATA</select>
 
 	<select resultType="UserDTO" parameterType="UserDTO"
-		id="userSelectOne">SELECT * FROM USERDATA WHERE userId=#{userId} </select>
+		id="userSelectOne">SELECT * FROM USERDATA WHERE userId=#{userId}</select>
 
-	<insert parameterType="UserDTO" id="userInsert">INSERT INTO USERDATA
+	<insert parameterType="UserDTO" id="userInsert">
+		INSERT INTO USERDATA
 		(userId,userName,userPassword,userBirth,creatTime,userGender,userEmail)
 		VALUES
-		(#{userId}, #{userName}, #{userPassword},#{userBirth},#{creatTime},#{userGender},#{userEmail})
+		(#{userId}, #{userName},
+		#{userPassword},#{userBirth},#{creatTime},#{userGender},#{userEmail})
 	</insert>
 
-	<update parameterType="UserDTO" id="userModify">UPDATE USERDATA SET
+	<update parameterType="UserDTO" id="userModify">
+
+		UPDATE USERDATA SET
 		userName=#{userName},userPw=#{userPw},userEmail=#{userEmail},userBirth=#{userBirth},userGender=#{userGender}
 		WHERE userId=#{userId}
 	</update>
-	
-	
-	
-	
-	
+
+
+
+
+
 </mapper>

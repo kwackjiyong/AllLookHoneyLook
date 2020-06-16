@@ -82,14 +82,7 @@ public class JsoupParser {
 			//driver.quit();// 모든 드라이버를 닫습니다.
 			return dtos_ALL;
 		}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//Selenium으로 파싱하는 메서드
 	public static List<SearchDTO> parsing_Selenium(String word,HttpServletRequest request) {
 		//서블릿 리퀘스트로부터 실제 프로젝트 경로를 받아옴

@@ -116,8 +116,8 @@ public class JsoupParser {
 	public static List<SearchDTO> parsing_JGN(String word,WebDriver wDriver){
 		//빈 리스트 생성
 		List<SearchDTO> dtos = new ArrayList<SearchDTO>();
-		String url = "https://m.joongna.com/search-list?searchword="+word; // URL
-		String selector = "//div[@class='pd_h15']";								// 선택자
+		String url = "https://m.joongna.com/search-list/product?searchword="+word; // URL
+		String selector = "//div[@class='pd_h20']";								// 선택자
 		// 드라이버 로드
 		wDriver.get(url);
 		// Find the element

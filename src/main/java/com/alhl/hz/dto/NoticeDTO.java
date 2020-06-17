@@ -12,8 +12,14 @@ public class NoticeDTO {
 	private int serviceId;
 	private Timestamp creatTime;
 	private String sContents;
+	private int recnt;
 	
-	
+	public int getRecnt() {
+		return recnt;
+	}
+	public void setRecnt(int recnt) {
+		this.recnt = recnt;
+	}
 	public int getPostId() {
 		return postId;
 	}

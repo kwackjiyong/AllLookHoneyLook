@@ -110,7 +110,8 @@
 			style="background-size: cover;">
 
 			<div class="container">
-				<div class="contact_form">
+				<div class="col-12"
+					style="background: #fff; border-radius: 4px; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15); margin: 0 auto 50px; max-width: auto; padding: 50px;">
 					<div class="row">
 						<div class="col-12 col-sm-6">
 							<div class="form-group">
@@ -120,7 +121,7 @@
 						</div>
 					</div>
 
-					<form action="admin_Notice_Writing" method="POST">
+					<form method="POST" name = "form">
 						<table class="table table-bordered">
 							<tr>
 								<th scope="row"><div class="wrap">관리자</div></th>
@@ -152,7 +153,7 @@
 							<tr>
 								<th scope="row"><div class="wrap">제목</div></th>
 								<td colspan="3"><div class="wrap">
-										<input type="text" class="form-control" name="title">
+										<input type="text" class="form-control" name="title" id = "ftitle">
 									</div></td>
 							</tr>
 							<tr>
@@ -160,7 +161,7 @@
 								<td colspan="3">
 									<div class="wrap">
 										<textarea class="form-control" style="height: 300px;"
-											name="contents"></textarea>
+											name="contents" id = "fcontents"></textarea>
 									</div>
 								</td>
 							</tr>
@@ -175,7 +176,7 @@
 									onclick="location.href='javascript:history.back()'"
 									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 									취소하기</button>
-								<button type="submit"
+								<button type="button" id = "btnWrite"
 									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 									문의하기</button>
 							</div>
@@ -403,5 +404,29 @@
 		});
 	</script>
 	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->
+	
+	<!-- 게시판 스크립트 지우면 때린다! -->	
+	<script>
+		$(document).ready(function(){
+			$("#btnWrite").click(function(){
+				var title = $("#ftitle").val();
+				var content = $("#fcontents").val();
+				
+				if(title ==""){
+					alert("제목을 입력하세요");
+					document.form.title.focus();
+					return;
+				}
+				if(content == ""){
+					alert("내용을 입력하세요");
+					document.form.contents.focus();
+					return;
+				}
+				document.form.action="Notice_Writing"
+				document.form.submit();
+			});
+		});
+	</script>
+	<!-- 게시판 스크립트 지우면 때린다! END-->	
 </body>
 </html>

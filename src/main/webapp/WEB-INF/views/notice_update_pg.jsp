@@ -110,7 +110,7 @@
 			style="background-size: cover;">
 
 			<div class="container">
-				<div class="contact_form">
+				<div class="col-12" style="background: #fff; border-radius: 4px; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15); margin: 0 auto 50px; max-width: auto; padding: 50px;">
 					<div class="row">
 						<div class="col-12 col-sm-6">
 							<div class="form-group">
@@ -120,7 +120,7 @@
 						</div>
 					</div>
 
-					<form action="notice_update.ing" method="POST">
+					<form method="POST" name="upArticle_form">
 						<table class="table table-bordered">
 							<tr>
 								<th scope="row"><div class="wrap">관리자</div></th>
@@ -152,16 +152,17 @@
 							<tr>
 								<th scope="row"><div class="wrap">제목</div></th>
 								<td colspan="3"><div class="wrap">
-										 <input type="text" class="form-control" name="title" value = "${dto.title }">
+										<input type="text" class="form-control" name="title"
+											id="utitle" value="${dto.title }">
 									</div></td>
 							</tr>
 							<tr>
 								<th><div class="wrap">내용</div></th>
 								<td colspan="3">
 									<div class="wrap">
-									<textarea class="form-control" style="height: 300px;"
-											name="contents">${dto.contents }</textarea>
-										
+										<textarea class="form-control" style="height: 300px;"
+											name="contents" id="ucontents">${dto.contents }</textarea>
+
 									</div>
 								</td>
 							</tr>
@@ -172,11 +173,14 @@
 
 						<div class="row text-center mt-2">
 							<div class="col-sm-12">
-								<input type = "hidden" name = "postId" value = "${dto.postId }">
-								<button type="submit"
+								<input type="hidden" name="postId" value="${dto.postId }">
+								<button type="button" onclick="location.href='javascript:history.back()'"
+									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+									뒤로가기</button>
+								<button type="button" id="btnUpdate"
 									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 									수정하기</button>
-								<button type="button" onclick="location.href='notice_delete.ing'"
+								<button type="button" id="btnDelete"
 									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 									삭제하기</button>
 							</div>
@@ -404,5 +408,36 @@
 		});
 	</script>
 	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->
+
+	<!-- 게시판 스크립트 지우면 때린다! -->
+	<script>
+		$(document).ready(function() {
+			$("#btnDelete").click(function() {
+				if (confirm("삭제하시겠습니까?")) {
+					document.upArticle_form.action = "notice_delete.ing"
+					document.upArticle_form.submit();
+				}
+			});
+
+			$("#btnUpdate").click(function() {
+				var title = $("#utitle").val();
+				var content = $("#ucontents").val();
+
+				if (title == "") {
+					alert("제목을 입력하세요");
+					document.upArticle_form.action.title.focus();
+					return;
+				}
+				if (content == "") {
+					alert("내용을 입력하세요");
+					document.upArticle_form.action.contents.focus();
+					return;
+				}
+				document.upArticle_form.action = "notice_update.ing"
+				document.upArticle_form.submit();
+			});
+		});
+	</script>
+	<!-- 게시판 스크립트 지우면 때린다! END-->
 </body>
 </html>

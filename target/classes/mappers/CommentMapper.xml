@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- [DB연결 사용법] 1. SQL문 작성 하고 다음과 같은 양식으로 만들어준다. -->
+<!-- sql문 작성 -->
+<mapper namespace="commentMapper">
+
+	<select id="commentCount" resultType="int">
+        SELECT COUNT(*)
+        FROM COMMENT
+    </select>
+    
+	<!--댓글목록 -->
+    <select id="listReply" resultType="CommentDTO">
+        SELECT CID,BID,CONTENT,USERID,USERNAME,R.REG_DATE,R.UPREG_DATE
+        FROM COMMENT C,USERDATA M
+        WHERE R.USERID = M.USERID AND BID=#{BID}
+        ORDER BY CID
+        
+    </select>
+     
+    <!-- 댓글 입력 -->
+    <insert id="cInsert">
+        INSERT INTO
+        COMMENT (CId, BId, CONTENT, , USERID,REG_DATE)
+        VALUES(#{CId},#{BId},#{CONTENT},#{USERID},#{REG_DATE}) 
+    </insert>
+    
+    <update id="cUpdate" parameterType="">
+        UPDATE COMMENT 
+        SET CONTENT = #{content}
+        WHERE CID = #{cID}
+    </update>
+    
+    <delete id="cDelete" parameterType="int">
+        DELETE FROM COMMENT WHERE CID = #{CID}
+    </delete>
+</mapper>

@@ -24,7 +24,7 @@ public interface INoticeService {
 	public void delete(int postId);
 	
 	//게시글 조회
-	public void increaseViewcnt(int postId,HttpSession session); 
+	public void increaseViewcnt(int postId); 
 
 	
 }

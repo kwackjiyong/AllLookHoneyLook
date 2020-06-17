@@ -15,7 +15,7 @@
 		SELECT * FROM POST where postId=#{postId}
 	</select>
 	
-	<!-- 관리자 글작성 -->
+	<!-- 글작성 -->
 	<insert parameterType ="NoticeDTO" id="noticeCreate">
 		INSERT INTO POST
 		(postId,userId,title,contents,viewcnt,serviceId,creatTime)
@@ -23,16 +23,17 @@
 		(#{postId}, #{userId}, #{title}, #{contents}, #{viewcnt}, #{serviceId}, #{creatTime}) 
 	</insert>
 	
-	<!-- 관리자 글수정 -->
+	<!-- 글수정 -->
 	<update parameterType = "NoticeDTO" id="noticeUpdate">
 		UPDATE POST SET
 		title=#{title},contents=#{contents},serviceId=#{serviceId}
 		WHERE postId=#{postId}
 	</update>
 	
-	<!-- 관리자 글삭제 -->
-	<insert parameterType = "NoticeDTO" id="noticeDelete">
-		delete from post where postId
+	<!-- 글삭제 -->
+	<insert id="noticeDelete">
+		DELETE FROM POST
+		WHERE POSTID=#{POSTID}
 	</insert>
 	
 	<!-- 조회수 증가처리 -->
@@ -41,4 +42,6 @@
 		VIEWCNT = VIEWCNT+1
 		WHERE postId=#{postId}
 	</update>
+	
+	
 </mapper>

@@ -189,68 +189,11 @@
 							</div>
 							<button type="button" onclick="location.href='notice_Form.do'"
 				style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-				공지하기(관리자만)</button>
+				글쓰기</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			<%-- <div class="container">
-				<div class="row">
-					<div class="sidebar-box">
-						<h2>고객센터</h2>
-					</div>
-					<ul class="nav nav-tabs">
-						<li class="nav-item"><a class="nav-link active"
-							data-toggle="tab" href="#qwe2">공지사항</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#qwe">이용권 안내</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#asd">이용권 결제/환불</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#zxc">자주하는 질문</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane fade show active" id="qwe2">
-							
-							<div>
-							<table class="table table-horver">
-								<thead>
-									<tr>
-										<th>순서</th>
-										<th>제목</th>
-										<th>상태</th>
-										<th>등록일</th>
-									</tr>
-								</thead>
-
-								<tbody>
-								</tbody>
-
-								<tfoot>
-								</tfoot>
-							</table>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="qwe">
-							<p>
-								<img src="<c:url value='/resources/icon/use.png'/>">.
-							</p>
-						</div>
-						<div class="tab-pane fade" id="asd">
-							<p></p>
-						</div>
-						<div class="tab-pane fade" id="zxc">
-							<p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut
-								mattis leo, vel fermentum tellus. Sed sagittis rhoncus
-								venenatis. Quisque commodo consectetur faucibus. Aenean eget
-								ultricies justo.</p>
-						</div>
-					</div>
-				</div>
-			</div> --%>
-			<!-- ///////////////////////////////------고객센터 컬랩스 END------///////////////////////////////-->
-
-			
 		</section>
 	</main>
 	<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->

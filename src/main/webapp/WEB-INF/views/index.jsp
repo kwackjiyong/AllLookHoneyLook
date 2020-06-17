@@ -137,7 +137,7 @@
 								<button type="button" onclick="location.href='search_Random.do'"
 											style="background-color: #9F6118; border: 1px solid transparent; 
 											outline: none; color: white; margin: 0px 4px; padding: 6px 12px; 
-											border-radius: .25rem; float:right;">심심할 땐 랜덤 검색~★</button>
+											border-radius: .25rem; float:right;">심심할 땐 랜덤 검색 〰🎲</button>
 							</section>
 							<!-- ///////////////////////////////------검색창 END------///////////////////////////////-->
 						</div>

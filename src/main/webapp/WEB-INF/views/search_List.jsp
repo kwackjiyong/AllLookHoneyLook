@@ -129,9 +129,9 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<table width="100%" class="table table-hover table-responsive"
-						id="datalist">
+						id="datalist" style="text-align: center">
 						<thead>
-							<tr style="background-color:#9F6118;color: fff2de;">
+							<tr style="background-color:#9F6118;color:white;">
 								<th width="5%">#</th>
 								<th width="10%">이미지</th>
 								<th width="65%">제목</th>
@@ -152,10 +152,10 @@
 
 								<tr onclick="window.open('${pars_list.srchURL}')">
 									<td>${pars_list.srchIndex}</td>
-									<td><img src="${pars_list.srchImageURL}" width=50
-										height=50></td>
+									<td><img src="${pars_list.srchImageURL}" width=100
+										height=100></td>
 									<td>${pars_list.srchTitle}</td>
-									<td>${frmt.format(pars_list.srchPrice)}원</td>
+									<td><div class="card" style="text-align: center;background-color:#9F6118;color:white;">${frmt.format(pars_list.srchPrice)}원</div></td>
 									<td><b>${pars_list.srchSiteName}</b></td>
 								</tr>
 							</c:forEach>
@@ -364,7 +364,7 @@
 		$(document).ready(function() {
 			$('#datalist').DataTable({
 				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
-				"scrollY" : 400,
+				"scrollY" : 600,
 				"scrollCollapse" : true,
 				"pagingType" : "full_numbers",
 				"language" : {

@@ -5,6 +5,7 @@ public class ShopDTO {
 	String userId;
 	int productNum;
 	java.sql.Timestamp checkOutTime;
+	int reCount;
 	public int getShopId() {
 		return shopId;
 	}
@@ -28,5 +29,11 @@ public class ShopDTO {
 	}
 	public void setCheckOutTime(java.sql.Timestamp checkOutTime) {
 		this.checkOutTime = checkOutTime;
+	}
+	public int getReCount() {
+		return reCount;
+	}
+	public void setReCount(int reCount) {
+		this.reCount = reCount;
 	}
 }

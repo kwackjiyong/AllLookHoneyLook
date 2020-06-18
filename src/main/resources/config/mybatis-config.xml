@@ -9,6 +9,7 @@
 		<typeAlias type="com.alhl.hz.dto.SearchLogDTO" alias="SearchLogDTO"></typeAlias>
 		<typeAlias type="com.alhl.hz.dto.NoticeDTO" alias="NoticeDTO"></typeAlias>
 		<typeAlias type="com.alhl.hz.dto.ShopDTO" alias="ShopDTO"></typeAlias>
+		<typeAlias type="com.alhl.hz.dto.Shop_ProductDTO" alias="Shop_ProductDTO"></typeAlias>
 	</typeAliases>
 	
 	<mappers>

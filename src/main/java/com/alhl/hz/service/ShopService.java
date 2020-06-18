@@ -11,6 +11,7 @@ import com.alhl.hz.dao.INoticeDao;
 import com.alhl.hz.dao.IShopDao;
 import com.alhl.hz.dto.NoticeDTO;
 import com.alhl.hz.dto.ShopDTO;
+import com.alhl.hz.dto.Shop_ProductDTO;
 import com.alhl.hz.dto.UserDTO;
 
 @Service("IShopService")
@@ -25,5 +26,15 @@ public class ShopService implements IShopService{
 	@Override
 	public int shopUpdateOne(ShopDTO dto) {
 		return dao.shopUpdateOne(dto);
+	}
+	
+	@Override
+	public int shopUpdate_reCount(ShopDTO dto) {
+		return dao.shopUpdate_reCount(dto);
+	}
+	
+	@Override
+	public List<Shop_ProductDTO> shopProduct_info() {
+		return dao.shopProduct_info();
 	}
 }

@@ -123,71 +123,115 @@
 				<div class="col-md-12 stretch-card">
 					<div class="card" style="padding: 20px;">
 						<div class="card-body">
-							<p class="card-title"><h1>이용권 관리</h1></p>
-							<p class="card-description">
-								성함 : ${sessionScope.userData.userName}<br> 
-								이용권 등급 : ${shopData.productNum}<br> 
-								이용권 만료일 : ${shopData.checkOutTime}<br>
-								오늘 남은 횟수 : ${shopData.reCount}회
-							</p>
+							<p class="card-title"><h1>이용권 구매</h1></p>
+							
 							<br>
-							
-							
 							<div class="row">
-							<c:forEach items="${productData}" var="product">
-							
-							<c:choose>
-								<c:when test="${product.productNum == 0}">
-									<div class="col-md-6 stretch-card" style="padding: 20px;">
-									<div class="card feature-92912" style="padding: 20px;">
+									<div class="col-md-12 stretch-card" style="padding: 20px;">
+									<div class="card" style="padding: 20px;">
 										<div class="card-body">
-											<p class="card-title"><h3>${product.productName} 이용권</h3></p>
-											<p class="card-description">
-												이용권 등급 : ${product.productNum}<br>
-												일일 검색량 : ${product.benefit}개<br>
-												<br>
+											<p class="card-title"><h3>현재 이용 정보</h3></p>
+											<table class="table">
+												<thead>
+												<tr>
+													<th>이용자명</th>
+													<th>현재 이용권</th>
+													<th>현재 이용권 등급</th>
+													<th>이용권 만료일</th>
+													<th>잔여캐쉬</th>
+												</tr>
+												</thead>
 												
-											</p>
-											<p style="color:black;">
-												※기본 이용권입니다.
-											</p>
+												<tbody>
+												<tr>
+													<td>${sessionScope.userData.userName}</td>
+													<td>${user_productNum} </td>
+													<td>${shopData.productNum}</td>
+													<td>${shopData.checkOutTime}</td>
+													<td>${sessionScope.userData.cash}꿀</td>
+												</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 									</div>
-								</c:when>
-
-								<c:otherwise>
-									<div class="col-md-6 stretch-card" style="padding: 20px;">
-									<div class="card feature-92912" style="padding: 20px;background-color: #fff2de;">
+							</div>
+							<div class="row">
+									<div class="col-md-12 stretch-card" style="padding: 20px;">
+									<div class="card" style="padding: 20px;background-color: #fff2de;">
 										<div class="card-body">
-											<p class="card-title"><h3>${product.productName} 이용권</h3></p>
-											<p>
-												이용권 등급 : ${product.productNum}<br>
-												일일 검색량 : ${product.benefit}개<br>
-												한달 이용료 : ${product.price}캐쉬
-											</p>
-											<c:choose>
-											<c:when test="${product.productNum > shopData.productNum}">
-											<button type="button" onclick="location.href='shop_Purchase.do?productNum=${product.productNum}'"
+											<p class="card-title"><h3>${productData.productName} 이용권 구매</h3></p>
+											
+											<table class="table">
+												<thead>
+												<tr>
+													<th>현재 이용권 등급</th>
+													<th>구매 이용권 등급</th>
+													<th>구매 이용권 명</th>
+													<th>일일 검색량</th>
+													<th>구독료</th>
+												</tr>
+												</thead>
+												
+												<tbody>
+												<tr>
+													<td>${shopData.productNum}</td>
+													<td>${productData.productNum}</td>
+													<td>${productData.productName}</td>
+													<td>${productData.benefit}개</td>
+													<td>${productData.price}꿀</td>
+												</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									</div>
+							</div>
+							
+							<div class="row">
+									<div class="col-md-12 stretch-card" style="padding: 20px;">
+									<div class="card" style="padding: 20px;">
+										<div class="card-body">
+											<p class="card-title"><h3>결제</h3></p>
+											
+											<table class="table">
+												<thead>
+												<tr>
+													<th>구매 이용권 등급</th>
+													<th>구매 이용권 명</th>
+													<th>구독료</th>
+													<th></th>
+													<th>잔여 이용권 금액 할인</th>
+													<th></th>
+													<th>필요캐쉬</th>
+													<th>잔여캐쉬</th>
+												</tr>
+												</thead>
+												
+												<tbody>
+												<tr>
+													<td>${productData.productNum}</td>
+													<td>${productData.productName}</td>
+													<td>${productData.price}꿀</td>
+													<td>-</td>
+													<td>${saleprice}꿀</td>
+													<td>=</td>
+													<td>${productData.price-saleprice}꿀</td>
+													<td>${sessionScope.userData.cash}꿀</td>
+												</tr>
+												</tbody>
+											</table>
+											<button type="button" 
+											class="feature-92912"
+											onclick="location.href='.do?productNum=${product.productNum}'"
 											style="background-color: #9F6118; 
 											border: 1px solid transparent; 
 											outline: none; color: white; margin: 0px 4px; padding: 6px 12px;
-											border-radius: .25rem; float:right;">이용권 구독</button>
-											</c:when>
-											<c:otherwise>
-												<p style="color:orange;">※이용 중인 이용권입니다.</p>
-											</c:otherwise>
-											</c:choose>
+											border-radius: .25rem; float:right;">결제하기</button>
 										</div>
 									</div>
 									</div>
-								</c:otherwise>
-							</c:choose>
-								
-								</c:forEach>
 							</div>
-							
-							
 							
 						</div>
 					</div>

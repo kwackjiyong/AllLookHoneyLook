@@ -11,6 +11,7 @@ public class UserDTO {		// 유저테이블
 	private String userEmailHash; // 이메일 인증코드
 	private int userEmailCertified; //이메일 확인여부
 	private int userAuthority; // 사용자 권한
+	private int cash;//올룩꿀룩 머니
 	public String getUserId() {
 		return userId;
 	}
@@ -70,6 +71,12 @@ public class UserDTO {		// 유저테이블
 	}
 	public void setUserAuthority(int userAuthority) {
 		this.userAuthority = userAuthority;
+	}
+	public int getCash() {
+		return cash;
+	}
+	public void setCash(int cash) {
+		this.cash = cash;
 	}
 	
 	

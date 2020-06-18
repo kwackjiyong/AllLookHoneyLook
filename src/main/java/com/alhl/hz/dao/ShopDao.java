@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.alhl.hz.dto.ShopDTO;
+import com.alhl.hz.dto.Shop_ProductDTO;
 import com.alhl.hz.dto.UserDTO;
 @Repository
 public class ShopDao implements IShopDao {
@@ -20,6 +21,16 @@ public class ShopDao implements IShopDao {
 	}
 	@Override
 	public int shopUpdateOne(ShopDTO dto) {
-		return mybatis.update("shopMapper.shopUpdateOne", dto);
+		return mybatis.update("shopMapper.shopUpdate_outTime", dto);
 	}
+	@Override
+	public int shopUpdate_reCount(ShopDTO dto) {
+		return mybatis.update("shopMapper.shopUpdate_reCount", dto);
+	}
+	@Override
+	public List<Shop_ProductDTO> shopProduct_info() {
+		return mybatis.selectList("shopMapper.shopProduct_info");
+	}
+	
+	
 }

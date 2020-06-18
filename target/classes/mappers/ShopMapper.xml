@@ -4,14 +4,24 @@
 <!-- [DB연결 사용법] 1. SQL문 작성 하고 다음과 같은 양식으로 만들어준다. -->
 <!-- sql문 작성 -->
 <mapper namespace="shopMapper">
+	<!-- 사용자의 이용권 정보 검색 -->
 	<select id="shopSelectOne_user" parameterType="UserDTO" resultType="ShopDTO">
 		SELECT * FROM SHOP WHERE userId = #{userId}
 	</select>
-	
-	
-	<update id="shopUpdateOne" parameterType="ShopDTO">
-		UPDATE SET productNum=#{checkOutTime}, checkOutTime=#{checkOutTime}  FROM SHOP WHERE userId = #{userId}
+	<!-- 사용자의 이용권 추가/변경 -->
+	<update id="shopUpdate_outTime" parameterType="ShopDTO">
+		UPDATE SET productNum=#{productNum}, checkOutTime=#{checkOutTime}  FROM SHOP WHERE userId = #{userId}
 	</update>
+	<!-- 사용자의 이용권 혜택 리셋 -->
+	<update id="shopUpdate_reCount" parameterType="ShopDTO">
+		UPDATE SET reCount=(SELECT benefit FROM shop_product WHERE productNum = #{productNum})
+		FROM SHOP 
+		WHERE userId = #{userId}
+	</update>
+	
+	<select id="shopProduct_info" resultType="Shop_ProductDTO">
+		SELECT * FROM shop_product
+	</select>
 	
 	
 </mapper>

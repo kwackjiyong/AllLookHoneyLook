@@ -5,11 +5,13 @@
 <!-- sql문 작성 -->
 <mapper namespace="shopMapper">
 	<select id="shopSelectOne_user" parameterType="UserDTO" resultType="ShopDTO">
-		SELECT * FROM SHOP WHERE userId = ${userId}
+		SELECT * FROM SHOP WHERE userId = #{userId}
 	</select>
 	
 	
-	
+	<update id="shopUpdateOne" parameterType="ShopDTO">
+		UPDATE SET productNum=#{checkOutTime}, checkOutTime=#{checkOutTime}  FROM SHOP WHERE userId = #{userId}
+	</update>
 	
 	
 </mapper>

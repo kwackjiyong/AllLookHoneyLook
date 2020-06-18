@@ -10,11 +10,20 @@ import org.springframework.stereotype.Service;
 import com.alhl.hz.dao.INoticeDao;
 import com.alhl.hz.dao.IShopDao;
 import com.alhl.hz.dto.NoticeDTO;
+import com.alhl.hz.dto.ShopDTO;
+import com.alhl.hz.dto.UserDTO;
 
 @Service("IShopService")
 public class ShopService implements IShopService{
 	
 	@Autowired
 	public IShopDao dao;
-
+	@Override
+	public ShopDTO shopSelectOne(UserDTO dto) {
+		return dao.shopSelectOne(dto);
+	}
+	@Override
+	public int shopUpdateOne(ShopDTO dto) {
+		return dao.shopUpdateOne(dto);
+	}
 }

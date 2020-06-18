@@ -129,9 +129,9 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<table width="100%" class="table table-hover table-responsive"
-						id="datalist" style="text-align: center">
+						id="datalist" style="text-align: center;border-bottom-color:#9F6118;">
 						<thead>
-							<tr style="background-color:#9F6118;color:white;">
+							<tr style="background-color:#9F6118;color:white;border-color:#9F6118; ">
 								<th width="5%">#</th>
 								<th width="10%">이미지</th>
 								<th width="65%">제목</th>
@@ -150,12 +150,12 @@
 							</c:if>
 							<c:forEach items="${parsing_dtos}" var="pars_list">
 
-								<tr onclick="window.open('${pars_list.srchURL}')">
+								<tr onclick="window.open('${pars_list.srchURL}')" >
 									<td>${pars_list.srchIndex}</td>
 									<td><img src="${pars_list.srchImageURL}" width=100
 										height=100></td>
 									<td>${pars_list.srchTitle}</td>
-									<td><div class="card" style="text-align: center;background-color:#9F6118;color:white;">${frmt.format(pars_list.srchPrice)}원</div></td>
+									<td>${frmt.format(pars_list.srchPrice)}원</td>
 									<td><b>${pars_list.srchSiteName}</b></td>
 								</tr>
 							</c:forEach>

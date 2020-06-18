@@ -122,11 +122,20 @@
 
 			<div class="site-section half-bg">
 				<div class="container">
-					<div class="panel panel-default">
-						<div class="panel-heading">이용권 관리</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							바디에옹
+					<div class="row">
+						<div class="col-md-12 stretch-card">
+						<div class="card" style="padding-bottom: 20px;">
+								<div class="card-body">
+									<p class="card-title">이용권 관리</p>
+									<p class="card-description">
+										이용권 등급을 확인하세요.<br>보여지는 선호채널의 속성을 설정할 수 있습니다
+									</p>
+									성함 : ${sessionScope.userData.userName}<br>
+									등급 : ${shopData.productNum}<br>
+									만료일 : ${shopData.checkOutTime}<br>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

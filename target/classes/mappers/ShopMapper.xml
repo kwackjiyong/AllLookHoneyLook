@@ -10,12 +10,14 @@
 	</select>
 	<!-- 사용자의 이용권 추가/변경 -->
 	<update id="shopUpdate_outTime" parameterType="ShopDTO">
-		UPDATE SET productNum=#{productNum}, checkOutTime=#{checkOutTime}  FROM SHOP WHERE userId = #{userId}
+		UPDATE SHOP 
+		SET productNum=#{productNum} ,checkOutTime=#{checkOutTime},reCount=#{reCount}
+		WHERE userId=#{userId}
 	</update>
 	<!-- 사용자의 이용권 혜택 리셋 -->
 	<update id="shopUpdate_reCount" parameterType="ShopDTO">
-		UPDATE SET reCount=(SELECT benefit FROM shop_product WHERE productNum = #{productNum})
-		FROM SHOP 
+		UPDATE SHOP 
+		SET reCount=(SELECT benefit FROM shop_product WHERE productNum = #{productNum})
 		WHERE userId = #{userId}
 	</update>
 	

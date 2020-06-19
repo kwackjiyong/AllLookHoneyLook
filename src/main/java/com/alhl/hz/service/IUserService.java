@@ -14,5 +14,5 @@ public interface IUserService {
 	
 	public int userIdCheck(UserDTO dto);
 	
-	
+	public int userUpdate_Cash(UserDTO dto);
 }

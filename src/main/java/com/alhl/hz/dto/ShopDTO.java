@@ -1,11 +1,11 @@
 package com.alhl.hz.dto;
 //사용자 이용권관리 DTO 
 public class ShopDTO {
-	int shopId;
-	String userId;
-	int productNum;
-	java.sql.Timestamp checkOutTime;
-	int reCount;
+	private int shopId;
+	private String userId;
+	private int productNum;
+	private java.sql.Timestamp checkOutTime;
+	private int reCount;
 	public int getShopId() {
 		return shopId;
 	}

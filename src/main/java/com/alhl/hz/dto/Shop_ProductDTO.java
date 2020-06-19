@@ -1,11 +1,11 @@
 package com.alhl.hz.dto;
 
 public class Shop_ProductDTO {
-	int spId;
-	int productNum;
-	String productName;
-	int benefit;
-	int price;
+	private int spId;
+	private int productNum;
+	private String productName;
+	private int benefit;
+	private int price;
 	public int getSpId() {
 		return spId;
 	}

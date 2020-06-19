@@ -10,4 +10,5 @@ public interface IUserDao {
 	public UserDTO userSelectOne(UserDTO dto);
 	int userInsert(UserDTO dto);
 	public int userIdCheck(UserDTO dto);
+	public int userUpdate_Cash(UserDTO dto);
 }

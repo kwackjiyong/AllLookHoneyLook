@@ -35,4 +35,8 @@ public class UserService implements IUserService {
 	public int userIdCheck(UserDTO dto){
 		return dao.userIdCheck(dto);
 	}
+	@Override
+	public int userUpdate_Cash(UserDTO dto) {
+		return dao.userUpdate_Cash(dto);
+	}
 }

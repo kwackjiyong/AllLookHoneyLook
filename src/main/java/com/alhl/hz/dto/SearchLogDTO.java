@@ -1,10 +1,10 @@
 package com.alhl.hz.dto;
 
 public class SearchLogDTO {
-	int srchId;
-	String userId;
-	String srchWord;
-	java.sql.Timestamp srchTime;
+	private int srchId;
+	private String userId;
+	private String srchWord;
+	private java.sql.Timestamp srchTime;
 	public int getSrchId() {
 		return srchId;
 	}

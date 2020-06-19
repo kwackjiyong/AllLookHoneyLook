@@ -130,13 +130,18 @@
 					<div class="sidebar-box">
 						<form action="#" class="search-form">
 							<div class="form-group">
-								<p>${sessionScope.userData.userName}님</p>
+								<p><h5>${sessionScope.userData.userName}님</h5></p>
 								<br>
-								<p>등급 : 꿀곰이</p>
+								<p>이용권 : ${user_productName}</p>
 								<br>
-								<p>이용 혜택 : 50개 단위 검색</p>
+								<p>이용권 등급 : ${shopData.productNum}</p>
 								<br>
-								<p>이용권 기한 : 2020-04-21 24:00 까지</p>
+								<p>잔여 검색횟수 : ${shopData.reCount}회</p>
+								<br>
+								<p>이용권 기한 : ${shopData.checkOutTime} 까지</p>
+								<br>
+								<p>CASH : ${sessionScope.userData.cash}꿀</p>
+								
 								
 								<br>
 								<button type="button" onclick="location.href='shop_main.do'"

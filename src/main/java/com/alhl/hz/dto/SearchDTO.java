@@ -1,12 +1,12 @@
 package com.alhl.hz.dto;
 
 public class SearchDTO implements Comparable<SearchDTO>{//정렬을 위한 인터페이스 구현 
-	int srchIndex;
-	String srchTitle;
-	String srchURL;
-	String srchImageURL;
-	int srchPrice;
-	String srchSiteName;
+	private int srchIndex;
+	private String srchTitle;
+	private String srchURL;
+	private String srchImageURL;
+	private int srchPrice;
+	private String srchSiteName;
 	
 	
 	

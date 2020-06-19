@@ -54,4 +54,14 @@ public class UserDao implements IUserDao {
 		System.out.println("결과:"+result);
 		return result;
 	}
+	
+	
+	@Override
+	public int userUpdate_Cash(UserDTO dto) {
+		if(dto.getCash() < 0) {
+			System.out.println("초과된 값을 결제할 수 없습니다.");
+			return 0;
+		}
+		return mybatis.update("userMapper.userUpdate_Cash",dto);
+	}
 }

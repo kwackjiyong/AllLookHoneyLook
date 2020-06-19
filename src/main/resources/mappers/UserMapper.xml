@@ -30,7 +30,11 @@
 		WHERE userId=#{userId}
 	</update>
 
-
+	<update id="userUpdate_Cash" parameterType="UserDTO">
+		UPDATE USERDATA SET
+		cash=#{cash}
+		WHERE userId=#{userId}
+	</update>
 
 
 

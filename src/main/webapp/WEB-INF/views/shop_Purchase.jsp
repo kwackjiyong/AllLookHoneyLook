@@ -145,7 +145,7 @@
 												<tbody>
 												<tr>
 													<td>${sessionScope.userData.userName}</td>
-													<td>${user_productNum} </td>
+													<td>${user_productName}</td>
 													<td>${shopData.productNum}</td>
 													<td>${shopData.checkOutTime}</td>
 													<td>${sessionScope.userData.cash}꿀</td>
@@ -158,7 +158,7 @@
 							</div>
 							<div class="row">
 									<div class="col-md-12 stretch-card" style="padding: 20px;">
-									<div class="card" style="padding: 20px;background-color: #fff2de;">
+									<div class="card" style="padding: 20px;">
 										<div class="card-body">
 											<p class="card-title"><h3>${productData.productName} 이용권 구매</h3></p>
 											
@@ -190,7 +190,7 @@
 							
 							<div class="row">
 									<div class="col-md-12 stretch-card" style="padding: 20px;">
-									<div class="card" style="padding: 20px;">
+									<div class="card" style="padding: 20px;background-color: #fff2de;">
 										<div class="card-body">
 											<p class="card-title"><h3>결제</h3></p>
 											
@@ -216,14 +216,14 @@
 													<td>-</td>
 													<td>${saleprice}꿀</td>
 													<td>=</td>
-													<td>${productData.price-saleprice}꿀</td>
+													<td><h4><b>${productData.price-saleprice}꿀</b></h4></td>
 													<td>${sessionScope.userData.cash}꿀</td>
 												</tr>
 												</tbody>
 											</table>
 											<button type="button" 
 											class="feature-92912"
-											onclick="location.href='.do?productNum=${product.productNum}'"
+											onclick="location.href='shop_Purchase.ing?productNum=${productData.productNum}'"
 											style="background-color: #9F6118; 
 											border: 1px solid transparent; 
 											outline: none; color: white; margin: 0px 4px; padding: 6px 12px;

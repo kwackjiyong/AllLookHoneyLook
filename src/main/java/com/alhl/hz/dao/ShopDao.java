@@ -31,6 +31,10 @@ public class ShopDao implements IShopDao {
 	public List<Shop_ProductDTO> shopProduct_info() {
 		return mybatis.selectList("shopMapper.shopProduct_info");
 	}
+	@Override
+	public int shopInsert_user(ShopDTO dto) {
+		return mybatis.update("shopMapper.shopInsert_user", dto);
+	}
 	
 	
 }

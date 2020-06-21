@@ -96,6 +96,11 @@ public class UserController {
 			
 			
 			userSer.userInsert(userdto);
+			ShopDTO shopdto = new ShopDTO();
+			shopdto.setUserId(userdto.getUserId());
+			shopdto.setReCount(0);
+			shopdto.setProductNum(0);
+			shopSer.shopInsert_user(shopdto);
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('" + userdto.getUserName() + "님 회원가입 완료를 축하드립니다.');</script>");
 			out.flush();

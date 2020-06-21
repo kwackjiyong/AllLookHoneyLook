@@ -46,10 +46,17 @@ public class SearchController {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-
+		
 		// String word = request.getParameter("searchWord");
 		model.addAttribute("searchWord", searchWord);
-
+		PrintWriter out = response.getWriter();
+		if(searchWord.equals("")) { //빈칸입력시
+			out = response.getWriter();
+			out.println("<script>alert('검색어를 입력해주세요');</script>");
+			out.flush();
+			return "index";
+		}
+		
 		try {
 			// 이전페이지에서 요청한 검색어를 가져옵니다.
 			HttpSession session = request.getSession();
@@ -71,27 +78,46 @@ public class SearchController {
 
 					System.out.println("오늘 날짜변환에 실패했습니다.");
 				}
-				/*
 				// 사용자의 검색로그를 확인합니다.
 				List<SearchLogDTO> srchLog = srchSer.userLogSelect(userdto);
+				
+				
 				// 가장 최근 검색기록을 확인합니다.
-				java.sql.Timestamp lastCheckTime = srchLog.get(0).getSrchTime();
+				java.sql.Timestamp lastCheckTime;
+				
+				if(srchLog.size()!=0) {
+					lastCheckTime= srchLog.get(0).getSrchTime();
+				}else {
+					lastCheckTime= new java.sql.Timestamp(formatter.parse("19700101").getTime());
+				}
 				// 사용자의 이용권 정보를 확인합니다.
 				ShopDTO shopdto = shopSer.shopSelectOne(userdto);
 				// 오늘 검색 내역이 없으면 잔여 검색횟수를 리셋해줍니다.*
+				
+				if(shopdto == null) { //이용권 결제 정보가 없을경우 만들어줍니다.
+					shopdto = new ShopDTO();
+					shopdto.setUserId(userdto.getUserId());
+					shopdto.setProductNum(0);
+				}
+				
+				System.out.println("최근 검색일:"+lastCheckTime);
+				System.out.println("오늘 날짜 :"+date_Today);
 				if (lastCheckTime.getTime() < date_Today.getTime()) {
 					List<Shop_ProductDTO> product_dtos = shopSer.shopProduct_info(); // 이용권 정보 로드
 					shopdto.setReCount(product_dtos.get(shopdto.getProductNum()).getBenefit());// 이용권의 혜택만큼 검색횟수를
 																								// 지정해줍니다.
 					// 잔여 검색횟수를 초기화해줍니다.
 					shopSer.shopUpdate_reCount(shopdto);
+					out = response.getWriter();
+					out.println("<script>alert('오늘의 이용권 횟수를 초기화해드렸습니다.');</script>");
+					out.flush();
 				}
 				
 				// 잔여검색횟수가 부족할 때
 				if (shopdto.getReCount() <= 0) {
 					System.out.println("잔여 검색횟수가 부족해 검색하지 못했습니다.");
-					PrintWriter out = response.getWriter();
-					out.println("<script>alert('잔여 검색횟수가 부족해 검색하지 못했습니다\n이용권을 가입 해보세요');</script>");
+					out = response.getWriter();
+					out.println("<script>alert('잔여 검색횟수가 부족해 검색하지 못했습니다');</script>");
 					out.flush();
 					return new HomeController().index_do(request, response, model);
 				} else {
@@ -100,7 +126,6 @@ public class SearchController {
 					// 차감
 					shopSer.shopUpdate_reCount(shopdto);
 				}
-				*/
 				// 검색로그 남기는 부분*
 				srchdto.setUserId(userdto.getUserId());
 				srchdto.setSrchWord(searchWord);
@@ -108,12 +133,17 @@ public class SearchController {
 				srchSer.logInsert(srchdto); // 검색 로그를 남깁니다.
 			} else {
 				System.out.println("세션이 없어 되돌아갑니다.");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인정보가 없습니다.\n로그인 후 검색을 이용해주세요.');</script>");
+				out = response.getWriter();
+				out.println("<script>alert('로그인 후 검색을 이용해주세요.');</script>");
 				out.flush();
 				return "index";
 			}
-
+			
+			
+			out = response.getWriter();
+			out.println("<script>alert('["+searchWord+ "]를 검색시작합니다. 수 초가 걸릴 수 있습니다.');</script>");
+			out.flush();
+			
 			// Jsoup 클래스로 요청한 단어로 검색을 한결과를 가져옵니다.
 			List<SearchDTO> dtos = JsoupParser.autoParsing(searchWord, request);
 			model.addAttribute("counter", dtos.size());
@@ -128,20 +158,20 @@ public class SearchController {
 		} catch (UnreachableBrowserException e) {
 			// e.printStackTrace();
 			System.out.println("세션 상에 웹 드라이버가 없습니다.");
-			PrintWriter out = response.getWriter();
+			out = response.getWriter();
 			out.println("<script>alert('드라이버 세션이 종료되었습니다. 로그아웃하고 다시 로그인 후 이용해주세요 ');</script>");
 			out.flush();
 			return "index";
 		} catch (NullPointerException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("세션이 없어 검색하지 못했습니다.");
-			PrintWriter out = response.getWriter();
+			out = response.getWriter();
 			out.println("<script>alert('로그인 후 검색을 이용해주세요.(드라이버)');</script>");
 			out.flush();
 			return "index";
 		} catch (Exception e) {
 			e.printStackTrace();
-			PrintWriter out = response.getWriter();
+			out = response.getWriter();
 			out.println("<script>alert('예상치 못한 오류로 검색하지 못했습니다.\n다시 로그인해보세요.');</script>");
 			out.flush();
 			return "index";

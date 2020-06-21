@@ -37,4 +37,9 @@ public class ShopService implements IShopService{
 	public List<Shop_ProductDTO> shopProduct_info() {
 		return dao.shopProduct_info();
 	}
+	
+	@Override
+	public int shopInsert_user(ShopDTO dto) {
+		return dao.shopInsert_user(dto);
+	}
 }

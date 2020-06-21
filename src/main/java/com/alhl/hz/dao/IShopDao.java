@@ -12,4 +12,5 @@ public interface IShopDao {
 	public int shopUpdateOne(ShopDTO dto);
 	public int shopUpdate_reCount(ShopDTO dto);
 	public List<Shop_ProductDTO> shopProduct_info();
+	public int shopInsert_user(ShopDTO dto);
 }

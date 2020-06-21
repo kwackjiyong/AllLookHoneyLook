@@ -17,11 +17,10 @@
 	<!-- 사용자의 이용권 혜택 리셋 -->
 	<update id="shopUpdate_reCount" parameterType="ShopDTO">
 		UPDATE SHOP 
-		SET reCount=#{reCount}
+		SET reCount=(SELECT benefit FROM shop_product WHERE productNum = #{productNum})
 		WHERE userId = #{userId}
 	</update>
 	
-	<!-- 사용권 정보 목록 -->
 	<select id="shopProduct_info" resultType="Shop_ProductDTO">
 		SELECT * FROM shop_product
 	</select>

@@ -2,6 +2,8 @@ package com.alhl.hz;
 
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -23,6 +25,7 @@ import com.alhl.hz.dto.SearchDTO;
 import com.alhl.hz.dto.SearchLogDTO;
 import com.alhl.hz.dto.UserDTO;
 import com.alhl.hz.service.ISearchLogService;
+import com.alhl.hz.service.IShopService;
 import com.alhl.hz.service.IUserService;
 import com.alhl.hz.util.JsoupParser;
 
@@ -32,7 +35,8 @@ public class SearchController {
 	@Autowired
 	ISearchLogService srchSer;
 	
-	
+	@Autowired
+	IShopService shopSer;
 	
 	
 	
@@ -47,13 +51,39 @@ public class SearchController {
         
         //String word = request.getParameter("searchWord");
 		model.addAttribute("searchWord", searchWord);
-        
+		
+		
 		try {
 		//이전페이지에서 요청한 검색어를 가져옵니다.
 		HttpSession session = 	request.getSession();
 		if(session.getAttribute("userData") != null){
 			SearchLogDTO srchdto = new SearchLogDTO();
 			UserDTO userdto = (UserDTO)session.getAttribute("userData");
+			
+			//오늘 날짜만 구합니다. (시분초제외)
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+
+			java.util.Date date_Today = new java.util.Date(); // 오늘 날짜 데이터 가져옴
+
+			String Today = new SimpleDateFormat("yyyyMMdd").format(date_Today); 
+
+			try {
+				date_Today = formatter.parse(Today);
+
+			} catch (ParseException e1) {
+
+			  System.out.println("오늘 날짜변환에 실패했습니다.");
+			}
+			
+			//사용자의 검색로그를 확인합니다.
+			List<SearchLogDTO> srchLog = srchSer.userLogSelect(userdto);
+			//가장 최근 검색기록을 확인합니다.
+			java.sql.Timestamp lastCheckTime =  srchLog.get(0).getSrchTime();
+			
+			if(lastCheckTime.getTime()<date_Today.getTime()) { // 오늘 검색 내역이 없으면 잔여 검색횟수를 리셋해줍니다.
+				//
+			}
+			
 			srchdto.setUserId(userdto.getUserId());
 			srchdto.setSrchWord(searchWord);
 			srchdto.setSrchTime(new java.sql.Timestamp(System.currentTimeMillis())); // 현재시간

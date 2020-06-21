@@ -175,7 +175,7 @@
 											border-radius: .25rem; float:right;">이용권 구독</button>
 											</c:when>
 											<c:otherwise>
-												<p style="color:orange;">※이용 중인 이용권입니다.</p>
+												<p style="color:#9F6118;">※이용 중인 이용권입니다.</p>
 											</c:otherwise>
 											</c:choose>
 										</div>

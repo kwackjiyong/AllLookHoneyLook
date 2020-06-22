@@ -132,8 +132,12 @@ public class ShopController {
 			
 			//결제 처리
 			int resultcash =  productdtos.get(pNum).getPrice()- saleprice;
-			userdto.setCash(userdto.getCash() - resultcash);
-			if(1==userSer.userUpdate_Cash(userdto)){
+			//userdto.setCash(userdto.getCash() - resultcash); //call by reference issue로 인해서 방식 변경
+			//결제처리를 담당 dto 생성
+			UserDTO userdto_purchase = new UserDTO();
+			userdto_purchase.setCash(userdto.getCash() - resultcash);
+			userdto_purchase.setUserId(userdto.getUserId());
+			if(1==userSer.userUpdate_Cash(userdto_purchase)){
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('결제 완료!');</script>");
 				out.flush();
@@ -144,7 +148,19 @@ public class ShopController {
 				sDto.setReCount(productdtos.get(pNum).getBenefit()); // 횟수 리셋
 				sDto.setCheckOutTime(new java.sql.Timestamp(new java.util.Date().getTime()+2592000000L)); // 현재 시간에 한달을 더한 값
 				if(1==shopSer.shopUpdateOne(sDto)) {//이용권 등록
+					userdto.setCash(userdto_purchase.getCash()); //캐쉬값 초기화
 					session.setAttribute("userData", userdto); //세션 새로고침
+					//이용권 정보도 세션에 다시 추가하는 과정
+					ShopDTO shopdto_new = shopSer.shopSelectOne(userdto);//사용자 정보로 이용권 정보 가져옴
+					if(shopdto_new == null) {
+						shopdto_new = new ShopDTO();
+						shopdto_new.setProductNum(0); //등급을 0으로 설정
+					}
+					session.setAttribute("user_shopData",shopdto_new);//세션에 이용권 정보 전달
+					session.setAttribute("user_productName" ,productdtos.get(shopdto_new.getProductNum()).getProductName());//세션에 사용자 이용권 명 전달
+					
+					
+					
 					out = response.getWriter();
 					out.println("<script>alert('이용권 등록 완료!');</script>");
 					out.flush();

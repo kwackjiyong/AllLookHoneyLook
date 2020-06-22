@@ -61,7 +61,8 @@ public class UserDao implements IUserDao {
 		if(dto.getCash() < 0) {
 			System.out.println("초과된 값을 결제할 수 없습니다.");
 			return 0;
+		}else {
+			return mybatis.update("userMapper.userUpdate_Cash",dto);
 		}
-		return mybatis.update("userMapper.userUpdate_Cash",dto);
 	}
 }

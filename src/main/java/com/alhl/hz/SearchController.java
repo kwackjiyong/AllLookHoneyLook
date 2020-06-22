@@ -124,6 +124,8 @@ public class SearchController {
 					shopdto.setReCount(shopdto.getReCount() - 1);
 					// 차감
 					shopSer.shopUpdate_reCount(shopdto);
+					ShopDTO shopdto_result = shopSer.shopSelectOne(userdto);//사용자 정보로 이용권 정보 가져옴
+					session.setAttribute("user_shopData", shopdto_result); // 세션의 이용권 정보를 갱신 (잔여검색횟수 때문에)
 				}
 				// 검색로그 남기는 부분*
 				srchdto.setUserId(userdto.getUserId());

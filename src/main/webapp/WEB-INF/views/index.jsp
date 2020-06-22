@@ -96,17 +96,17 @@
 						<div class="dropdown-menu" style="width: 400px;">
 							<div class="form-group" style="margin: 20px;">
 								<p>
-									이용권 : ${user_productName}
+									이용권 : ${sessionScope.user_productName}
 									<button type="button" onclick="location.href='shop_main.do'"
 										style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">이용권
 										관리</button>
 								</p>
 								<br>
-								<p>이용권 등급 : ${shopData.productNum}</p>
+								<p>이용권 등급 : ${sessionScope.user_shopData.productNum}</p>
 								<br>
-								<p>잔여 검색횟수 : ${shopData.reCount}회</p>
+								<p>잔여 검색횟수 : ${sessionScope.user_shopData.reCount}회</p>
 								<br>
-								<p>이용권 기한 : ${shopData.checkOutTime} 까지</p>
+								<p>이용권 기한 : ${sessionScope.user_shopData.checkOutTime} 까지</p>
 								<br>
 								<p>CASH : ${sessionScope.userData.cash}꿀</p>
 							</div>

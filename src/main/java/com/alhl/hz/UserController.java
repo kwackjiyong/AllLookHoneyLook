@@ -134,6 +134,17 @@ public class UserController {
 				session.setAttribute("userData", selectDTO); // 유저 정보 한꺼번에 넣음
 				JsoupParser.webDriver_init(request); //세션에 웹드라이버 생성
 				model.addAttribute("userData", selectDTO); // 유저 정보 한꺼번에 넣음
+				//이용권 정보도 세션에 추가하는 과정
+				ShopDTO shopdto = shopSer.shopSelectOne(selectDTO);//사용자 정보로 이용권 정보 가져옴
+				if(shopdto == null) {
+					shopdto = new ShopDTO();
+					shopdto.setProductNum(0); //등급을 0으로 설정
+				}
+				List<Shop_ProductDTO> productdtos = shopSer.shopProduct_info(); // 상품리스트 정보 가져옴
+				session.setAttribute("user_shopData",shopdto);//세션에 이용권 정보 전달
+				session.setAttribute("user_productName" ,productdtos.get(shopdto.getProductNum()).getProductName());//세션에 사용자 이용권 명 전달
+				
+				
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('" + userdto.getUserId() + "님 로그인 성공');</script>");
 				out.flush();

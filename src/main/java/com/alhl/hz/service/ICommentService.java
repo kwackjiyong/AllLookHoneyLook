@@ -10,7 +10,7 @@ public interface ICommentService {
     public int commentCount();
  
     // 댓글 목록
-    public List<CommentDTO> commentList(int bId);
+    public List<CommentDTO> commentList(int postId);
  
     // 댓글 작성
     public void commentInsert(CommentDTO comment);

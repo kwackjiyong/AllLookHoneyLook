@@ -177,6 +177,7 @@
 								<button type="button" onclick="location.href='javascript:history.back()'"
 									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 									뒤로가기</button>
+								
 								<button type="button" id="btnUpdate"
 									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 									수정하기</button>

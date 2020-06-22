@@ -1,6 +1,5 @@
 package com.alhl.hz;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,7 +85,4 @@ public class HomeController {
 
 		return "index";
 	}
-
-	
-	
 }

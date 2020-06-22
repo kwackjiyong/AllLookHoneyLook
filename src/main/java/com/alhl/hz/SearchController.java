@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +27,8 @@ import com.alhl.hz.dto.Shop_ProductDTO;
 import com.alhl.hz.dto.UserDTO;
 import com.alhl.hz.service.ISearchLogService;
 import com.alhl.hz.service.IShopService;
-import com.alhl.hz.service.IUserService;
 import com.alhl.hz.util.JsoupParser;
+
 
 @Controller
 public class SearchController {

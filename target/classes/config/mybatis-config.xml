@@ -10,6 +10,7 @@
 		<typeAlias type="com.alhl.hz.dto.NoticeDTO" alias="NoticeDTO"></typeAlias>
 		<typeAlias type="com.alhl.hz.dto.ShopDTO" alias="ShopDTO"></typeAlias>
 		<typeAlias type="com.alhl.hz.dto.Shop_ProductDTO" alias="Shop_ProductDTO"></typeAlias>
+		<typeAlias type="com.alhl.hz.dto.CommentDTO" alias="CommentDTO"></typeAlias>
 	</typeAliases>
 	
 	<mappers>
@@ -17,5 +18,6 @@
 		<mapper resource="mappers/SearchLogMapper.xml" />
 		<mapper resource="mappers/NoticeMapper.xml" />
 		<mapper resource="mappers/ShopMapper.xml" />
+		<mapper resource="mappers/CommentMapper.xml" />
 	</mappers>
 </configuration>

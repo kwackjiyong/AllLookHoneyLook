@@ -87,17 +87,41 @@
 
 			<c:if test="${not empty sessionScope.userData}">
 				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item" style="margin-left: 50px; margin-top: 10px;"><a
-							class="nav-link js-scroll-trigger">${userData.userName} 님
-								환영합니다! </a></li>
-						<li class="nav-item" style="padding-left: 50px; margin-top: 10px;"><a
-							class="nav-link js-scroll-trigger" data-toggle="modal"
-							data-target="#btnSetting" aria-haspopup="true"
-							aria-expanded="false" role="button"> <img
-								src="<c:url value='/resources/icon/settings.png'/>"
-								style="width: 45px; height: 45px;"></a></li>
-					</ul>
+
+					<div class="navbar-nav ml-auto dropdown">
+						<a class="nav-link js-scroll-trigger dropdown-toggle "
+							type="button" id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" style = "color:black;">${userData.userName}
+							님 환영합니다! </a>
+						<div class="dropdown-menu" style="width: 400px;">
+							<div class="form-group" style="margin: 20px;">
+								<p>
+									이용권 : ${user_productName}
+									<button type="button" onclick="location.href='shop_main.do'"
+										style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">이용권
+										관리</button>
+								</p>
+								<br>
+								<p>이용권 등급 : ${shopData.productNum}</p>
+								<br>
+								<p>잔여 검색횟수 : ${shopData.reCount}회</p>
+								<br>
+								<p>이용권 기한 : ${shopData.checkOutTime} 까지</p>
+								<br>
+								<p>CASH : ${sessionScope.userData.cash}꿀</p>
+							</div>
+							<table class="table" style="text-align: center;">
+								<tbody>
+									<tr>
+										<td style="width: 50%;"><h3 class="pb-1"><a class="dropdown-item"
+											href="mypage.do">마이페이지</a></h3></td>
+										<td style="width: 50%;"><h3 class="pb-1"><a class="dropdown-item"
+											href="logout.ing">로그아웃</a></h3></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</c:if>
 			<!-- ///////////////////////////////------홈 & 로그인 & 회원가입 END------///////////////////////////////-->
@@ -122,8 +146,8 @@
 							<!-- ///////////////////////////////------검색창------///////////////////////////////-->
 							<section class="col-md-7"
 								style="border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
-								
-								<div style="position: relative; padding-right: 40px; ">
+
+								<div style="position: relative; padding-right: 40px;">
 									<form action="search.do">
 										<input type="text" name="searchWord" placeholder="검색어를 입력하세요 "
 											style="background-color: transparent; width: 100%; border: none; outline: none; color: #9F6118; font-size: 18px; padding: 10px;">
@@ -135,14 +159,13 @@
 									</form>
 								</div>
 								<button type="button" onclick="location.href='search_Random.do'"
-											style="background-color: #9F6118; border: 1px solid transparent; 
-											outline: none; color: white; margin: 0px 4px; padding: 6px 12px; 
-											border-radius: .25rem; float:right;">심심할 땐 랜덤 검색 〰🎲</button>
+									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem; float: right;">심심할
+									땐 랜덤 검색 〰🎲</button>
 							</section>
 							<!-- ///////////////////////////////------검색창 END------///////////////////////////////-->
 						</div>
 
-						
+
 					</div>
 				</div>
 			</div>
@@ -153,93 +176,99 @@
 			<section class="space-md bg-image-2 position-relative"
 				style="background-size: cover;">
 				<div class="container">
-				<div class="row" style="text-align: center;">
-					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
+					<div class="row" style="text-align: center;">
+						<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
 							data-aos-delay="0">
-						<div class="pricing-v2 card px-5 p-4 mt-0"  style="background-color:#fff2de;">
-							<h5 class="font-weight-bold mb-0">인기 검색어</h5>
-							<hr>
-							<div class="table-responsive" >
-								<table id="recent-purchases-listing" class="table table-hover"> 
-									<thead>
-										<tr style="background-color:#9F6118; color: fff2de;" >
-											<th>#</th>
-											<th>검색어</th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<c:forEach items="${hotlog}" var="hotlog">
-											<tr>
-												<td>${hotlog.srchId}</td>
-												<td onclick="location.href='search.do?searchWord=${hotlog.srchWord}'">${hotlog.srchWord}</td>
+							<div class="pricing-v2 card px-5 p-4 mt-0"
+								style="background-color: #fff2de;">
+								<h5 class="font-weight-bold mb-0">인기 검색어</h5>
+								<hr>
+								<div class="table-responsive">
+									<table id="recent-purchases-listing" class="table table-hover">
+										<thead>
+											<tr style="background-color: #9F6118; color: fff2de;">
+												<th>#</th>
+												<th>검색어</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+										</thead>
+
+										<tbody>
+											<c:forEach items="${hotlog}" var="hotlog">
+												<tr>
+													<td>${hotlog.srchId}</td>
+													<td
+														onclick="location.href='search.do?searchWord=${hotlog.srchWord}'">${hotlog.srchWord}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
 							</div>
+							<!--end card-->
 						</div>
-						<!--end card-->
-					</div>
-					<!--end of col-->
-					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
+						<!--end of col-->
+						<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
 							data-aos-delay="100">
-						<div class="pricing-v2 card px-5 p-4 mt-0"  style="background-color:#fff2de;">
-							<h5 class="font-weight-bold mb-0">최근 검색 목록</h5>
-							<hr>
-							<div class="table-responsive">
-								<table id="recent-purchases-listing" class="table table-hover">
-									<thead>
-										<tr style="background-color:#9F6118;color: fff2de;">
-											<th>#</th>
-											<th>검색어</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${userlog}" var="userlog">
-											<tr>
-												<td>${userlog.srchId}</td>
-												<td onclick="location.href='search.do?searchWord=${userlog.srchWord}'">${userlog.srchWord}</td>
+							<div class="pricing-v2 card px-5 p-4 mt-0"
+								style="background-color: #fff2de;">
+								<h5 class="font-weight-bold mb-0">최근 검색 목록</h5>
+								<hr>
+								<div class="table-responsive">
+									<table id="recent-purchases-listing" class="table table-hover">
+										<thead>
+											<tr style="background-color: #9F6118; color: fff2de;">
+												<th>#</th>
+												<th>검색어</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											<c:forEach items="${userlog}" var="userlog">
+												<tr>
+													<td>${userlog.srchId}</td>
+													<td
+														onclick="location.href='search.do?searchWord=${userlog.srchWord}'">${userlog.srchWord}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
 							</div>
+							<!--end card-->
 						</div>
-						<!--end card-->
-					</div>
 
-					<!--end of col-->
-					<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
+						<!--end of col-->
+						<div class="col-lg-4 aos-init aos-animate" data-aos="fade-up"
 							data-aos-delay="200">
-						<div class="pricing-v2 card px-5 p-4 mt-0"  style="background-color:#fff2de;">
-							<h5 class="font-weight-bold mb-0">연령별 인기 검색어</h5>
-							<hr>
-							<div class="table-responsive">
-								<table id="recent-purchases-listing" class="table table-hover">
-									<thead>
-										<tr style="background-color:#9F6118;color: fff2de;" >
-											<th>#</th>
-											<th>검색어</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${agelog}" var="agelog">
-											<tr>
-												<td>${agelog.srchId}</td>
-												<td onclick="location.href='search.do?searchWord=${agelog.srchWord}'">${agelog.srchWord}</td>
+							<div class="pricing-v2 card px-5 p-4 mt-0"
+								style="background-color: #fff2de;">
+								<h5 class="font-weight-bold mb-0">연령별 인기 검색어</h5>
+								<hr>
+								<div class="table-responsive">
+									<table id="recent-purchases-listing" class="table table-hover">
+										<thead>
+											<tr style="background-color: #9F6118; color: fff2de;">
+												<th>#</th>
+												<th>검색어</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											<c:forEach items="${agelog}" var="agelog">
+												<tr>
+													<td>${agelog.srchId}</td>
+													<td
+														onclick="location.href='search.do?searchWord=${agelog.srchWord}'">${agelog.srchWord}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
 							</div>
+							<!--end card-->
 						</div>
-						<!--end card-->
-					</div>
 
+					</div>
+					<!--end of row-->
 				</div>
-				<!--end of row-->
-			</div>
 			</section>
 		</c:if>
 		<c:if test="${empty sessionScope.userData}">
@@ -336,44 +365,6 @@
 		</div>
 	</div>
 	<!-- ///////////////////////////////------로그인 모달 END------///////////////////////////////-->
-
-
-	<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
-	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
-		aria-labelledby="setting" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">${userData.userName}님</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="Sign_in.ing" method="post">
-						<table class="table" style="text-align: center;">
-							<tr>
-								<td><img src="<c:url value='/resources/icon/mypage.png'/>"
-									class="feature-92912" onclick="location.href='mypage.do'"
-									style="width: 250px; height: 250px;">
-									<h3 class="pb-1">마이페이지</h3></td>
-								<td><img src="<c:url value='/resources/icon/logout.png'/>"
-									class="feature-92912" onclick="location.href='logout.ing'"
-									style="width: 250px; height: 250px;">
-									<h3 class="pb-1">로그아웃</h3></td>
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">닫기</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------setting 모달 END------///////////////////////////////-->
 
 	<!-- ///////////////////////////////------------모달 집합소END------------///////////////////////////////-->
 

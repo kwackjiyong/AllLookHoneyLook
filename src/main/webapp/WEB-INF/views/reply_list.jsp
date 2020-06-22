@@ -49,171 +49,135 @@
 <!-- DataTables CSS -->
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+
+<!-- 재이쿼리 -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- 제이쿼리 END 건들면 사망 -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+ 
+$(function(){
+ 
+    //댓글 수정 버튼
+    $("#btn_reply_Update").click(function(){
+    if(confirm("수정 하시겠습니까?")){
+        
+    //수정하는데 필요한 정보들, 댓글 번호, 글 내용, 작성자 아이디, 게시글 번호를 변수에 저장한다.
+        var cId = $("#cId").val();
+        var rcontents = $("rcontents").text();
+        var userId = $("#userId").val();
+        var postId = $("#postId").val();
+        
+    //게시글 세부 페이지로 포워딩을 하기위해 페이지 관련 값들을 변수에 저장해서 컨트롤러로 보낸다.
+        var curPage = $("#curPage").val();
+        var search_option = $("#search_option").val();
+        var keyword = $("#keyword").val();
+        
+        //페이지 관련 값들과 댓글 수정에 필요한 값들을 url로 전송한다.
+        document.form1.action="reply_update.do?postId="+postId+"&r_content="+encodeURI(r_content)+"&userId="+user_id+"&postId="+postId+"&curPage="+curPage+"&search_option="+search_option+"&keyword="+keyword;
+        document.form1.submit();
+        
+        
+        alert("댓글이 수정되었습니다.")
+                }
+        });
+ 
+    
+    //댓글 삭제 버튼
+    $("#btn_reply_Delete").click(function(){
+        
+        if(confirm("삭제 하시겠습니까?")){
+        
+        //댓글 삭제를 하기위해 댓글 번호, 글 번호, 댓글 내용, 그리고 게시글 세부 페이지로 포워딩 하기 위해 페이지 관련 값들을 변수에 저장한다.
+            var rno = $("#rno").val();
+            var member_bno = $("#member_bno").val();
+            var content = $("textarea#r_content").text();
+            var curPage = $("#curPage").val();
+            var search_option = $("#search_option").val();
+            var keyword = $("#keyword").val();
+            
+            
+            //url로 삭제에 필요한 변수들을 보낸다.
+            document.form1.action="reply_delete.do?rno="+rno+"&member_bno="+member_bno+"&curPage="+curPage+"&search_option="+search_option+"&keyword="+keyword;
+            
+            document.form1.submit();
+            
+            alert("댓글이 삭제되었습니다.")
+            
+        }
+    });
+});
+ 
+</script>
+ 
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
-	<!-- ///////////////////////////////------네비게이션 바 상단------///////////////////////////////-->
-	<nav class="navbar navbar-expand-lg fixed-top py-3 navbar-light"
-		id="mainNav">
-		<div class="container">
-
-			<!-- ///////////////////////////////------올룩꿀룩 로고------///////////////////////////////-->
-			<a class="navbar-brand js-scroll-trigger" href="index.do"><img
-				src="<c:url value='/resources/icon/logo_alhl2.png'/>"></a>
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<!-- ///////////////////////////////------올룩꿀룩 로고 END------///////////////////////////////-->
-
-
-			<!-- ///////////////////////////////------홈 & 로그인 & 회원가입------///////////////////////////////-->
-			<c:if test="${empty sessionScope.userData}">
-				<div class="collapse navbar-collapse col-md-3" id="navbarResponsive"">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="sign_in.do">회원가입</a></li>
-
-						<li class="dropdown" id="service"><a class="nav-link"
-							data-toggle="modal" data-target="#loginDialog"
-							aria-haspopup="true" aria-expanded="false" role="button">로그인</a></li>
-					</ul>
-				</div>
-			</c:if>
-
-			<c:if test="${not empty sessionScope.userData}">
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<section class="col-md-7"
-						style="border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
-						<div style="position: relative; padding-right: 40px;">
-							<form action="search.do">
-								<input type="text" name="searchWord" placeholder="검색어를 입력하세요 "
-									style="background-color: transparent; width: 100%; border: none; outline: none; color: #9F6118; font-size: 18px; padding: 10px;">
-								<button
-									style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
-									<img src="<c:url value='/resources/icon/search.png'/>"
-										style="position: absolute; top: 0; right: 0; width: 45px; height: 45px; fill: #FF8A3D; padding: 1px 1px;">
-								</button>
-							</form>
-						</div>
-					</section>
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item" style="margin-left: 50px; margin-top: 10px;"><a
-							class="nav-link js-scroll-trigger">${userData.userName} 님
-								환영합니다! </a></li>
-						<li class="nav-item" style="padding-left: 50px; margin-top: 10px;"><a
-							class="nav-link js-scroll-trigger" data-toggle="modal"
-							data-target="#btnSetting" aria-haspopup="true"
-							aria-expanded="false" role="button"> <img
-								src="<c:url value='/resources/icon/settings.png'/>"
-								style="width: 45px; height: 45px;"></a></li>
-					</ul>
-				</div>
-			</c:if>
-			<!-- ///////////////////////////////------홈 & 로그인 & 회원가입 END------///////////////////////////////-->
-		</div>
-	</nav>
-	<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
-
-
-	<div class="site-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 sidebar">
-					<div class="sidebar-box">
-						<h2>마이페이지</h2>
-					</div>
-					<div class="sidebar-box">
-						<div class="categories" id="myTab" role="tablist">
-						<a class="nav-link" href="notice_board.do">고객지원센터</a>
-						<a class="nav-link" href="myhelp_board_list.do">1:1문의</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-8 blog-content">
-					<div class="tab-content" id="v-pills-tabContent">
-						<div class="tab-pane fade show active" id="v-pills-home"
-							role="tabpanel" aria-labelledby="v-pills-home-tab">
-							<div class="row">
-								<form action="#">
-									<div class="form-group">
-										<h3 class="mb-5">회원정보수정</h3>
-									</div>
-									<div class="form-group">
-										<label for="name">이름 : ${userData.userName}</label>
-									</div>
-
-									<div class="form-group">
-										<label for="name">생년월일 : ${userData.userBirth}</label>
-									</div>
-
-									<div class="form-group">
-										<label for="email">비밀번호</label> <input type="password"
-											class="form-control" id="password">
-									</div>
-
-									<div class="form-group">
-										<label for="email">비밀번호 재확인</label> <input type="password"
-											class="form-control" id="password">
-									</div>
-
-									<div class="form-group">
-										<label for="email">Email *</label> <input type="email"
-											class="form-control" id="email">
-									</div>
-
-									<div class="form-group">
-										<button type="submit"
-											style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">수정</button>
-										<button type="submit"
-											style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">회원탈퇴</button>
-									</div>
-								</form>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-							aria-labelledby="v-pills-profile-tab">
-							<h2>고객센터</h2>
-							<nav>
-								<div class="nav nav-tabs" id="nav-tab" role="tablist"
-									style="width: 100%;">
-									<a class="nav-item nav-link active" id="nav-home-tab"
-										data-toggle="tab" href="#nav-home" role="tab"
-										aria-controls="nav-home" aria-selected="true">이용권 안내</a> <a
-										class="nav-item nav-link" id="nav-profile-tab"
-										data-toggle="tab" href="#nav-profile" role="tab"
-										aria-controls="nav-profile" aria-selected="false">이용권
-										결제/환불</a> <a class="nav-item nav-link" id="nav-contact-tab"
-										data-toggle="tab" href="#nav-contact" role="tab"
-										aria-controls="nav-contact" aria-selected="false">자주하는 질문</a>
-								</div>
-							</nav>
-							<div class="tab-content" id="nav-tabContent">
-								<div class="tab-pane fade show active" id="nav-home"
-									role="tabpanel" aria-labelledby="nav-home-tab">
-									<img src="<c:url value='/resources/icon/use.png'/>">
-								</div>
-								<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-									aria-labelledby="nav-profile-tab">...</div>
-								<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-									aria-labelledby="nav-contact-tab">...</div>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-							aria-labelledby="v-pills-settings-tab"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ///////////////////////////////------섹션 1 END------///////////////////////////////-->
-
+<!-- 배열이 비어있지 않으면 참을 출력함. (다시말해서 배열에 값들이 있으면 댓글 리스트를 출력한다.) -->
+ 
+ 
+ 
+<c:if test = "${not empty map.list}">
+<h2>댓글 리스트</h2>
+<table border = "1" width = "800px" align = "left">
+ 
+<c:forEach var = "row" items = "${map.list}">
+ 
+ 
+<tr>
+<td><br><br>
+ 
+닉네임 : ${row.user_id}    작성일자 : ${row.reg_date}   댓글번호 : ${row.rno }<br><br><br>
+ 
+${row.r_content}
+ 
+<!-- 폼태그 안에 위쪽에 있는 자바스크립트 구문에 필요한 값들을 노출시키지 않게 하기 위해 hidden타입으로 값들을 전달한다. -->
+<form method = "POST" id = "form1">
+ 
+<input type = "hidden" id = "rno" name = "rno" value = "${row.rno}">
+<input type = "hidden" id = "user_id" name = "user_id" value = "${row.user_id}">
+<input type = "hidden" id = "member_bno" name = "member_bno" value = "${row.member_bno}">
+<input type = "hidden" id = "curPage" name = "curPage" value = "${curPage}">
+<input type = "hidden" id = "search_option" name = "search_option" value = "${search_option}">
+<input type = "hidden" id = "keyword" name = "keyword" value = "${keyword}">
+ 
+<div style = "width : 800px;">
+<textarea id = "r_content" name = "r_content" rows = "3" cols = "80"></textarea></div><br><br>
+</form>    
+    
+ 
+ 
+ 
+ 
+ 
+<!-- 본인일 경우에만 댓글 수정버튼과 댓글 삭제 버튼이 출력되도록 설정함 -->
+ 
+<div style = "width:700px; text-align:right;">
+ 
+<c:if test = "${sessionScope.user_id == row.user_id or sessionScope.navername == row.user_id or sessionScope.kakaonickname == row.user_id or sessionScope.facebookname == row.user_id}">
+ 
+<button type = "button" id = "btn_reply_Update" >댓글 수정</button>
+<button type = "button" id = "btn_reply_Delete" >댓글 삭제</button>
+ 
+ 
+</c:if>
+</div>
+ 
+ 
+<br><br>
+</td>
+</tr>
+ 
+ 
+ 
+</c:forEach>
+</table>
+</c:if>
+ 
 	<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
 
 	<!-- ///////////////////////////////------로그인 모달------///////////////////////////////-->

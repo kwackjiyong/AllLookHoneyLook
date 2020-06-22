@@ -5,35 +5,34 @@ import java.sql.Timestamp;
 public class CommentDTO {
 
 	private int cId;	//댓글번호
-    private int bId;	// 게시글 번호
-    private String content;	//댓글내용
+    private int postId;	// 게시글 번호
+    private String rContent;	//댓글내용
     private String userId;	//댓글 작성자
     private String userName; //댓글 작성자의 이름 
     private Timestamp reg_date;	//댓글 날짜
     private Timestamp upreg_date; // 댓글 수정날짜
-    
 	public int getcId() {
 		return cId;
 	}
 	public void setcId(int cId) {
 		this.cId = cId;
 	}
-	public int getbId() {
-		return bId;
+	public int getPostId() {
+		return postId;
 	}
-	public void setbId(int bId) {
-		this.bId = bId;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
-	public String getContent() {
-		return content;
+	public String getrContent() {
+		return rContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setrContent(String rContent) {
+		this.rContent = rContent;
 	}
-	public String getWriter() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setWriter(String userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {
@@ -54,5 +53,7 @@ public class CommentDTO {
 	public void setUpreg_date(Timestamp upreg_date) {
 		this.upreg_date = upreg_date;
 	}
-
+	
+    
+    
 }

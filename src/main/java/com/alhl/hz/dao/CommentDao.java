@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.alhl.hz.dto.CommentDTO;
-
+@Repository
 public class CommentDao implements ICommentDAO{
 	
 	@Autowired
@@ -19,8 +20,8 @@ public class CommentDao implements ICommentDAO{
 
 	// 댓글 목록
 	@Override
-	public List<CommentDTO> commentList(int bId) {
-		return mybatis.selectList("commentMapper.listReply",bId);
+	public List<CommentDTO> commentList(int postId) {
+		return mybatis.selectList("commentMapper.listReply",postId);
 	}
 
 	//댓글 입력

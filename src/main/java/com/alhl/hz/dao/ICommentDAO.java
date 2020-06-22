@@ -10,7 +10,7 @@ public interface ICommentDAO {
     public int commentCount();
  
     // 댓글 목록
-    public List<CommentDTO> commentList(int bId);
+    public List<CommentDTO> commentList(int postId);
  
     // 댓글 작성
     public int commentInsert(CommentDTO comment);

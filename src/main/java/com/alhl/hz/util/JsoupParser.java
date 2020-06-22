@@ -236,14 +236,13 @@ public class JsoupParser {
 					bElement.click();
 				}
 				Thread.sleep(200);
-				}catch(Exception e) {}
+				}catch(org.openqa.selenium.StaleElementReferenceException e) {}catch(Exception e) {}
 			}
 			List<WebElement> jElements = new ArrayList();
 			try {
 				jElements = main_Element.findElements(By.xpath("div[@class='articles-wrap']/article"));
-			}catch(Exception e) {//오류시 0.5초 텀 더 주고 다시 긁기 
+			}catch(org.openqa.selenium.StaleElementReferenceException e) {//오류시 0.5초 텀 더 주고 다시 긁기 
 				try {Thread.sleep(500);}catch(Exception ee){}
-				jElements = main_Element.findElements(By.xpath("div[@class='articles-wrap']/article"));
 			}
 			//*********************************************************************************
 			

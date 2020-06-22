@@ -168,7 +168,7 @@ public class ShopController {
 				}else {
 					session.setAttribute("userData", userdto); //세션 새로고침
 					out = response.getWriter();
-					out.println("<script>alert('이용권 등록 실패\n1:1문의 바랍니다.');</script>");
+					out.println("<script>alert('이용권 등록 실패! 1:1문의 바랍니다.');</script>");
 					out.flush();
 					return shopMain(request,response,model);
 				}

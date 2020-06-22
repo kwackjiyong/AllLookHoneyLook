@@ -167,6 +167,114 @@
 		</div>
 	</section>
 	<!-- 첫번째 섹션 끝 -->
+	
+	
+	
+	<!-- 두번째 섹션 -->
+	<section class="space-md bg-image-2 position-relative"
+				style="background-size: cover;">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">"${searchWord}" 검색 결과 ${listCnt}개</div>
+				<br>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+					<table width="100%" class="table table-hover table-borderless"
+						id="datalist2" style="border-bottom-color:#9F6118;">
+						<thead>
+							<tr style="background-color:#9F6118;color:white;border-color:#9F6118; ">
+							
+								<th style="width: 50px;">가격순</th>
+								<th style="display:none;">이름순</th>
+							</tr>
+						</thead>
+						
+						<tbody style="background-color:#fff2de;" class="row">
+							<c:if test="${0 == counter}">
+
+								<tr>
+									<td>검색 결과가 존재하지 않습니다.</td>
+								</tr>
+
+							</c:if>
+							<c:forEach items="${parsing_dtos}" var="pars_list">
+
+								<tr  class="col-md-6 stretch-card shadow-lg" style="padding: 10px;">
+								
+								<td style="display:none;">${pars_list.srchIndex}</td>
+								<td class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-200 position-relative">
+											<div class="col p-4 d-flex flex-column position-static">
+												<strong class="d-inline-block mb-2 stretched-link"
+													onclick="window.open('${pars_list.srchURL}')"
+													style="color: #9F6118; font-size: 15pt;">${pars_list.srchSiteName}</strong>
+													<hr>
+												<h5 class="mb-0">${pars_list.srchTitle}</h5>
+												<hr>
+												<p>${frmt.format(pars_list.srchPrice)}원</p>
+											</div>
+											<div class="col-auto d-none d-lg-block">
+
+												<img src="${pars_list.srchImageURL}"
+													onclick="window.open('${pars_list.srchURL}')"
+													class="bd-placeholder-img" width="200" height="250"
+													preserveAspectRatio="xMidYMid slice" focusable="false"
+													role="img" aria-label="Placeholder: Thumbnail">
+
+											</div>
+								</td>
+								
+								</tr>
+							</c:forEach>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- 두번째 섹션 끝 -->
+	
+	
+	
+	<!-- 세번째 섹션 -->
+	<section class="space-md bg-image-2 position-relative"
+				style="background-size: cover;">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">"${searchWord}" 검색 결과 ${listCnt}개</div>
+				<br>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+				
+					<div class="row">
+					<c:forEach items="${parsing_dtos}" var="pars_list">
+						<div class="col-md-6 stretch-card">
+							<div class="row no-gutters overflow-hidden flex-md-row mb-4 shadow-lg h-md-250" >
+								<div class="col p-4 d-flex flex-column position-static">
+									<strong class="d-inline-block mb-2 stretched-link" onclick="window.open('${pars_list.srchURL}')" style="color:#9F6118; font-size: 15pt;">${pars_list.srchSiteName}</strong>
+									<h5 class="mb-0">${pars_list.srchTitle}</h5>
+									<p style="float:inherit;">${frmt.format(pars_list.srchPrice)}원</p>
+								</div>
+								<div class="col-auto d-none d-lg-block">
+									
+									<img src="${pars_list.srchImageURL}" onclick="window.open('${pars_list.srchURL}')" class="bd-placeholder-img" width="200" height="250"
+										preserveAspectRatio="xMidYMid slice" focusable="false"
+										role="img" aria-label="Placeholder: Thumbnail">
+								
+								</div>
+							</div>
+						</div>
+						
+						</c:forEach>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- 세번쨰 섹션 끝 -->
+	
 	<!-- 전체 바디 끝 -->
 		<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
 
@@ -365,6 +473,27 @@
 			$('#datalist').DataTable({
 				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
 				"scrollY" : 600,
+				"scrollCollapse" : true,
+				"pagingType" : "full_numbers",
+				"language" : {
+					search : "리스트 내 검색 : ",
+					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
+					"infoEmpty" : "검색 결과가 없습니다.",
+					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
+					"lengthMenu" : "_MENU_ 개씩 보기",
+					"paginate" : {
+						"first" : "처음",
+						"last" : "마지막",
+						"next" : "다음",
+						"previous" : "이전"
+					}
+
+				}
+
+			});
+			$('#datalist2').DataTable({
+				"lengthMenu" : [ 4, 16, 48, 120],
+				"scrollX" : 900,"scrollY" : 900,
 				"scrollCollapse" : true,
 				"pagingType" : "full_numbers",
 				"language" : {

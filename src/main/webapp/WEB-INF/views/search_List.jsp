@@ -119,7 +119,7 @@
 	</nav>
 	<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
 
-		<!-- 첫번째 섹션 -->
+		<!-- 첫번째 섹션 --><%-- 
 	<section class="space-md bg-image-2 position-relative"
 				style="background-size: cover;">
 		<div class="container">
@@ -165,75 +165,8 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --%>
 	<!-- 첫번째 섹션 끝 -->
-	
-	
-	
-	<!-- 두번째 섹션 -->
-	<section class="space-md bg-image-2 position-relative"
-				style="background-size: cover;">
-		<div class="container">
-			<div class="panel panel-default">
-				<div class="panel-heading">"${searchWord}" 검색 결과 ${listCnt}개</div>
-				<br>
-				<!-- /.panel-heading -->
-				<div class="panel-body">
-					<table  width="95%"class="table table-hover table-reponsive table-borderless"
-						id="datalist2" style="border-bottom-color:#9F6118;">
-						<thead>
-							<tr style="background-color:#9F6118;color:white;">
-								<th width="5%">가격순</th>
-								<th width="95%"style="visibility:hidden; display:none;"></th>
-							</tr>
-						</thead>
-						
-						<tbody style="background-color:#fff2de;"class="row">
-							<c:if test="${0 == counter}">
-
-								<tr>
-									<td>검색 결과가 존재하지 않습니다.</td>
-								</tr>
-
-							</c:if>
-							<c:forEach items="${parsing_dtos}" var="pars_list">
-								<tr class="col-md-6 stretch-card shadow-lg">
-									<td style="visibility: hidden; display: none;">${pars_list.srchIndex}</td>
-									<td
-										class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-200 position-relative">
-										<div class="col p-4 d-flex flex-column position-static">
-											<strong class="d-inline-block mb-2 stretched-link"
-												onclick="window.open('${pars_list.srchURL}')"
-												style="color: #9F6118; font-size: 15pt;">${pars_list.srchSiteName}</strong>
-											<hr>
-											<h6 class="mb-0"
-												style="max-width: 150px; text-overflow: ellipsis;">${pars_list.srchTitle}</h6>
-											<hr>
-											<p style="float: bottom;">${frmt.format(pars_list.srchPrice)}원</p>
-										</div>
-										<div class="col-auto d-none d-lg-block">
-
-											<img src="${pars_list.srchImageURL}"
-												onclick="window.open('${pars_list.srchURL}')"
-												class="bd-placeholder-img" width="200" height="250"
-												preserveAspectRatio="xMidYMid slice" focusable="false"
-												role="img" aria-label="Placeholder: Thumbnail">
-
-										</div>
-									</td>
-
-								</tr>
-							</c:forEach>
-
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- 두번째 섹션 끝 -->
-	
-	
 	
 	<!-- 세번째 섹션 -->
 	<section class="space-md bg-image-2 position-relative"
@@ -246,7 +179,15 @@
 				<div class="panel-body">
 				
 					<div class="row">
-					<c:forEach items="${parsing_dtos}" var="pars_list">
+						<div class="col-md-12 row">
+						<c:forEach items="${parsing_dtos}" var="pars_list">
+						<c:if test="${pars_list.srchIndex %6 ==0}">
+							</div>
+							
+							<a id="btn_${pars_list.srchIndex}" href="#col_${pars_list.srchIndex}" data-toggle="collapse" style="visibility: hidden;">더보기</a>
+							<div id="col_${pars_list.srchIndex}" class="col-md-12 collapse row">
+						</c:if>
+					
 						<div class="col-md-6 stretch-card">
 							<div class="row no-gutters overflow-hidden flex-md-row mb-4 shadow-lg h-md-250" >
 								<div class="col p-4 d-flex flex-column position-static">
@@ -490,27 +431,14 @@
 				}
 
 			});
-			$('#datalist2').DataTable({
-				"lengthMenu" : [ 4, 16, 48, 120],
-				"scrollX" : 900,"scrollY" : 600,
-				"scrollCollapse" : true,
-				"pagingType" : "full_numbers",
-				"language" : {
-					search : "리스트 내 검색 : ",
-					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
-					"infoEmpty" : "검색 결과가 없습니다.",
-					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
-					"lengthMenu" : "_MENU_ 개씩 보기",
-					"paginate" : {
-						"first" : "처음",
-						"last" : "마지막",
-						"next" : "다음",
-						"previous" : "이전"
-					}
-
-				}
-
-			});
+			var listcnt=0;
+			$(window).scroll(function(){
+				console.log('/문서높이'+$(document).height()+'/창높이'+$(window).outerHeight()+'/스크롤'+$(window).scrollTop());
+				if ($(document).height() - $(window).outerHeight() - 500 < $(window).scrollTop()) {
+					listcnt = listcnt+6;
+					$('#btn_'+listcnt.toString()).get(0).click();
+		        }
+	        });
 		});
 	</script>
 	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->

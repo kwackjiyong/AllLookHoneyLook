@@ -16,7 +16,6 @@ public class ShopDao implements IShopDao {
 	public SqlSessionTemplate mybatis;
 	@Override
 	public ShopDTO shopSelectOne(UserDTO dto) {
-		
 		return mybatis.selectOne("shopMapper.shopSelectOne_user", dto);
 	}
 	@Override

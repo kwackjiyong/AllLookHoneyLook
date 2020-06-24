@@ -163,7 +163,7 @@
 
 									<tr>
 										<td>이메일</td>
-										<td><input type="text" name="userEmail"
+										<td><input type="email" name="userEmail"
 											class="form-control" placeholder="Email 입력" /></td>
 									</tr>
 								</table>

@@ -8,7 +8,9 @@ import com.alhl.hz.dto.UserDTO;
 public interface IUserDao {
 	public List<UserDTO> userSelect();
 	public UserDTO userSelectOne(UserDTO dto);
-	int userInsert(UserDTO dto);
+	public int userInsert(UserDTO dto);
 	public int userIdCheck(UserDTO dto);
 	public int userUpdate_Cash(UserDTO dto);
+	public int userUpdate(UserDTO dto);
+	public int userDelete(UserDTO dto);
 }

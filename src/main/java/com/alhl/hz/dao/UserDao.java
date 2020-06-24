@@ -65,4 +65,13 @@ public class UserDao implements IUserDao {
 			return mybatis.update("userMapper.userUpdate_Cash",dto);
 		}
 	}
+	@Override
+	public int userUpdate(UserDTO dto) {
+		dto.setUserPassword(SHA256.getSHA256(dto.getUserPassword()));
+		return mybatis.update("userMapper.userModify",dto);
+	}
+	@Override
+	public int userDelete(UserDTO dto) {
+		return mybatis.delete("userMapper.userDelete", dto);
+	}
 }

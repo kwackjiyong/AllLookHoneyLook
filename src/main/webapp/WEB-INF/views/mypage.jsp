@@ -140,37 +140,37 @@
 						<div class="tab-pane fade show active" id="v-pills-home"
 							role="tabpanel" aria-labelledby="v-pills-home-tab">
 							<div class="row">
-								<form action="#">
+								<form action="userModify.ing" method="post">
 									<div class="form-group">
 										<h3 class="mb-5">회원정보수정</h3>
 									</div>
 									<div class="form-group">
-										<label for="name">이름 : ${userData.userName}</label>
+										<label for="name">이름 : ${sessionScope.userData.userName}</label>
 									</div>
 
 									<div class="form-group">
-										<label for="name">생년월일 : ${userData.userBirth}</label>
+										<label for="name">생년월일 : ${sessionScope.userData.userBirth}</label>
 									</div>
 
 									<div class="form-group">
 										<label for="email">비밀번호</label> <input type="password"
-											class="form-control" id="password">
+											class="form-control" name="userPassword">
 									</div>
 
 									<div class="form-group">
 										<label for="email">비밀번호 재확인</label> <input type="password"
-											class="form-control" id="password">
+											class="form-control" name="userEmailHash">
 									</div>
 
 									<div class="form-group">
-										<label for="email">Email *</label> <input type="email"
-											class="form-control" id="email">
+										<label for="email">Email</label> <input type="email"
+											class="form-control" name="userEmail" value="${sessionScope.userData.userEmail}">
 									</div>
 
 									<div class="form-group">
 										<button type="submit"
 											style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">수정</button>
-										<button type="submit"
+										<button type="button" onclick="location.href='userDelete.ing'"
 											style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">회원탈퇴</button>
 									</div>
 								</form>

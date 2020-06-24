@@ -174,7 +174,88 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/index.do";
 	}
+	
+	
+	// 회원정보 수정
+	@RequestMapping(value = "/userModify.ing", method = RequestMethod.POST)
+	public void update_do(HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model, UserDTO userdto)
+			throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 
+		if (session.getAttribute("userData") != null) { // 로그인 상태일 때
+			UserDTO udto = (UserDTO) session.getAttribute("userData"); // 세션에서 사용자 정보 가져옴
+			userdto.setUserId(udto.getUserId());
+				if (!userdto.getUserPassword().equals(userdto.getUserEmailHash())) {
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('재입력된 패스워드가 다릅니다.');</script>");
+					out.println("<script>history.back();</script>");
+					out.flush();
+					return;
+				} else if (userdto.getUserPassword() == "") {
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('변경할 패스워드를 입력해주세요.');</script>");
+					out.println("<script>history.back();</script>");
+					out.flush();
+					return;
+				} else if (userdto.getUserEmail() == "") {
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('변경할 이메일을 입력해주세요.');</script>");
+					out.println("<script>history.back();</script>");
+					out.flush();
+					return;
+				} else {
+					
+					if (userSer.userUpdate(userdto) == 1) {
+						session.invalidate(); // 로그아웃
+						PrintWriter out = response.getWriter();
+						out.println("<script>alert('회원정보 변경 성공');</script>");
+						out.println("<script>alert('다시 로그인 해주세요');</script>");
+						out.println("<script>location.href='index.do'</script>");
+						out.flush();
+						return;
+					} else {
+						PrintWriter out = response.getWriter();
+						out.println("<script>alert('회원정보 변경 실패!');</script>");
+						out.println("<script>history.back();</script>");
+						out.flush();
+						return;
+					}
+				}
+		}
+	}
+	
+	// 회원정보 수정
+		@RequestMapping(value = "/userDelete.ing", method = RequestMethod.GET)
+		public void userDelete_ing(HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model)
+				throws Exception {
+			response.setContentType("text/html; charset=UTF-8");
+			request.setCharacterEncoding("UTF-8");
+			
+			 
+			if (session.getAttribute("userData") != null) { // 로그인 상태일 때
+				UserDTO udto = (UserDTO) session.getAttribute("userData"); // 세션에서 사용자 정보 가져옴
+				
+				if(userSer.userDelete(udto)==1) {
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('회원탈퇴가 완료되었습니다.');</script>");
+					out.println("<script>location.href='index.do'</script>");
+					out.flush();
+					return;
+				}else {
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('회원정보 삭제 실패! 1:1문의를 이용해주세요');</script>");
+					out.println("<script>history.back();</script>");
+					out.flush();
+					return;
+				}
+			}
+			
+		}
+	
+	
+	
+	
 	/*
 	 * // 회원정보 수정
 	 * 

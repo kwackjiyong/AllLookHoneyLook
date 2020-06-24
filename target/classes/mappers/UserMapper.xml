@@ -23,10 +23,9 @@
 		#{userPassword},#{userBirth},#{creatTime},#{userGender},#{userEmail})
 	</insert>
 
-	<update parameterType="UserDTO" id="userModify">
-
+	<update id="userModify" parameterType="UserDTO">
 		UPDATE USERDATA SET
-		userName=#{userName},userPw=#{userPw},userEmail=#{userEmail},userBirth=#{userBirth},userGender=#{userGender}
+		userPassword=#{userPassword},userEmail=#{userEmail}
 		WHERE userId=#{userId}
 	</update>
 
@@ -35,7 +34,10 @@
 		cash=#{cash}
 		WHERE userId=#{userId}
 	</update>
-
+	<delete id="userDelete" parameterType="UserDTO">
+		DELETE FROM USERDATA
+		WHERE userId=#{userId}
+	</delete>
 
 
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.alhl.hz.dao.IUserDao;
 import com.alhl.hz.dto.UserDTO;
+import com.alhl.hz.util.SHA256;
 
 //[DB연결 사용법] 6. 서비스 클래스 작성
 @Service("IUserService")
@@ -38,5 +39,15 @@ public class UserService implements IUserService {
 	@Override
 	public int userUpdate_Cash(UserDTO dto) {
 		return dao.userUpdate_Cash(dto);
+	}
+	
+	
+	@Override
+	public int userUpdate(UserDTO dto) {
+		return dao.userUpdate(dto);
+	}
+	@Override
+	public int userDelete(UserDTO dto) {
+		return dao.userDelete(dto);
 	}
 }

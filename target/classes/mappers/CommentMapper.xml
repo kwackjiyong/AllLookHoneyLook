@@ -5,17 +5,6 @@
 <!-- sql문 작성 -->
 <mapper namespace="commentMapper">
 
-	<!-- <select id="commentCount" resultType="int"> SELECT COUNT(*) FROM COMMENT 
-		</select> 댓글목록 <select id="listReply" resultType="CommentDTO"> SELECT CID,POSTID,CONTENT,USERID,USERNAME,C.REG_DATE,C.UPREG_DATE 
-		FROM COMMENT C,USERDATA M WHERE C.userId = M.userId AND POSTID=#{POSTID} 
-		ORDER BY CID </select> 댓글 입력 <insert id="cInsert" parameterType="CommentDTO"> 
-		INSERT INTO COMMENT (CId, POSTID, CONTENT, USERID,USERNAME,REG_DATE,UPREG_DATE) 
-		VALUES(#{CId},#{postId},#{CONTENT},#{USERID},#{USERNAME},#{REG_DATE},#{UPREG_DATE}) 
-		</insert> <update id="cUpdate" parameterType="CommentDTO"> UPDATE COMMENT 
-		SET CONTENT = #{content} WHERE CID = #{CID} </update> <delete id="cDelete" 
-		parameterType="int"> DELETE FROM COMMENT WHERE CID = #{CID} </delete> -->
-
-
 	<insert id="cInsert" parameterType ="CommentDTO">
 		<!-- 댓글을 추가 -->
 		INSERT INTO comment 
@@ -34,12 +23,10 @@
 	</select>
 
 
-	<update id="updateReply">
+	<update id="updateReply" parameterType ="CommentDTO">
 		<!-- 댓글의 번호와 회원의 아이디가 모두다 같을경우에만 수정할 수 있도록 쿼리를 설정 -->
-		update comment set rContent = #{rContent} where cId = #{cId}
+		update comment set rContent = #{rContent},upreg_date=#{upreg_date} where cId = #{cId}
 	</update>
-
-
 
 	<delete id="deleteReply">
 		<!-- 댓글의 번호가 같을 경우에 삭제할 수 있도록 설정 (아이디는 앞에서 같지않으면 버튼조차 뜨지 않기때문에 따로 쿼리를 추가할 

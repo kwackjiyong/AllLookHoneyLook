@@ -212,7 +212,7 @@
 
 	<main role="main">
 		<section class="bg-image-2 position-relative"
-			style="background-size: cover;padding-top: 130px;">
+			style="background-size: cover; padding-top: 130px;">
 			<div class="container">
 				<div class="col-12"
 					style="background: #fff; border-radius: 4px; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15); margin: 0 auto 50px; max-width: auto; padding: 50px;">
@@ -268,32 +268,33 @@
 						</tbody>
 					</table>
 
-					<div class="col-12 col-sm-6">
-						<input type="hidden" name="viewcnt" value="${dto.viewcnt }">
+					<input type="hidden" name="viewcnt" value="${dto.viewcnt }">
 
-						<button type="button" id="btnList"
-							style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-							목록으로</button>
-						<button type="button"
-							onclick="location.href='notice_update_pg.do?postId=${dto.postId}'"
-							style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-							수정하기</button>
-					</div>
+					<button type="button"
+						onclick="location.href='notice_update_pg.do?postId=${dto.postId}'"
+						style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+						수정하기</button>
 				</div>
 			</div>
 		</section>
 
 		<section class="position-relative" style="background-size: cover;">
 			<div class="container">
+				<div style = "align:center;padding-bottom: 50px;">
+					<button type="button" id="btnList"
+						style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+						목록으로</button>
+				</div>
 				<div>
-				<h2>댓글 리스트</h2>
 					<textarea class="form-control" name="rContent" id="rContent"
 						placeholder="댓글을 작성해주세요"></textarea>
-
+						<br>
 					<button type="button" id="btnReply"
 						style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 						댓글작성</button>
 				</div>
+
+				<br> <br> <br>
 				<div id="listReply"></div>
 			</div>
 		</section>

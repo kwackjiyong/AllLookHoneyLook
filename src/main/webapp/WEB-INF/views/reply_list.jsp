@@ -71,17 +71,10 @@
 						var userId = $("#userId").val();
 						var postId = $("#postId").val();
 
-						//게시글 세부 페이지로 포워딩을 하기위해 페이지 관련 값들을 변수에 저장해서 컨트롤러로 보낸다.
-						var curPage = $("#curPage").val();
-						var search_option = $("#search_option").val();
-						var keyword = $("#keyword").val();
-
 						//페이지 관련 값들과 댓글 수정에 필요한 값들을 url로 전송한다.
 						document.form1.action = "reply_update.do?postId="
 								+ postId + "&rContent=" + encodeURI(rContent)
-								+ "&userId=" + userId + "&postId=" + postId
-								+ "&curPage=" + curPage + "&search_option="
-								+ search_option + "&keyword=" + keyword;
+								+ "&userId=" + userId + "&postId=" + postId;
 						document.form1.submit();
 
 						alert("댓글이 수정되었습니다.")
@@ -97,17 +90,11 @@
 						//댓글 삭제를 하기위해 댓글 번호, 글 번호, 댓글 내용, 그리고 게시글 세부 페이지로 포워딩 하기 위해 페이지 관련 값들을 변수에 저장한다.
 						var cId = $("#cId").val();
 						var postId = $("#postId").val();
-						var rContent = $("textarea#rContent").text();
-						var curPage = $("#curPage").val();
-						var search_option = $("#search_option").val();
-						var keyword = $("#keyword").val();
+						var rContent = $("#rContent").text();
 
 						//url로 삭제에 필요한 변수들을 보낸다.
 						document.form1.action = "reply_delete.do?cId=" + cId
-								+ "&postId=" + postId + "&curPage=" + curPage
-								+ "&search_option=" + search_option
-								+ "&keyword=" + keyword;
-
+								+ "&postId=" + postId;
 						document.form1.submit();
 
 						alert("댓글이 삭제되었습니다.")
@@ -123,38 +110,34 @@
 	<!-- 배열이 비어있지 않으면 참을 출력함. (다시말해서 배열에 값들이 있으면 댓글 리스트를 출력한다.) -->
 	<c:if test="${not empty list}">
 		<h2>댓글 리스트</h2>
-		<table class= "table">
+		<table class="table">
 			<c:forEach var="row" items="${list}">
 				<tr>
-					<td><br>
-					<br> 닉네임 : ${row.userId} 작성일자 : ${row.reg_date} 댓글번호 :
-						${row.cId }<br>
-					<br>
-					<br> ${row.rContent} <!-- 폼태그 안에 위쪽에 있는 자바스크립트 구문에 필요한 값들을 노출시키지 않게 하기 위해 hidden타입으로 값들을 전달한다. -->
+					<td>작성자 : ${row.userId} <br>${row.reg_date}<br><br>
+
 						<form method="POST" id="form1">
 
 							<input type="hidden" id="cId" name="cId" value="${row.cId}">
-							<input type="hidden" id="user_id" name="user_id"
+							<input type="hidden" id="userId" name="userId"
 								value="${row.userId}"> <input type="hidden" id="postId"
 								name="postId" value="${row.postId}">
 
-							<div style="width: 800px;">
-								<textarea id="rContent" name="rContent" rows="3" cols="80"></textarea>
-							</div>
-							<br>
-							<br>
-						</form> <!-- 본인일 경우에만 댓글 수정버튼과 댓글 삭제 버튼이 출력되도록 설정함 -->
+							<textarea id="rContent" name="rContent" class="form-control">${row.rContent}</textarea>
+						</form> 
+						<!-- 본인일 경우에만 댓글 수정버튼과 댓글 삭제 버튼이 출력되도록 설정함 -->
+						<c:if test="${sessionScope.userData.userId == row.userId }">
+							<button type="button" id="btn_reply_Update"
+								style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+								댓글 수정</button>
+							<button type="button" id="btn_reply_Delete"
+								style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+								댓글 삭제</button>
 
-						<div style="width: 700px; text-align: right;">
-
-							<c:if test="${sessionScope.userData.userId == row.userId }">
-								<button type="button" id="btn_reply_Update">댓글 수정</button>
-								<button type="button" id="btn_reply_Delete">댓글 삭제</button>
-
-							</c:if>
-						</div> <br>
-					<br></td>
+						</c:if>
+					</td>
 				</tr>
+					
+				<!-- 폼태그 안에 위쪽에 있는 자바스크립트 구문에 필요한 값들을 노출시키지 않게 하기 위해 hidden타입으로 값들을 전달한다. -->
 			</c:forEach>
 		</table>
 	</c:if>

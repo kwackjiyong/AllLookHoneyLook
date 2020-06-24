@@ -29,8 +29,8 @@ public class CommentService implements ICommentService{
 	
 	// 댓글 작성
 	@Override
-	public void commentInsert(CommentDTO comment) {
-		dao.commentInsert(comment);
+	public int commentInsert(CommentDTO comment) {
+		return dao.commentInsert(comment);
 	}
 	
 	// 댓글 수정

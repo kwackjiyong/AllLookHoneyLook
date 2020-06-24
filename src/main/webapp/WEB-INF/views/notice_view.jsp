@@ -53,7 +53,8 @@
 
 <!-- 재이쿼리 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- 제이쿼리 END 건들면 사망 -->
 
 <!-- 게시판 스크립트 지우면 때린다! -->
@@ -79,15 +80,17 @@
 				"rContent" : rContent,
 				"postId" : postId
 			};
-
 			$.ajax({
-				type : "post", //데이터를 보낼 방식
+				type : "get", //데이터를 보낼 방식
 				url : "reply_insert.do", //데이터를 보낼 url
 				data : params, //보낼 데이터
 
 				success : function(data) {//데이터를 보내는 것이 성공했을 시 출력되는 메시지
 					alert("댓글이 등록되었습니다.");
-					listReply2();
+					listReply();
+				},
+				error : function() {
+					alert("실패");
 				}
 			});
 		});
@@ -208,8 +211,8 @@
 	<!-- ///////////////////////////////------네비게이션 바 상단 END------///////////////////////////////-->
 
 	<main role="main">
-		<section class="space-md bg-image-2 position-relative"
-			style="background-size: cover;">
+		<section class="bg-image-2 position-relative"
+			style="background-size: cover;padding-top: 130px;">
 			<div class="container">
 				<div class="col-12"
 					style="background: #fff; border-radius: 4px; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15); margin: 0 auto 50px; max-width: auto; padding: 50px;">
@@ -276,19 +279,22 @@
 							style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 							수정하기</button>
 					</div>
-
-					<div class="col-12 col-sm-6">
-						<textarea class="form-control" name="rContent" id="rContent"
-							placeholder="댓글을 작성해주세요"></textarea>
-						<br>
-
-						<button type="button" id="btnReply"
-							style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-							댓글작성</button>
-					</div>
-
-					<div id="listReply"></div>
 				</div>
+			</div>
+		</section>
+
+		<section class="position-relative" style="background-size: cover;">
+			<div class="container">
+				<div>
+				<h2>댓글 리스트</h2>
+					<textarea class="form-control" name="rContent" id="rContent"
+						placeholder="댓글을 작성해주세요"></textarea>
+
+					<button type="button" id="btnReply"
+						style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+						댓글작성</button>
+				</div>
+				<div id="listReply"></div>
 			</div>
 		</section>
 	</main>

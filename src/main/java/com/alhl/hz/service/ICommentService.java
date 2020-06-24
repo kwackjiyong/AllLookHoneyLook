@@ -13,7 +13,7 @@ public interface ICommentService {
     public List<CommentDTO> commentList(int postId);
  
     // 댓글 작성
-    public void commentInsert(CommentDTO comment);
+    public int commentInsert(CommentDTO comment);
     
     // 댓글 수정
     public void commentUpdate(CommentDTO comment);

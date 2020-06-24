@@ -55,267 +55,109 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 제이쿼리 END 건들면 사망 -->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
- 
-$(function(){
- 
-    //댓글 수정 버튼
-    $("#btn_reply_Update").click(function(){
-    if(confirm("수정 하시겠습니까?")){
-        
-    //수정하는데 필요한 정보들, 댓글 번호, 글 내용, 작성자 아이디, 게시글 번호를 변수에 저장한다.
-        var cId = $("#cId").val();
-        var rContent = $("rContent").text();
-        var userId = $("#userId").val();
-        var postId = $("#postId").val();
-        
-    //게시글 세부 페이지로 포워딩을 하기위해 페이지 관련 값들을 변수에 저장해서 컨트롤러로 보낸다.
-        var curPage = $("#curPage").val();
-        var search_option = $("#search_option").val();
-        var keyword = $("#keyword").val();
-        
-        //페이지 관련 값들과 댓글 수정에 필요한 값들을 url로 전송한다.
-        document.form1.action="reply_update.do?postId="+postId+"&rContent="+encodeURI(rContent)+"&userId="+userId+"&postId="+postId+"&curPage="+curPage+"&search_option="+search_option+"&keyword="+keyword;
-        document.form1.submit();
-        
-        
-        alert("댓글이 수정되었습니다.")
-                }
-        });
- 
-    
-    //댓글 삭제 버튼
-    $("#btn_reply_Delete").click(function(){
-        
-        if(confirm("삭제 하시겠습니까?")){
-        
-        //댓글 삭제를 하기위해 댓글 번호, 글 번호, 댓글 내용, 그리고 게시글 세부 페이지로 포워딩 하기 위해 페이지 관련 값들을 변수에 저장한다.
-            var cId = $("#cId").val();
-            var postId = $("#postId").val();
-            var rContent = $("textarea#rContent").text();
-            var curPage = $("#curPage").val();
-            var search_option = $("#search_option").val();
-            var keyword = $("#keyword").val();
-            
-            
-            //url로 삭제에 필요한 변수들을 보낸다.
-            document.form1.action="reply_delete.do?cId="+cId+"&postId="+postId+"&curPage="+curPage+"&search_option="+search_option+"&keyword="+keyword;
-            
-            document.form1.submit();
-            
-            alert("댓글이 삭제되었습니다.")
-            
-        }
-    });
-});
- 
+	$(function() {
+
+		//댓글 수정 버튼
+		$("#btn_reply_Update").click(
+				function() {
+					if (confirm("수정 하시겠습니까?")) {
+
+						//수정하는데 필요한 정보들, 댓글 번호, 글 내용, 작성자 아이디, 게시글 번호를 변수에 저장한다.
+						var cId = $("#cId").val();
+						var rContent = $("rContent").text();
+						var userId = $("#userId").val();
+						var postId = $("#postId").val();
+
+						//게시글 세부 페이지로 포워딩을 하기위해 페이지 관련 값들을 변수에 저장해서 컨트롤러로 보낸다.
+						var curPage = $("#curPage").val();
+						var search_option = $("#search_option").val();
+						var keyword = $("#keyword").val();
+
+						//페이지 관련 값들과 댓글 수정에 필요한 값들을 url로 전송한다.
+						document.form1.action = "reply_update.do?postId="
+								+ postId + "&rContent=" + encodeURI(rContent)
+								+ "&userId=" + userId + "&postId=" + postId
+								+ "&curPage=" + curPage + "&search_option="
+								+ search_option + "&keyword=" + keyword;
+						document.form1.submit();
+
+						alert("댓글이 수정되었습니다.")
+					}
+				});
+
+		//댓글 삭제 버튼
+		$("#btn_reply_Delete").click(
+				function() {
+
+					if (confirm("삭제 하시겠습니까?")) {
+
+						//댓글 삭제를 하기위해 댓글 번호, 글 번호, 댓글 내용, 그리고 게시글 세부 페이지로 포워딩 하기 위해 페이지 관련 값들을 변수에 저장한다.
+						var cId = $("#cId").val();
+						var postId = $("#postId").val();
+						var rContent = $("textarea#rContent").text();
+						var curPage = $("#curPage").val();
+						var search_option = $("#search_option").val();
+						var keyword = $("#keyword").val();
+
+						//url로 삭제에 필요한 변수들을 보낸다.
+						document.form1.action = "reply_delete.do?cId=" + cId
+								+ "&postId=" + postId + "&curPage=" + curPage
+								+ "&search_option=" + search_option
+								+ "&keyword=" + keyword;
+
+						document.form1.submit();
+
+						alert("댓글이 삭제되었습니다.")
+
+					}
+				});
+	});
 </script>
- 
+
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300">
-
-<!-- 배열이 비어있지 않으면 참을 출력함. (다시말해서 배열에 값들이 있으면 댓글 리스트를 출력한다.) -->
- 
- 
- 
-<c:if test = "${not empty map.list}">
-<h2>댓글 리스트</h2>
-<table border = "1" width = "800px" align = "left">
- 
-<c:forEach var = "row" items = "${map.list}">
- 
- 
-<tr>
-<td><br><br>
- 
-닉네임 : ${row.userId}    작성일자 : ${row.reg_date}   댓글번호 : ${row.cId }<br><br><br>
- 
-${row.rContent}
- 
-<!-- 폼태그 안에 위쪽에 있는 자바스크립트 구문에 필요한 값들을 노출시키지 않게 하기 위해 hidden타입으로 값들을 전달한다. -->
-<form method = "POST" id = "form1">
- 
-<input type = "hidden" id = "cId" name = "cId" value = "${row.cId}">
-<input type = "hidden" id = "user_id" name = "user_id" value = "${row.userId}">
-<input type = "hidden" id = "member_bno" name = "member_bno" value = "${row.postId}">
-<input type = "hidden" id = "curPage" name = "curPage" value = "${curPage}">
-<input type = "hidden" id = "search_option" name = "search_option" value = "${search_option}">
-<input type = "hidden" id = "keyword" name = "keyword" value = "${keyword}">
- 
-<div style = "width : 800px;">
-<textarea id = "rContent" name = "rContent" rows = "3" cols = "80"></textarea></div><br><br>
-</form>    
- 
- 
-<!-- 본인일 경우에만 댓글 수정버튼과 댓글 삭제 버튼이 출력되도록 설정함 -->
- 
-<div style = "width:700px; text-align:right;">
- 
-<c:if test = "${sessionScope.userId == row.userId }">
- 
-<button type = "button" id = "btn_reply_Update" >댓글 수정</button>
-<button type = "button" id = "btn_reply_Delete" >댓글 삭제</button>
- 
- 
-</c:if>
-</div>
- 
- 
-<br><br>
-</td>
-</tr>
- 
- 
- 
-</c:forEach>
-</table>
-</c:if>
- 
-	<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
-
-	<!-- ///////////////////////////////------로그인 모달------///////////////////////////////-->
-	<div class="modal fade" id="loginDialog" tabindex="-1" role="dialog"
-		aria-labelledby="loginDialogLabel" aria-hidden="true">
-
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">로그인</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-
-				<div class="modal-body has-success has-feedback">
-					<form action="login.ing" method="post">
-
-						<table class="table">
-							<tr>
-								<td>사용자 ID</td>
-								<td><input type="text" name="userId" class="form-control"
-									id="inputSuccess2" aria-describedby="inputSuccess2Status"
-									placeholder="ID를 입력" /></td>
-							</tr>
-							<tr>
-								<td>PassWord</td>
-								<td><input type="password" name="userPassword"
-									class="form-control" placeholder="PassWord를 입력" />
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<span style="float: right;"><a href="#">아이디/비밀번호 찾기</a></span>
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">닫기</button>
-							<button type="submit"
-								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">로그인</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------로그인 모달 END------///////////////////////////////-->
-
-
-	<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
-	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
-		aria-labelledby="setting" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">${userData.userName}님</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="Sign_in.ing" method="post">
-						<table class="table" style="text-align: center;">
-							<tr>
-								<td><img src="<c:url value='/resources/icon/mypage.png'/>"
-									class="feature-92912" onclick="location.href='mypage.do'"
-									style="width: 250px; height: 250px;">
-									<h3 class="pb-1">마이페이지</h3></td>
-								<td><img src="<c:url value='/resources/icon/logout.png'/>"
-									class="feature-92912" onclick="location.href='logout.ing'"
-									style="width: 250px; height: 250px;">
-									<h3 class="pb-1">로그아웃</h3></td>
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">닫기</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------setting 모달 END------///////////////////////////////-->
-
-	<!-- ///////////////////////////////------------모달 집합소END------------///////////////////////////////-->
-
-	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
-	<footer class="site-section" style="background-color: #fff2de;">
-		<div class="container">
-			<div class="row mt-2 justify-content-center">
-				<div class="col-md-7 text-center">
-					<p>
-						<img src="<c:url value='/resources/icon/logo_alhl3.png'/>">
-					</p>
-
-					<div>
-						<h6>㈜올룩꿀룩 대표자 : 송희수</h6>
-					</div>
-
+<body>
+	<!-- 배열이 비어있지 않으면 참을 출력함. (다시말해서 배열에 값들이 있으면 댓글 리스트를 출력한다.) -->
+	<c:if test="${not empty list}">
+		<h2>댓글 리스트</h2>
+		<table class= "table">
+			<c:forEach var="row" items="${list}">
+				<tr>
+					<td><br>
+					<br> 닉네임 : ${row.userId} 작성일자 : ${row.reg_date} 댓글번호 :
+						${row.cId }<br>
 					<br>
-					<div>
-						<h6>대표 번호 : 010-5347-8469</h6>
-					</div>
-					<br>
+					<br> ${row.rContent} <!-- 폼태그 안에 위쪽에 있는 자바스크립트 구문에 필요한 값들을 노출시키지 않게 하기 위해 hidden타입으로 값들을 전달한다. -->
+						<form method="POST" id="form1">
 
-					<div>
-						<h6>(우)14558 경기도 의정부시 서부로 545 융합소프트웨어과 심화과정</h6>
-					</div>
+							<input type="hidden" id="cId" name="cId" value="${row.cId}">
+							<input type="hidden" id="user_id" name="user_id"
+								value="${row.userId}"> <input type="hidden" id="postId"
+								name="postId" value="${row.postId}">
 
-					<div class="row mt-5 text-center">
-						<div class="col">
-							<a href="#"><span class="m-2 icon-facebook"></span></a> <a
-								href="#"><span class="m-2 icon-twitter"></span></a> <a href="#"><span
-								class="m-2 icon-linkedin"></span></a> <a href="#"><span
-								class="m-2 icon-instagram"></span></a> <a href="#"><span
-								class="m-2 icon-skype"></span></a>
-						</div>
-					</div>
-				</div>
-			</div>
+							<div style="width: 800px;">
+								<textarea id="rContent" name="rContent" rows="3" cols="80"></textarea>
+							</div>
+							<br>
+							<br>
+						</form> <!-- 본인일 경우에만 댓글 수정버튼과 댓글 삭제 버튼이 출력되도록 설정함 -->
 
-			<div class="row mt-5 justify-content-center">
-				<h6 class="col-md-3">
-					<a href="about_us.do">이용약관</a>
-				</h6>
-				<h6 class="col-md-3">
-					<a href="#">개인정보처리방침</a>
-				</h6>
-				<h6 class="col-md-3">
-					<a href="notice_board.do">공지사항</a>
-				</h6>
-				<h6>
-					<a href="about_us.do">About Us</a>
-				</h6>
-			</div>
+						<div style="width: 700px; text-align: right;">
 
-			<div class="row mt-5 justify-content-center">
-				<h6>Ⓒ Copyright Allright reserved :: 올룩꿀룩</h6>
-			</div>
-		</div>
-	</footer>
+							<c:if test="${sessionScope.userData.userId == row.userId }">
+								<button type="button" id="btn_reply_Update">댓글 수정</button>
+								<button type="button" id="btn_reply_Delete">댓글 삭제</button>
+
+							</c:if>
+						</div> <br>
+					<br></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
 
 	<!-- *****************************   자바 스크립트 섹션     ***********************-->
 	<script

@@ -73,10 +73,10 @@
 
 		$("#btnReply").click(function() {
 
-			var rcontents = $("#rcontents").val(); //댓글의 내용
+			var rContent = $("#rContent").val(); //댓글의 내용
 			var postId = "${dto.postId}";
 			var params = {
-				"rcontents" : rcontents,
+				"rContent" : rContent,
 				"postId" : postId
 			};
 
@@ -278,7 +278,7 @@
 					</div>
 
 					<div class="col-12 col-sm-6">
-						<textarea class="form-control" name="rcontents" id="rcontents"
+						<textarea class="form-control" name="rContent" id="rContent"
 							placeholder="댓글을 작성해주세요"></textarea>
 						<br>
 
@@ -287,7 +287,7 @@
 							댓글작성</button>
 					</div>
 
-					<div id="listReply">dd</div>
+					<div id="listReply"></div>
 				</div>
 			</div>
 		</section>

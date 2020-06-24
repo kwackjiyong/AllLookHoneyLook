@@ -185,10 +185,11 @@
 						
 						
 						<div class="col-md-6 stretch-card">
-							<div class="row no-gutters overflow-hidden flex-md-row mb-4 shadow-lg h-md-250" >
+							<div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 shadow-lg bigcard">
 								<div class="col p-4 d-flex flex-column position-static">
 									<strong class="d-inline-block mb-2 stretched-link" onclick="window.open('${pars_list.srchURL}')" style="color:#9F6118; font-size: 15pt;">${pars_list.srchSiteName}</strong>
 									<h5 class="mb-0" style="max-width:200px;">${pars_list.srchTitle}</h5>
+									<br>
 									<p style="float:inherit;">${frmt.format(pars_list.srchPrice)}원</p>
 								</div>
 								<div class="col-auto d-none d-lg-block">
@@ -433,6 +434,7 @@
 				}
 
 			});
+			//무한스크롤 부분
 			var listcnt=0;
 			$(window).scroll(function(){
 				console.log('/문서높이'+$(document).height()+'/창높이'+$(window).outerHeight()+'/스크롤'+$(window).scrollTop());
@@ -441,6 +443,14 @@
 					$('#btn_'+listcnt.toString()).get(0).click();
 		        }
 	        });
+			
+			$( ".bigcard" ).hover(function() {
+					    $(this).addClass('bg-secondary').css('cursor', 'pointer'); 
+					  }, function() {
+					    $(this).removeClass('bg-secondary');
+					  }
+			);
+			
 		});
 	</script>
 	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->

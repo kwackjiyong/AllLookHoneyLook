@@ -1,5 +1,6 @@
 package com.alhl.hz;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alhl.hz.dto.CommentDTO;
+import com.alhl.hz.dto.UserDTO;
 import com.alhl.hz.service.ICommentService;
 
 @Controller
@@ -61,11 +63,11 @@ public class CommentController {
 		// 댓글 작성자 아이디
 		// 현재 접속중인 사용자의 아이디
 
-		if (session.getAttribute("userId") != null) {
-
-			String userId = (String) session.getAttribute("userId");
-			dto.setUserId(userId);
-
+		if (session.getAttribute("userData") != null) { // 로그인 상태일 때
+			UserDTO userdto = (UserDTO) session.getAttribute("userData"); // 세션에서 사용자 정보 가져옴
+			dto.setUserId(userdto.getUserId());
+			dto.setUserName(userdto.getUserName());
+			dto.setReg_date(new java.sql.Timestamp(new java.util.Date().getTime())); // 현재시간을 등록시간에 담음
 		}
 		
 		dto.setrContent(rContent);

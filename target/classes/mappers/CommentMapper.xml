@@ -19,8 +19,8 @@
 	<insert id="cInsert" parameterType ="CommentDTO">
 		<!-- 댓글을 추가 -->
 		INSERT INTO comment 
-		(cId, postId, rContent,userId,userName,reg_date,upreg_date)
-		VALUES(#{cId},#{postId},#{rContent},#{userId},#{userName},#{reg_date},#{upreg_date})
+		(postId, rContent,userId,userName,reg_date,upreg_date)
+		VALUES(#{postId},#{rContent},#{userId},#{userName},#{reg_date},#{upreg_date})
 
 	</insert>
 

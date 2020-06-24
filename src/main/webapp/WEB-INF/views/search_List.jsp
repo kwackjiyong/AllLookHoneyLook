@@ -181,13 +181,9 @@
 					<div class="row">
 						<div class="col-md-12 row">
 						<c:forEach items="${parsing_dtos}" var="pars_list">
-						<c:if test="${pars_list.srchIndex %6 ==0}">
-							</div>
-							
-							<a id="btn_${pars_list.srchIndex}" href="#col_${pars_list.srchIndex}" data-toggle="collapse" style="visibility: hidden;">더보기</a>
-							<div id="col_${pars_list.srchIndex}" class="col-md-12 collapse row">
-						</c:if>
-					
+						
+						
+						
 						<div class="col-md-6 stretch-card">
 							<div class="row no-gutters overflow-hidden flex-md-row mb-4 shadow-lg h-md-250" >
 								<div class="col p-4 d-flex flex-column position-static">
@@ -205,6 +201,12 @@
 							</div>
 						</div>
 						
+						<c:if test="${pars_list.srchIndex %6 ==0}">
+							</div>
+							
+							<a id="btn_${pars_list.srchIndex}" href="#col_${pars_list.srchIndex}" data-toggle="collapse" style="visibility: hidden;">더보기</a>
+							<div id="col_${pars_list.srchIndex}" class="col-md-12 collapse row">
+						</c:if>
 						</c:forEach>
 					</div>
 					

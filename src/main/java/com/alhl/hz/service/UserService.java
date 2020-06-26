@@ -50,4 +50,8 @@ public class UserService implements IUserService {
 	public int userDelete(UserDTO dto) {
 		return dao.userDelete(dto);
 	}
+	@Override
+	public int userEmailCheck(UserDTO dto) {
+		return dao.userEmailCheck(dto);
+	}
 }

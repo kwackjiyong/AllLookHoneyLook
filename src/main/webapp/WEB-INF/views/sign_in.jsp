@@ -137,7 +137,7 @@
 									</tr>
 									<tr>
 										<td>재입력</td>
-										<td><input type="password" name="userEmailHash"
+										<td><input type="password" name="pwCheck"
 										 class="form-control" id="pw_2"
 											placeholder="PassWord를 재입력" />
 											<div id="pw_check"></div></td></td>

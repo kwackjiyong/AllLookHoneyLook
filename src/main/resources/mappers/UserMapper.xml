@@ -15,12 +15,12 @@
 	<select resultType="UserDTO" parameterType="UserDTO"
 		id="userSelectOne">SELECT * FROM USERDATA WHERE userId=#{userId}</select>
 
-	<insert parameterType="UserDTO" id="userInsert">
+	<insert id="userInsert" parameterType="UserDTO" >
 		INSERT INTO USERDATA
-		(userId,userName,userPassword,userBirth,creatTime,userGender,userEmail)
+		(userId,userName,userPassword,userBirth,creatTime,userGender,userEmail,userEmailHash,userEmailCertified)
 		VALUES
 		(#{userId}, #{userName},
-		#{userPassword},#{userBirth},#{creatTime},#{userGender},#{userEmail})
+		#{userPassword},#{userBirth},#{creatTime},#{userGender},#{userEmail},#{userEmailHash},#{userEmailCertified})
 	</insert>
 
 	<update id="userModify" parameterType="UserDTO">
@@ -28,7 +28,13 @@
 		userPassword=#{userPassword},userEmail=#{userEmail}
 		WHERE userId=#{userId}
 	</update>
-
+	
+	<update id="userEmailCheck" parameterType="UserDTO">
+		UPDATE USERDATA SET
+		userEmailCertified=1
+		WHERE userId=#{userId}
+	</update>
+	
 	<update id="userUpdate_Cash" parameterType="UserDTO">
 		UPDATE USERDATA SET
 		cash=#{cash}

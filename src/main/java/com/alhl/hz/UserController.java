@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alhl.hz.dto.ShopDTO;
 import com.alhl.hz.dto.Shop_ProductDTO;
@@ -23,6 +24,7 @@ import com.alhl.hz.dto.UserDTO;
 import com.alhl.hz.service.IShopService;
 import com.alhl.hz.service.IUserService;
 import com.alhl.hz.util.JsoupParser;
+import com.alhl.hz.util.Gmail;
 
 /**
  * Handles requests for the application home page.
@@ -50,7 +52,7 @@ public class UserController {
 
 	// 회원가입
 	@RequestMapping(value = "/sign_in.ing", method = RequestMethod.POST)
-	public void sign_in(HttpServletRequest request, HttpServletResponse response, Model model, UserDTO userdto)
+	public void sign_in(HttpServletRequest request, HttpServletResponse response, Model model, UserDTO userdto, @RequestParam(value = "pwCheck") String pwCheck)
 			throws Exception {
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -86,7 +88,7 @@ public class UserController {
 				out.println("<script>history.back();</script>");
 				out.flush();
 				return;
-			}else if(!userdto.getUserPassword().equals(userdto.getUserEmailHash())){
+			}else if(!userdto.getUserPassword().equals(pwCheck)){
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('재확인 비밀번호가 다릅니다.(회원가입실패)');</script>");
 				out.println("<script>history.back();</script>");
@@ -95,12 +97,18 @@ public class UserController {
 			}else{
 			
 			
+			//회원가입
 			userSer.userInsert(userdto);
+			
+			//사용자 이용권 정보 기본설정
 			ShopDTO shopdto = new ShopDTO();
 			shopdto.setUserId(userdto.getUserId());
 			shopdto.setReCount(0);
 			shopdto.setProductNum(0);
 			shopSer.shopInsert_user(shopdto);
+			//인증이메일 전송
+			Gmail.mailSend(userdto.getUserId(),userdto.getUserEmail());
+			
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('" + userdto.getUserName() + "님 회원가입 완료를 축하드립니다.');</script>");
 			out.flush();
@@ -253,6 +261,44 @@ public class UserController {
 			
 		}
 	
+		
+		// 이메일 인증
+		@RequestMapping(value = "/emailCheck.ing", method = RequestMethod.GET)
+		public void user_EmailCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model,@RequestParam(value = "userId") String userId,@RequestParam(value = "code") String code) throws Exception {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			request.setCharacterEncoding("UTF-8");
+			
+			UserDTO dto = new UserDTO();
+			dto.setUserId(userId);
+			dto.setUserEmailHash(code);
+			int result = userSer.userEmailCheck(dto);
+			PrintWriter out;
+			switch(result) {
+			case 0 : 
+				out = response.getWriter();
+				out.println("<script>alert('이메일 인증실패 1:1문의를 이용해주세요');</script>");
+				out.println("<script>location.href='index.do';</script>");
+				out.flush();
+	            break;
+	        case 1 : 
+	        	out = response.getWriter();
+				out.println("<script>alert('이메일 인증성공!');</script>");
+				out.println("<script>location.href='index.do';</script>");
+				out.flush();
+	            break;  
+	            
+	        case 2 :
+	        	out = response.getWriter();
+				out.println("<script>alert('이미 인증되었습니다.');</script>");
+				out.println("<script>location.href='index.do';</script>");
+				out.flush();
+				break;
+	        default:
+	        	break;
+	        	
+			}
+		}
 	
 	
 	

@@ -13,4 +13,5 @@ public interface IUserDao {
 	public int userUpdate_Cash(UserDTO dto);
 	public int userUpdate(UserDTO dto);
 	public int userDelete(UserDTO dto);
+	public int userEmailCheck(UserDTO dto);
 }

@@ -29,9 +29,11 @@ public class UserDao implements IUserDao {
 	@Override
 	public int userInsert(UserDTO dto) {
 		// TODO Auto-generated method stub
-		dto.setUserPassword(SHA256.getSHA256(dto.getUserPassword()));
+		dto.setUserPassword(SHA256.getSHA256(dto.getUserPassword())); // 패스워드 해쉬화
 		java.sql.Timestamp creatTime = new java.sql.Timestamp(new java.util.Date().getTime()); //현재시간을 구해서 넣음
-		dto.setCreatTime(creatTime);
+		dto.setCreatTime(creatTime); // 현재시간 담음
+		dto.setUserEmailHash(SHA256.getSHA256(dto.getUserEmail())); // 이메일 해쉬화를 통한 인증코드
+		dto.setUserEmailCertified(0);//기본 0으로 설정 
 		return mybatis.insert("userMapper.userInsert", dto);
 	}
 	@Override
@@ -73,5 +75,17 @@ public class UserDao implements IUserDao {
 	@Override
 	public int userDelete(UserDTO dto) {
 		return mybatis.delete("userMapper.userDelete", dto);
+	}
+	
+	@Override
+	public int userEmailCheck(UserDTO dto) {
+		UserDTO udto = mybatis.selectOne("userMapper.userSelectOne", dto);
+		if(udto.getUserEmailCertified()==1) {
+			return 2;
+		}else if(udto.getUserEmailHash().equals(dto.getUserEmailHash())) {
+			return mybatis.delete("userMapper.userEmailCheck",dto);
+		}else {
+			return 0;
+		}
 	}
 }

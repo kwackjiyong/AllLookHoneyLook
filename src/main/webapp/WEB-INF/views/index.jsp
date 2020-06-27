@@ -107,6 +107,13 @@
 								<p>잔여 검색횟수 : ${sessionScope.user_shopData.reCount}회</p>
 								<br>
 								<p>이용권 기한 : ${sessionScope.user_shopData.checkOutTime} 까지</p>
+								<c:if test="${sessionScope.userData.userEmailCertified !=1}">
+									<p style="color:red;">이메일 인증이 되어있지 않습니다.</p>
+									<p style="color:red;">인증 완료시에만 검색이 가능합니다.</p>
+									<button type="button" onclick="location.href='emailSend.ing'"
+										style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">이메일 인증코드 재전송</button>
+								</c:if>
+								
 								<br>
 								<p>CASH : ${sessionScope.userData.cash}꿀</p>
 							</div>

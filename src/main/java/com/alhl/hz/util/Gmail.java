@@ -19,7 +19,8 @@ public class Gmail extends Authenticator{
 	
 	// 일반
 	public static int mailSend(String user_Id,String user_Email) {
-		String host = "http://192.168.56.1:8181/hz/"; // 호스트
+		//String host = "http://192.168.56.1:8181/hz/"; // 호스트
+		String host = "http://localhost:8181/hz/"; // 호스트
 	   	String from = "alhlcert@gmail.com"; //전송자의 구글 이메일 계정
 	   	String to = user_Email;
 	   	String subject = "올룩꿀룩를 위한 이메일 인증 메일입니다.";

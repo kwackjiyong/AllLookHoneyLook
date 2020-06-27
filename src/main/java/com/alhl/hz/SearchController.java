@@ -62,7 +62,17 @@ public class SearchController {
 			if (session.getAttribute("userData") != null) {
 				SearchLogDTO srchdto = new SearchLogDTO();
 				UserDTO userdto = (UserDTO) session.getAttribute("userData");
-
+				
+				// 이메일 인증 확인
+				if (userdto.getUserEmailCertified() != 1) {
+					System.out.println("이메일 인증이 되어있지않습니다.");
+					out = response.getWriter();
+					out.println("<script>alert('가입된 이메일이 인증되지 않았습니다.');</script>");
+					out.flush();
+					return new HomeController().index_do(request, response, model);
+				}
+				
+				
 				// 오늘 날짜만 구합니다. (시분초제외)
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 

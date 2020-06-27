@@ -299,6 +299,30 @@ public class UserController {
 	        	
 			}
 		}
+		
+		
+		// 이메일 인증코드 재전송
+				@RequestMapping(value = "/emailSend.ing", method = RequestMethod.GET)
+				public void user_EmailSend(HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+					
+					response.setContentType("text/html; charset=UTF-8");
+					request.setCharacterEncoding("UTF-8");
+					
+					PrintWriter out;
+					if (session.getAttribute("userData") != null) { // 로그인 상태일 때
+						UserDTO udto = (UserDTO) session.getAttribute("userData"); // 세션에서 사용자 정보 가져옴
+						Gmail.mailSend(udto.getUserId(), udto.getUserEmail()); // 이메일 인증 재전송
+						out = response.getWriter();
+						out.println("<script>alert('인증코드를 재발송했습니다.');</script>");
+						out.println("<script>location.href='index.do';</script>");
+						out.flush();
+					}else {
+						out = response.getWriter();
+						out.println("<script>alert('로그인되어있지않아 인증코드발송에 실패했습니다.');</script>");
+						out.println("<script>location.href='index.do';</script>");
+						out.flush();
+					}
+				}
 	
 	
 	

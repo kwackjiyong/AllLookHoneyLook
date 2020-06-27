@@ -3,3 +3,4 @@
 .class
 target/classes/com/alhl/hz/listener/SessionListener.class
 *.class
+target/m2e-wtp/web-resources/META-INF/maven/com.alhl/hz/pom.properties

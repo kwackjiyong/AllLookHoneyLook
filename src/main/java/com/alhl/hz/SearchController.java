@@ -52,6 +52,7 @@ public class SearchController {
 		if(searchWord.equals("")) { //빈칸입력시
 			out = response.getWriter();
 			out.println("<script>alert('검색어를 입력해주세요');</script>");
+			out.println("<script>location.href='index.do'</script>");
 			out.flush();
 			return "index";
 		}
@@ -68,8 +69,9 @@ public class SearchController {
 					System.out.println("이메일 인증이 되어있지않습니다.");
 					out = response.getWriter();
 					out.println("<script>alert('가입된 이메일이 인증되지 않았습니다.');</script>");
+					out.println("<script>location.href='index.do'</script>");
 					out.flush();
-					return new HomeController().index_do(request, response, model);
+					return "index";
 				}
 				
 				
@@ -127,8 +129,9 @@ public class SearchController {
 					System.out.println("잔여 검색횟수가 부족해 검색하지 못했습니다.");
 					out = response.getWriter();
 					out.println("<script>alert('잔여 검색횟수가 부족해 검색하지 못했습니다');</script>");
+					out.println("<script>location.href='index.do'</script>");
 					out.flush();
-					return new HomeController().index_do(request, response, model);
+					return "index";
 				} else {
 					// 잔여검색횟수를 1 차감합니다.
 					shopdto.setReCount(shopdto.getReCount() - 1);
@@ -146,6 +149,7 @@ public class SearchController {
 				System.out.println("세션이 없어 되돌아갑니다.");
 				out = response.getWriter();
 				out.println("<script>alert('로그인 후 검색을 이용해주세요.');</script>");
+				out.println("<script>location.href='index.do'</script>");
 				out.flush();
 				return "index";
 			}
@@ -171,6 +175,7 @@ public class SearchController {
 			System.out.println("세션 상에 웹 드라이버가 없습니다.");
 			out = response.getWriter();
 			out.println("<script>alert('드라이버 세션이 종료되었습니다. 로그아웃하고 다시 로그인 후 이용해주세요 ');</script>");
+			out.println("<script>location.href='index.do'</script>");
 			out.flush();
 			return "index";
 		} catch (NullPointerException e) {
@@ -178,12 +183,14 @@ public class SearchController {
 			System.out.println("세션이 없어 검색하지 못했습니다.");
 			out = response.getWriter();
 			out.println("<script>alert('로그인 후 검색을 이용해주세요.(드라이버)');</script>");
+			out.println("<script>location.href='index.do'</script>");
 			out.flush();
 			return "index";
 		} catch (Exception e) {
 			e.printStackTrace();
 			out = response.getWriter();
 			out.println("<script>alert('예상치 못한 오류로 검색하지 못했습니다.\n다시 로그인해보세요.');</script>");
+			out.println("<script>location.href='index.do'</script>");
 			out.flush();
 			return "index";
 		}

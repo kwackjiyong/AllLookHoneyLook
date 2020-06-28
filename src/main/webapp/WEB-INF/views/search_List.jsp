@@ -187,7 +187,20 @@
 						<div class="col-md-6 stretch-card">
 							<div class="row no-gutters overflow-hidden flex-md-row mb-4 h-md-250 shadow-lg bigcard">
 								<div class="col p-4 d-flex flex-column position-static">
-									<strong class="d-inline-block mb-2 stretched-link" onclick="window.open('${pars_list.srchURL}')" style="color:#9F6118; font-size: 15pt;">${pars_list.srchSiteName}</strong>
+									<c:choose>
+										<c:when test="${pars_list.srchSiteName.equals('번개장터')}">
+										<strong class="d-inline-block mb-2 stretched-link" onclick="window.open('${pars_list.srchURL}')" style="color:rgb(247, 47, 51);font-size: 15pt;">${pars_list.srchSiteName}</strong>
+										</c:when>
+										<c:when test="${pars_list.srchSiteName.equals('중고나라')}">
+										<strong class="d-inline-block mb-2 stretched-link" onclick="window.open('${pars_list.srchURL}')" style="color:#ff6c2d;font-size: 15pt;">${pars_list.srchSiteName}</strong>
+										</c:when>
+										<c:when test="${pars_list.srchSiteName.equals('당근마켓')}">
+										<strong class="d-inline-block mb-2 stretched-link" onclick="window.open('${pars_list.srchURL}')" style="color:#FF8A3D;font-size: 15pt;">${pars_list.srchSiteName}</strong>
+										</c:when>
+										<c:otherwise>
+										<strong class="d-inline-block mb-2 stretched-link" onclick="window.open('${pars_list.srchURL}')" style="color:#9F6118;font-size: 15pt;">${pars_list.srchSiteName}</strong>
+										</c:otherwise>
+									</c:choose>
 									<h5 class="mb-0" style="max-width:200px;">${pars_list.srchTitle}</h5>
 									<br>
 									<p style="float:inherit;">${frmt.format(pars_list.srchPrice)}원</p>

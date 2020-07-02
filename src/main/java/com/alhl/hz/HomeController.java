@@ -85,4 +85,22 @@ public class HomeController {
 
 		return "index";
 	}
+	@RequestMapping(value = "/about_us.do", method = RequestMethod.GET)
+	public String about_us() throws Exception {
+		
+		return "about_us";
+	}
+	
+	@RequestMapping(value = "/Terms_of_Use.do", method = RequestMethod.GET)
+	public String Terms_of_Use() throws Exception {
+		
+		return "Terms_of_Use";
+	}
+	
+	@RequestMapping(value = "/privacy.do", method = RequestMethod.GET)
+	public String privacy() throws Exception {
+		
+		return "privacy";
+	}
+	
 }

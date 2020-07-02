@@ -323,10 +323,10 @@
 
 			<div class="row mt-5 justify-content-center">
 				<h6 class="col-md-3">
-					<a href="about_us.do">이용약관</a>
+					<a href="Terms_of_Use.do">이용약관</a>
 				</h6>
 				<h6 class="col-md-3">
-					<a href="#">개인정보처리방침</a>
+					<a href="privacy.do">개인정보처리방침</a>
 				</h6>
 				<h6 class="col-md-3">
 					<a href="notice_board.do">공지사항</a>

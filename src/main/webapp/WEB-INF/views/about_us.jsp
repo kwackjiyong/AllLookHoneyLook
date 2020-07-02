@@ -45,181 +45,120 @@
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
-	<div class="site-wrap" id="home-section">
-
-		<nav class="navbar navbar-expand-lg fixed-top py-3 navbar-light"
-			id="mainNav">
-			<div class="container">
-				<a class="navbar-brand js-scroll-trigger" href="index.do"><img
-					src="<c:url value='/resources/icon/logo_alhl2.png'/>"></a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarResponsive" aria-controls="navbarResponsive"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<section
-					style="left: 150px; top: 20px; border-radius: 4px; border: solid 1px #9F6118; text-decoration: none; padding: 2px 1px 2px 2px; height: 50px;">
-					<div style="position: relative; padding-right: 40px;">
-						<form action="search.do">
-							<input type="text" name="searchWord" class="form-control"
-								placeholder="검색어를 입력하세요 "
-								style="width: 600px; height: 45px; border: none; font-size: 18px; color: #9F6118;">
-							<button
-								style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
-								<img src="<c:url value='/resources/icon/search.png'/>"
-									style="position: absolute; top: 0; right: 0; width: 45px; height: 45px; fill: #FF8A3D; padding: 1px 1px;">
-							</button>
-						</form>
-					</div>
-				</section>
-
-				<c:if test="${empty sessionScope.userData}">
-					<div class="collapse navbar-collapse" id="navbarResponsive">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link js-scroll-trigger"
-								href="index.html">Home</a></li>
-							<li class="nav-item"><a class="nav-link js-scroll-trigger"
-								href="sign_in.do">Sign In</a></li>
-
-							<li class="dropdown" id="service"><a class="nav-link"
-								data-toggle="modal" data-target="#loginDialog"
-								aria-haspopup="true" aria-expanded="false" role="button">Login</a></li>
-						</ul>
-					</div>
-				</c:if>
-
-				<c:if test="${not empty sessionScope.userData}">
-					<div class="collapse navbar-collapse" id="navbarResponsive">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item" style="margin-left: 50px; margin-top: 10px;"><a
-								class="nav-link js-scroll-trigger">${userData.userName} 님 <br>
-									환영합니다!
-							</a></li>
-							<li class="nav-item"
-								style="padding-left: 50px; margin-top: 10px;"><a
-								class="nav-link js-scroll-trigger" data-toggle="modal"
-								data-target="#btnSetting" aria-haspopup="true"
-								aria-expanded="false" role="button"> <img
-									src="<c:url value='/resources/icon/settings.png'/>"
-									style="width: 45px; height: 45px;"></a></li>
-						</ul>
-					</div>
-				</c:if>
-			</div>
-		</nav>
-
-
-		<header class="site-navbar js-sticky-header site-navbar-target"
-			role="banner" style="background-color: gray;">
+	<main role="main">
+		<section class="space-md bg-image-2 position-relative"
+			style="background-size: cover;">
 
 			<div class="container">
-				<div class="row align-items-center position-relative"></div>
+				<nav class="navbar navbar-expand-lg fixed-top py-3 navbar-light"
+					id="mainNav">
+					<div class="container">
+
+						<!-- ///////////////////////////////------올룩꿀룩 로고------///////////////////////////////-->
+						<a class="navbar-brand js-scroll-trigger" href="index.do"><img
+							src="<c:url value='/resources/icon/logo_alhl2.png'/>"></a>
+
+						<button class="navbar-toggler" type="button"
+							data-toggle="collapse" data-target="#navbarResponsive"
+							aria-controls="navbarResponsive" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<!-- ///////////////////////////////------올룩꿀룩 로고 END------///////////////////////////////-->
+
+
+						<!-- ///////////////////////////////------홈 & 로그인 & 회원가입------///////////////////////////////-->
+						<c:if test="${empty sessionScope.userData}">
+							<div class="collapse navbar-collapse col-md-3"
+								id="navbarResponsive"">
+								<ul class="navbar-nav ml-auto">
+									<li class="nav-item"><a class="nav-link js-scroll-trigger"
+										href="sign_in.do">회원가입</a></li>
+
+									<li class="dropdown" id="service"><a class="nav-link"
+										data-toggle="modal" data-target="#loginDialog"
+										aria-haspopup="true" aria-expanded="false" role="button">로그인</a></li>
+								</ul>
+							</div>
+						</c:if>
+
+						<c:if test="${not empty sessionScope.userData}">
+							<div class="collapse navbar-collapse" id="navbarResponsive">
+
+								<div class="navbar-nav ml-auto dropdown">
+									<a class="nav-link js-scroll-trigger dropdown-toggle "
+										type="button" id="dropdownMenuButton" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"
+										style="color: black;">${userData.userName} 님 환영합니다! </a>
+									<div class="dropdown-menu" style="width: 400px;">
+										<div class="form-group" style="margin: 20px;">
+											<p>
+												이용권 : ${sessionScope.user_productName}
+												<button type="button" onclick="location.href='shop_main.do'"
+													style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">이용권
+													관리</button>
+											</p>
+											<br>
+											<p>이용권 등급 : ${sessionScope.user_shopData.productNum}</p>
+											<br>
+											<p>잔여 검색횟수 : ${sessionScope.user_shopData.reCount}회</p>
+											<br>
+											<p>이용권 기한 : ${sessionScope.user_shopData.checkOutTime} 까지</p>
+											<c:if test="${sessionScope.userData.userEmailCertified !=1}">
+												<p style="color: red;">이메일 인증이 되어있지 않습니다.</p>
+												<p style="color: red;">인증 완료시에만 검색이 가능합니다.</p>
+												<button type="button"
+													onclick="location.href='emailSend.ing'"
+													style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">이메일
+													인증코드 재전송</button>
+											</c:if>
+
+											<br>
+											<p>CASH : ${sessionScope.userData.cash}꿀</p>
+										</div>
+										<table class="table" style="text-align: center;">
+											<tbody>
+												<tr>
+													<td style="width: 50%;"><h3 class="pb-1">
+															<a class="dropdown-item" href="mypage.do">마이페이지</a>
+														</h3></td>
+													<td style="width: 50%;"><h3 class="pb-1">
+															<a class="dropdown-item" href="logout.ing">로그아웃</a>
+														</h3></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</c:if>
+						<!-- ///////////////////////////////------홈 & 로그인 & 회원가입 END------///////////////////////////////-->
+					</div>
+				</nav>
+				<div style="text-align: center;">
+					<h1>
+						안녕하세요. 올룩꿀룩입니다.<br>
+						<br> 저희는 상업용이 아닌 비상업용으로 만들었습니다.<br>
+						<br> 학과 프로젝트 제출용임을 알려드립니다.
+					</h1>
+				</div>
+
+				<br> <br> <br> <br> <br> <br> <br>
+				<br>
+
+
+
+				<div style="text-align: center;">
+
+					<h3>출처</h3>
+					<h4>개인정보처리방안 : 카카오</h4>
+					<h4>이용약관 : 지식인</h4>
+					<h4>당근마켓,중고나라,번개장터 크롤링 -- 상업적 의도는 없습니다.</h4>
+				</div>
 			</div>
-		</header>
+		</section>
+	</main>
 
-		<main role="main">
-
-			<div class="contact_header jumbotron text-center"
-				style="background: white;">
-				<h1 class="display-4">Contact us</h1>
-				<p>
-					<img src="<c:url value='/resources/icon/use.png'/>" />
-				</p>
-			</div>
-			<%-- <div class="contact_form_wrapper container mb-5">
-				<div class="row">
-					<img src="<c:url value='/resources/icon/use.png'/>"/>
-				</div>
-			</div> --%>
-		</main>
-	</div>
-		<!-- ///////////////////////////////------------모달 집합소------------///////////////////////////////-->
-
-	<!-- ///////////////////////////////------로그인 모달------///////////////////////////////-->
-	<div class="modal fade" id="loginDialog" tabindex="-1" role="dialog"
-		aria-labelledby="loginDialogLabel" aria-hidden="true">
-
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">로그인</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-
-				<div class="modal-body has-success has-feedback">
-					<form action="login.ing" method="post">
-
-						<table class="table">
-							<tr>
-								<td>사용자 ID</td>
-								<td><input type="text" name="userId" class="form-control"
-									id="inputSuccess2" aria-describedby="inputSuccess2Status"
-									placeholder="ID를 입력" /></td>
-							</tr>
-							<tr>
-								<td>PassWord</td>
-								<td><input type="password" name="userPassword"
-									class="form-control" placeholder="PassWord를 입력" />
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<span style="float: right;"><a href="#">아이디/비밀번호 찾기</a></span>
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">닫기</button>
-							<button type="submit"
-								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">로그인</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------로그인 모달 END------///////////////////////////////-->
-
-
-	<!-- ///////////////////////////////------Setting 모달------///////////////////////////////-->
-	<div class="modal fade" id="btnSetting" tabindex="-1" role="dialog"
-		aria-labelledby="setting" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="loginDialogLabel">${userData.userName}님</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="Sign_in.ing" method="post">
-						<table class="table" style="text-align: center;">
-							<tr>
-								<td><img src="<c:url value='/resources/icon/mypage.png'/>"
-									class="feature-92912" onclick="location.href='mypage.do'"
-									style="width: 250px; height: 250px;">
-									<h3 class="pb-1">마이페이지</h3></td>
-								<td><img src="<c:url value='/resources/icon/logout.png'/>"
-									class="feature-92912" onclick="location.href='logout.ing'"
-									style="width: 250px; height: 250px;">
-									<h3 class="pb-1">로그아웃</h3></td>
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">닫기</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ///////////////////////////////------setting 모달 END------///////////////////////////////-->
-
-	<!-- ///////////////////////////////------------모달 집합소END------------///////////////////////////////-->
 
 	<!-- ********************************************************** 푸터 영역  ************************************************************************-->
 	<footer class="site-section" style="background-color: #fff2de;">
@@ -258,10 +197,10 @@
 
 			<div class="row mt-5 justify-content-center">
 				<h6 class="col-md-3">
-					<a href="about_us.do">이용약관</a>
+					<a href="Terms_of_Use.do">이용약관</a>
 				</h6>
 				<h6 class="col-md-3">
-					<a href="#">개인정보처리방침</a>
+					<a href="privacy.do">개인정보처리방침</a>
 				</h6>
 				<h6 class="col-md-3">
 					<a href="notice_board.do">공지사항</a>

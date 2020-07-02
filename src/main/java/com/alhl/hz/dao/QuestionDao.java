@@ -1,5 +1,6 @@
 package com.alhl.hz.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -27,10 +28,13 @@ public class QuestionDao implements IQuestionDao {
 	}
 	@Override
 	public int question_insert_user(QuestionDTO dto) {
+		dto.setQueContents(dto.getQueContents().replaceAll("\r\n", "<br>"));
+		dto.setQueTime(new java.sql.Timestamp(new java.util.Date().getTime()));//현재시간담기
 		return mybatis.insert("queMapper.question_insert_user", dto);
 	}
 	@Override
 	public int question_update_Answer(QuestionDTO dto) {
+		dto.setQueAnswer(dto.getQueAnswer().replaceAll("\r\n", "<br>"));
 		return mybatis.update("queMapper.question_update_Answer",dto);
 	}
 	@Override

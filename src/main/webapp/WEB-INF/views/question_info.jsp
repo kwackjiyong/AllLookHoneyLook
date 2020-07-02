@@ -130,72 +130,54 @@
 							<div class="card">
 								<div class="card-body">
 									<p class="card-title">1:1 문의</p>
-									<div class="table-responsive">
-										<table id="recent-purchases-listing" class="table">
-											<thead>
-												<tr>
-													<th>index</th>
-													<th>문의제목</th>
-													<th>사용자</th>
-													<th>등록일시</th>
-													<th>답변여부</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${list}" var="list">
-													<tr>
-														<td>${list.queId}</td>
-														<td><a href="#" onclick="javascript:location.href='question_info.do?queId=${list.queId}'" >${list.queTitle}</td>
-														<td>${list.userId}</td>
-														<td>${list.queTime}</td>
-														<c:if test="${null != list.queAnswer}">
-															<td style="color:green;">응답됨</td>
-														</c:if>
-														<c:if test="${null == list.queAnswer}">
-															<td style="color:red;">대기중</td>
-														</c:if>
-													</tr>
-												</c:forEach>
-														
-
-											</tbody>
-										</table>
-										<br>
-										<br>
-										<br>
-										<table class="table"><tr><td></td><td>
-										<div class="btn-group" role="group"
-															aria-label="Basic example">
-															<c:if test="${1 != listPageNum}">
-															<button type="button" class="btn btn-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=1';">처음</button>
-															<button type="button" class="btn btn-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=${listPageNum-1}';">이전</button>
-															</c:if>
-															<c:forEach items="${listPageNumList}" var="page">
-																<button type="button" class="btn btn-outline-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=${page}';">
-																		${page}
-																</button>
-																
-															</c:forEach>
-															<c:if test="${listPageNumList_lastNum != listPageNum}">
-															<button type="button" class="btn btn-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=${listPageNum+1}';">다음</button>
-															<button type="button" class="btn btn-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=${listPageNumList_lastNum}';">마지막</button>
-															</c:if>
-										</div>
-										</td>
-										<td>
-                          
-										</td>
-										</tr>
-										</table>
-										
-						<button type="button" onclick="location.href='question_write.do'"
-							style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-							문의보내기</button>
+									<div class="row">
+									<div class="col-md-3 card">문의번호</div>
+									<div class="col-md-3 card">[${quedto.queId}]</div>
+									<div class="col-md-3 card">작성일자</div>
+									<div class="col-md-3 card">${quedto.queTime}</div>
+									<br>
+									<div class="col-md-6 card">문의id</div>
+									<div class="col-md-6 card">${quedto.userId}</div>
+									<br>
+									<div class="col-md-3 card">Title</div>
+									<div class="col-md-9 card">${quedto.queTitle}</div>
+									<br>
+									<div class="col-md-12 card">Contents</div>
+									<div class="col-md-12 card" style="min-height: 100px;">${quedto.queContents}</div>
+									<br>
+									<div class="col-md-12 card">답변 내용</div>
+									<div class="col-md-12 card" style="min-height: 100px;">${quedto.queAnswer}</div>
+									<br><br><br><br><br><br>
+						
+						
+						<c:if test="${sessionScope.userData.userId.equals(quedto.userId)}">
+							<button type="button" onclick="location.href='question_delete.ing?queId=${quedto.queId}'" style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+							문의내역삭제</button>
+						</c:if>
+						
+									<button type="button" onclick="location.href='question_list.do'" style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+									목록으로</button>
 					</div>
 									</div>
 								</div>
+						</div>
+						
+						<c:if test="${sessionScope.userData.userAuthority == 3}">
+						<br>
+						<div class="col-md-12 stretch-card">
+							<div class="card">
+							<div class="card-body">
+									<form action="question_edit.ing">
+										<input type="hidden" name="queId" value="${quedto.queId}">
+										<TextArea class="col-md-12 card" name="queAnswer"></TextArea>
+										<button type="submit"
+											style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+											문의답변하기</button>
+									</form>
+								</div>
 							</div>
-
+						</div>
+						</c:if>
 						<!-- 공지사항 끝 -->
 							
 

@@ -15,6 +15,11 @@
 		SELECT * FROM question WHERE userId = #{userId}
 	</select>
 	
+	<!-- 문의 정보 -->
+	<select id="question_info_one" parameterType="QuestionDTO" resultType="QuestionDTO">
+		SELECT * FROM question WHERE queId = #{queId}
+	</select>
+	
 	<!-- 문의 요청 -->
 	<insert id="question_insert_user" parameterType="QuestionDTO">
 		INSERT INTO question

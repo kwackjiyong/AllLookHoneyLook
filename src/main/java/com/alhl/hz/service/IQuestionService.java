@@ -9,6 +9,7 @@ import com.alhl.hz.dto.UserDTO;
 public interface IQuestionService {
 	public List<QuestionDTO> question_info_ALL();
 	public List<QuestionDTO> question_info_user(UserDTO dto);
+	public QuestionDTO question_info_one(QuestionDTO dto);
 	public int question_insert_user(QuestionDTO dto);
 	public int question_update_Answer(QuestionDTO dto);
 	public int question_delete_request(QuestionDTO dto);

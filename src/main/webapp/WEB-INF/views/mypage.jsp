@@ -130,7 +130,7 @@
 					<div class="sidebar-box">
 						<div class="categories" id="myTab" role="tablist">
 						<a class="nav-link" href="notice_board.do">고객지원센터</a>
-						<a class="nav-link" href="myhelp_board_list.do">1:1문의</a>
+						<a class="nav-link" href="question_list.do">1:1문의</a>
 						</div>
 					</div>
 				</div>

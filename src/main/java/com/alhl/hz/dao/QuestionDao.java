@@ -22,6 +22,10 @@ public class QuestionDao implements IQuestionDao {
 		return mybatis.selectList("queMapper.question_info_user", dto);
 	}
 	@Override
+	public QuestionDTO question_info_one(QuestionDTO dto) {
+		return mybatis.selectOne("queMapper.question_info_one", dto);
+	}
+	@Override
 	public int question_insert_user(QuestionDTO dto) {
 		return mybatis.insert("queMapper.question_insert_user", dto);
 	}

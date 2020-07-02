@@ -1,47 +1,47 @@
 package com.alhl.hz.dto;
 //문의 테이블 dto
 public class QuestionDTO {
-	private static int queId;
-	private static String userId;
-	private static String queTitle;
-	private static String queContents;
-	private static java.sql.Timestamp queTime;
-	private static String queAnswer;
-	public static int getQueId() {
+	private int queId;
+	private String userId;
+	private String queTitle;
+	private String queContents;
+	private java.sql.Timestamp queTime;
+	private String queAnswer;
+	public int getQueId() {
 		return queId;
 	}
-	public static void setQueId(int queId) {
-		QuestionDTO.queId = queId;
+	public void setQueId(int queId) {
+		this.queId = queId;
 	}
-	public static String getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public static void setUserId(String userId) {
-		QuestionDTO.userId = userId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public static String getQueTitle() {
+	public String getQueTitle() {
 		return queTitle;
 	}
-	public static void setQueTitle(String queTitle) {
-		QuestionDTO.queTitle = queTitle;
+	public void setQueTitle(String queTitle) {
+		this.queTitle = queTitle;
 	}
-	public static String getQueContents() {
+	public String getQueContents() {
 		return queContents;
 	}
-	public static void setQueContents(String queContents) {
-		QuestionDTO.queContents = queContents;
+	public void setQueContents(String queContents) {
+		this.queContents = queContents;
 	}
-	public static java.sql.Timestamp getQueTime() {
+	public java.sql.Timestamp getQueTime() {
 		return queTime;
 	}
-	public static void setQueTime(java.sql.Timestamp queTime) {
-		QuestionDTO.queTime = queTime;
+	public void setQueTime(java.sql.Timestamp queTime) {
+		this.queTime = queTime;
 	}
-	public static String getQueAnswer() {
+	public String getQueAnswer() {
 		return queAnswer;
 	}
-	public static void setQueAnswer(String queAnswer) {
-		QuestionDTO.queAnswer = queAnswer;
+	public void setQueAnswer(String queAnswer) {
+		this.queAnswer = queAnswer;
 	}
 	
 	

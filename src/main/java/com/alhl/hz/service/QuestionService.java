@@ -25,6 +25,11 @@ public class QuestionService implements IQuestionService{
 		return dao.question_info_user(dto);
 	}
 	@Override
+	public QuestionDTO question_info_one(QuestionDTO dto) {
+		return dao.question_info_one(dto);
+	}
+	
+	@Override
 	public int question_insert_user(QuestionDTO dto) {
 		return dao.question_insert_user(dto);
 	}

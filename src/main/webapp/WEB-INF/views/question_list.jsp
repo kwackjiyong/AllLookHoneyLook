@@ -122,53 +122,84 @@
 		<main role="main">
 			<section class="space-md bg-image-2 position-relative"
 				style="background-size: cover;">
-
 				<div class="container">
-					<div style="text-align: center;">
-						<form action="#">
-							<table class="table table-horver">
-								<colgroup>
-									<col style="width: 60px">
-									<col style="width: 130px">
-									<col style="width: 400px">
-									<col style="width: 130px">
-									<col style="width: 100px">
-								</colgroup>
-								<thead>
-									<tr>
-										<th scope="col"><div class="wrap pd_none">순서</div></th>
-										<th scope="col" class="t_center"><div class="wrap">대분류</div></th>
-										<th scope="col"><div class="wrap">제목</div></th>
-										<th scope="col"><div class="wrap">상태</div></th>
-										<th scope="col"><div class="wrap">등록일</div></th>
-									</tr>
+					<!-- 2번쨰 줄 시작 -->
+					<div class="row">
+						<!-- 공지사항 시작 -->
+						<div class="col-md-12 stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<p class="card-title">1:1 문의</p>
+									<div class="table-responsive">
+										<table id="recent-purchases-listing" class="table">
+											<thead>
+												<tr>
+													<th>index</th>
+													<th>문의제목</th>
+													<th>사용자</th>
+													<th>등록일시</th>
+													<th>답변여부</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${list}" var="list">
+													<tr>
+														<td>${list.queId}</td>
+														<td><a href="#" onclick="javascript:location.href='question_info.do?queId=${list.queId}'" >${list.queTitle}</td>
+														<td>${list.userId}</td>
+														<td>${list.queTime}</td>
+														<c:if test="${null != list.queAnswer}">
+															<td>응답됨</td>
+														</c:if>
+														<c:if test="${null == list.queAnswer}">
+															<td>대기중</td>
+														</c:if>
+													</tr>
+												</c:forEach>
+														
 
-								</thead>
-								<tbody>
-									<tr>
-										<td class="no"><div class="wrap">2</div></td>
-										<td><div class="wrap f11 right">결제/해지/환불</div></td>
-										<td><div class="wrap right">
-												<span class="ellipsis"><a
-													href="javascript:goAnswer('TCKT0002185426','0', 'ANSWEND');"
-													title="4월1일날 스트리밍 결제 이후 서비스 이용을 안했습니다. 환불(결제취소) 부탁드리겠습니다. - 페이지 이동">4월1일날
-														스트리밍 결제 이후 서비스 이용을 안했습니다. 환불(결제취소) 부탁드리겠습니다.</a></span>
-											</div></td>
-										<td class="t_center">
-											<div class="wrap">
-												<span class="fc_point04">답변완료</span>
-											</div>
+											</tbody>
+										</table>
+										<br>
+										<br>
+										<br>
+										<table class="table"><tr><td></td><td>
+										<div class="btn-group" role="group"
+															aria-label="Basic example">
+															<c:if test="${1 != listPageNum}">
+															<button type="button" class="btn btn-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=1';">처음</button>
+															<button type="button" class="btn btn-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=${listPageNum-1}';">이전</button>
+															</c:if>
+															<c:forEach items="${listPageNumList}" var="page">
+																<button type="button" class="btn btn-outline-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=${page}';">
+																		${page}
+																</button>
+																
+															</c:forEach>
+															<c:if test="${listPageNumList_lastNum != listPageNum}">
+															<button type="button" class="btn btn-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=${listPageNum+1}';">다음</button>
+															<button type="button" class="btn btn-primary btn-sm" onclick="javascript:location.href='question_list.do?pageNum=${listPageNumList_lastNum}';">마지막</button>
+															</c:if>
+										</div>
 										</td>
 										<td>
-											<div class="wrap">2020.04.01</div>
+                          
 										</td>
-									</tr>
-								</tbody>
-							</table>
-							<button type="submit" onclick="location.href='myboard_write.do'"
-								style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-								1:1문의하기</button>
-						</form>
+										</tr>
+										</table>
+										
+						<button type="button" onclick="location.href='question_write.do'"
+							style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+							문의보내기</button>
+					</div>
+									</div>
+								</div>
+							</div>
+
+						<!-- 공지사항 끝 -->
+							
+
+
 					</div>
 				</div>
 			</section>

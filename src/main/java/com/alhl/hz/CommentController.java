@@ -1,11 +1,14 @@
 package com.alhl.hz;
 
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,20 +48,29 @@ public class CommentController {
 	}
 
 	// 댓글 수정
-	@RequestMapping(value="/reply_update.do",method = RequestMethod.GET) // 세부적인 url pattern
-	public String reply_update(@RequestParam(value = "cId") int cId, @RequestParam(value = "rContent") String rContent,HttpSession session,
-			CommentDTO dto) throws Exception {
+	@RequestMapping(value="/reply_update.do", method = {RequestMethod.GET, RequestMethod.POST}) // 세부적인 url pattern
+	@ResponseBody
+	public String reply_update(HttpSession session,CommentDTO dto, HttpServletResponse response) throws Exception {
 
 		if (session.getAttribute("userData") != null) { // 로그인 상태일 때
 			dto.setUpreg_date(new java.sql.Timestamp(new java.util.Date().getTime())); // 현재시간을 등록시간에 담음
+
+			System.out.println("dto에 있는값들 출력함" + dto);
+
+			cSer.commentUpdate(dto);
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('댓글을 수정완료했습니다.');</script>");
+			out.println("<script>location.href='notice_view.do?postId="+dto.getPostId()+"'</script>");
+			out.flush();
+		}else {
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('로그인을 먼저 해주세요.');</script>");
+			out.println("<script>location.href='index.do'</script>");
+			out.flush();
+			return "index";
 		}
-		
-		dto.setcId(cId);
-		dto.setrContent(rContent);
-
-		System.out.println("dto에 있는값들 출력함" + dto);
-
-		cSer.commentUpdate(dto);
 
 		return "notice_view.do";
 
@@ -66,6 +78,7 @@ public class CommentController {
 
 	// 댓글 목록
 	@RequestMapping(value = "/reply_list.do", method = RequestMethod.GET)
+	@ResponseBody
 	public ModelAndView reply_list(@RequestParam int postId, ModelAndView mav) throws Exception {
 
 		List<CommentDTO> list = cSer.commentList(postId);
@@ -81,20 +94,33 @@ public class CommentController {
 
 	// 댓글 목록을 arraylist로 리턴함
 	@RequestMapping(value = "/reply_list_json.do", method = RequestMethod.GET)
+	@ResponseBody
 	public List<CommentDTO> listJson(@RequestParam int postId) {
 		List<CommentDTO> list = cSer.commentList(postId);
 		return list;
 	}
 
 	// 댓글 삭제
-	@RequestMapping(value = "/reply_delete.do", method = RequestMethod.GET) // 세부적인 url
-																											// pattern
-	public String reply_delete(@RequestParam(value = "cId") int cId) throws Exception {
-
+	@RequestMapping(value = "/reply_delete.do",method = {RequestMethod.GET, RequestMethod.POST} ) // 세부적인 url
+	@ResponseBody																									// pattern
+	public String reply_delete(HttpServletResponse response, HttpSession session, CommentDTO dto) throws Exception {
+		System.out.println("삭제");
 		// 파라미터로 받는 값은 자동적으로 String타입으로 변환되기 때문에 int타입으로 변환해주어야 한다.
-
-		cSer.commentDelete(cId);
-
+		if (session.getAttribute("userData") != null) { // 로그인 상태일 때
+			cSer.commentDelete(dto.getcId());
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('댓글을 삭제완료했습니다.');</script>");
+			out.println("<script>location.href='index.do?postId="+dto.getPostId()+"'</script>");
+			out.flush();
+		}else {
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('로그인을 먼저 해주세요.');</script>");
+			out.println("<script>location.href='index.do'</script>");
+			out.flush();
+			return "index";
+		}
 		return "notice_view.do";
 
 	}

@@ -87,17 +87,48 @@
 
 			<c:if test="${not empty sessionScope.userData}">
 				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item" style="margin-left: 50px; margin-top: 10px;"><a
-							class="nav-link js-scroll-trigger">${userData.userName} 님
-								환영합니다! </a></li>
-						<li class="nav-item" style="padding-left: 50px; margin-top: 10px;"><a
-							class="nav-link js-scroll-trigger" data-toggle="modal"
-							data-target="#btnSetting" aria-haspopup="true"
-							aria-expanded="false" role="button"> <img
-								src="<c:url value='/resources/icon/settings.png'/>"
-								style="width: 45px; height: 45px;"></a></li>
-					</ul>
+
+					<div class="navbar-nav ml-auto dropdown">
+						<a class="nav-link js-scroll-trigger dropdown-toggle "
+							type="button" id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" style = "color:black;">${userData.userName}
+							님 환영합니다! </a>
+						<div class="dropdown-menu" style="width: 400px;">
+							<div class="form-group" style="margin: 20px;">
+								<p>
+									이용권 : ${sessionScope.user_productName}
+									<button type="button" onclick="location.href='shop_main.do'"
+										style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">이용권
+										관리</button>
+								</p>
+								<br>
+								<p>이용권 등급 : ${sessionScope.user_shopData.productNum}</p>
+								<br>
+								<p>잔여 검색횟수 : ${sessionScope.user_shopData.reCount}회</p>
+								<br>
+								<p>이용권 기한 : ${sessionScope.user_shopData.checkOutTime} 까지</p>
+								<c:if test="${sessionScope.userData.userEmailCertified !=1}">
+									<p style="color:red;">이메일 인증이 되어있지 않습니다.</p>
+									<p style="color:red;">인증 완료시에만 검색이 가능합니다.</p>
+									<button type="button" onclick="location.href='emailSend.ing'"
+										style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">이메일 인증코드 재전송</button>
+								</c:if>
+								
+								<br>
+								<p>CASH : ${sessionScope.userData.cash}꿀</p>
+							</div>
+							<table class="table" style="text-align: center;">
+								<tbody>
+									<tr>
+										<td style="width: 50%;"><h3 class="pb-1"><a class="dropdown-item"
+											href="mypage.do">마이페이지</a></h3></td>
+										<td style="width: 50%;"><h3 class="pb-1"><a class="dropdown-item"
+											href="logout.ing">로그아웃</a></h3></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</c:if>
 			<!-- ///////////////////////////////------홈 & 로그인 & 회원가입 END------///////////////////////////////-->
@@ -141,16 +172,16 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach items="${list}" var="dto">
-										<tr>
-											<td>${dto.postId}</td>
-											<td>${dto.sContents}</td>
-											<td><a href="notice_view.do?postId=${dto.postId}">${dto.title}</a></td>
-											<td>${dto.userId}</td>
-											<td>${dto.viewcnt}</td>
-											<td>${dto.creatTime}</td>
-										</tr>
-									</c:forEach>
+										<c:forEach items="${list}" var="dto">
+											<tr>
+												<td>${dto.postId}</td>
+												<td>${dto.sContents}</td>
+												<td><a href="notice_view.do?postId=${dto.postId}">${dto.title}</a></td>
+												<td>${dto.userId}</td>
+												<td>${dto.viewcnt}</td>
+												<td>${dto.creatTime}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -187,9 +218,11 @@
 								aria-labelledby="nav-contact-tab">
 								<img src="<c:url value='/resources/icon/use.png'/>">
 							</div>
-							<button type="button" onclick="location.href='notice_Form.do'"
-				style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
-				글쓰기</button>
+							<c:if test="${sessionScope.userData.userAuthority == 3}">
+								<button type="button" onclick="location.href='notice_Form.do'"
+									style="background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
+									글쓰기</button>
+							</c:if>
 						</div>
 					</div>
 				</div>

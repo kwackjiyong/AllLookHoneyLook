@@ -54,9 +54,8 @@
 <!-- 재이쿼리 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 제이쿼리 END 건들면 사망 -->
-
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	$(function() {
 
@@ -67,20 +66,20 @@
 
 						//수정하는데 필요한 정보들, 댓글 번호, 글 내용, 작성자 아이디, 게시글 번호를 변수에 저장한다.
 						var cId = $("#cId").val();
-						var rContent = $("rContent").text();
+						var rContent = $("#rContent").text();
 						var userId = $("#userId").val();
 						var postId = $("#postId").val();
 
 						//페이지 관련 값들과 댓글 수정에 필요한 값들을 url로 전송한다.
-						document.form1.action = "reply_update.do?postId="
-								+ postId + "&rContent=" + encodeURI(rContent)
+						document.form1.action = "reply_update.do?cId=" + cId
+								+ "&rContent=" + encodeURI(rContent)
 								+ "&userId=" + userId + "&postId=" + postId;
 						document.form1.submit();
 
 						alert("댓글이 수정되었습니다.")
 					}
 				});
-
+			
 		//댓글 삭제 버튼
 		$("#btn_reply_Delete").click(
 				function() {
@@ -112,8 +111,9 @@
 		<h2>댓글 리스트</h2>
 		<table class="table">
 			<c:forEach var="row" items="${list}">
+
 				<tr>
-					<td>작성자 : ${row.userId} <br>${row.reg_date}<br><br>
+					<td>작성자 : ${row.userId} <br>${row.reg_date}<br> <br>
 
 						<form method="POST" id="form1">
 
@@ -122,21 +122,25 @@
 								value="${row.userId}"> <input type="hidden" id="postId"
 								name="postId" value="${row.postId}">
 
-							<textarea id="rContent" name="rContent" class="form-control">${row.rContent}</textarea>
-						</form> 
-						<!-- 본인일 경우에만 댓글 수정버튼과 댓글 삭제 버튼이 출력되도록 설정함 -->
-						<c:if test="${sessionScope.userData.userId == row.userId }">
+							<div>
+								<textarea id="rContent" name="rContent" class="form-control">${row.rContent}</textarea>
+							</div>
+						</form> <!-- 본인일 경우에만 댓글 수정버튼과 댓글 삭제 버튼이 출력되도록 설정함 --> <c:if
+							test="${sessionScope.userData.userId == row.userId }">
 							<button type="button" id="btn_reply_Update"
 								style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 								댓글 수정</button>
-							<button type="button" id="btn_reply_Delete"
+							<button type="button"
+								onclick="location.href='reply_delete.do?cId=${row.cId}'&postId=${row.postId}"
+								id="btn_reply_Delete"
 								style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 								댓글 삭제</button>
 
 						</c:if>
+
 					</td>
 				</tr>
-					
+
 				<!-- 폼태그 안에 위쪽에 있는 자바스크립트 구문에 필요한 값들을 노출시키지 않게 하기 위해 hidden타입으로 값들을 전달한다. -->
 			</c:forEach>
 		</table>

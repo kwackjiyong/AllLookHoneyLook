@@ -512,10 +512,10 @@
 
 			<div class="row mt-5 justify-content-center">
 				<h6 class="col-md-3">
-					<a href="about_us.do">이용약관</a>
+					<a href="Terms_of_Use.do">이용약관</a>
 				</h6>
 				<h6 class="col-md-3">
-					<a href="#">개인정보처리방침</a>
+					<a href="privacy.do">개인정보처리방침</a>
 				</h6>
 				<h6 class="col-md-3">
 					<a href="notice_board.do">공지사항</a>
@@ -561,50 +561,7 @@
 
 	<script src="<c:url value='/resources/template/js/typed.js'/>"></script>
 
-	<script>
-		var typed = new Typed('.typed-words', {
-			strings : [ " 모든 중고제품을 여기서 만나보세요.", " 희수♥지용", " 다양한 카테고리로 검색해보세요",
-					" 최저가의 제품을 찾아보세요" ],
-			typeSpeed : 80,
-			backSpeed : 80,
-			backDelay : 4000,
-			startDelay : 1000,
-			loop : true,
-			showCursor : true
-		});
-	</script>
-
-	<!-- 테이블템플릿 자바스크립트 -->
-	<!-- DataTables JavaScript -->
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-		$(document).ready(function() {
-			$('#example').DataTable({
-				"lengthMenu" : [ 5, 10, 25, 50, 100 ],
-				"scrollY" : 400,
-				"scrollCollapse" : true,
-				"pagingType" : "full_numbers",
-				"language" : {
-					search : "리스트 내 검색 : ",
-					"info" : "총 _PAGES_ 페이지 중 _PAGE_ 페이지 ",
-					"infoEmpty" : "검색 결과가 없습니다.",
-					"infoFiltered" : " ( _MAX_개의 검색결과 중)",
-					"lengthMenu" : "_MENU_ 개씩 보기",
-					"paginate" : {
-						"first" : "처음",
-						"last" : "마지막",
-						"next" : "다음",
-						"previous" : "이전"
-					}
-
-				}
-
-			});
-		});
-	</script>
+	
 	<!-- 테이블템플릿 자바스크립트 건들면 사망 -->
 </body>
 </html>

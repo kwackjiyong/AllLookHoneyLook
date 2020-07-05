@@ -16,9 +16,9 @@ public interface ICommentDAO {
     public int commentInsert(CommentDTO comment);
     
     // 댓글 수정
-    public void commentUpdate(CommentDTO comment);
+    public int commentUpdate(CommentDTO comment);
  
     // 댓글 삭제
-    public void commentDelete(int cId);
+    public int commentDelete(int cId);
 
 }

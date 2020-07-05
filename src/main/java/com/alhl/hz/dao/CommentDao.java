@@ -32,14 +32,14 @@ public class CommentDao implements ICommentDAO{
 
 	//댓글 수정
 	@Override
-	public void commentUpdate(CommentDTO comment) {
-		mybatis.update("commentMapper.cUpdate",comment);
+	public int commentUpdate(CommentDTO comment) {
+		return mybatis.update("commentMapper.cUpdate",comment);
 	}
 
 	//댓글 삭제
 	@Override
-	public void commentDelete(int cId) {
-		 mybatis.delete("commentMapper.cDelete",cId);
+	public int commentDelete(int cId) {
+		return mybatis.delete("commentMapper.cDelete",cId);
 	}
 	
 	

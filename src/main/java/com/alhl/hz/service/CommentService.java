@@ -35,14 +35,14 @@ public class CommentService implements ICommentService{
 	
 	// 댓글 수정
 	@Override
-	public void commentUpdate(CommentDTO comment) {
-		dao.commentUpdate(comment);
+	public int commentUpdate(CommentDTO comment) {
+		return dao.commentUpdate(comment);
 	}
 	
 	// 댓글 삭제
 	@Override
-	public void commentDelete(int cId) {
-		dao.commentDelete(cId);
+	public int commentDelete(int cId) {
+		return dao.commentDelete(cId);
 	}
 	
 }

@@ -53,6 +53,12 @@ public class CommentDTO {
 	public void setUpreg_date(Timestamp upreg_date) {
 		this.upreg_date = upreg_date;
 	}
+	@Override
+	public String toString() {
+		return "CommentDTO [cId=" + cId + ", postId=" + postId + ", rContent=" + rContent + ", userId=" + userId
+				+ ", userName=" + userName + ", reg_date=" + reg_date + ", upreg_date=" + upreg_date + "]";
+	}
+	
 	
     
     

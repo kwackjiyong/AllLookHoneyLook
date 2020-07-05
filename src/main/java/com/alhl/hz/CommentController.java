@@ -48,31 +48,21 @@ public class CommentController {
 	}
 
 	// 댓글 수정
-	@RequestMapping(value="/reply_update.do", method = {RequestMethod.GET, RequestMethod.POST}) // 세부적인 url pattern
+	@RequestMapping(value = "/reply_update.do", method = { RequestMethod.GET, RequestMethod.POST }) // 세부적인 url pattern
 	@ResponseBody
-	public String reply_update(HttpSession session,CommentDTO dto, HttpServletResponse response) throws Exception {
+	public int reply_update(@RequestParam int cId, @RequestParam String rContent, @RequestParam int postId,
+			@RequestParam String userId, HttpSession session, CommentDTO dto, HttpServletResponse response)
+			throws Exception {
 
-		if (session.getAttribute("userData") != null) { // 로그인 상태일 때
-			dto.setUpreg_date(new java.sql.Timestamp(new java.util.Date().getTime())); // 현재시간을 등록시간에 담음
+		System.out.println("dto에 있는값들 출력함" + dto);
 
-			System.out.println("dto에 있는값들 출력함" + dto);
+		dto = new CommentDTO();
+		dto.setcId(cId);
+		dto.setrContent(rContent);
+		dto.setPostId(postId);
+		dto.setUserId(userId);
 
-			cSer.commentUpdate(dto);
-			PrintWriter out;
-			out = response.getWriter();
-			out.println("<script>alert('댓글을 수정완료했습니다.');</script>");
-			out.println("<script>location.href='notice_view.do?postId="+dto.getPostId()+"'</script>");
-			out.flush();
-		}else {
-			PrintWriter out;
-			out = response.getWriter();
-			out.println("<script>alert('로그인을 먼저 해주세요.');</script>");
-			out.println("<script>location.href='index.do'</script>");
-			out.flush();
-			return "index";
-		}
-
-		return "notice_view.do";
+		return cSer.commentUpdate(dto);
 
 	}
 
@@ -101,27 +91,16 @@ public class CommentController {
 	}
 
 	// 댓글 삭제
-	@RequestMapping(value = "/reply_delete.do",method = {RequestMethod.GET, RequestMethod.POST} ) // 세부적인 url
-	@ResponseBody																									// pattern
-	public String reply_delete(HttpServletResponse response, HttpSession session, CommentDTO dto) throws Exception {
+	@RequestMapping(value = "/reply_delete.do", method = { RequestMethod.GET, RequestMethod.POST }) // 세부적인 url
+	@ResponseBody // pattern
+	public int reply_delete(@RequestParam int cId, HttpServletResponse response, HttpSession session, CommentDTO dto)
+			throws Exception {
 		System.out.println("삭제");
-		// 파라미터로 받는 값은 자동적으로 String타입으로 변환되기 때문에 int타입으로 변환해주어야 한다.
-		if (session.getAttribute("userData") != null) { // 로그인 상태일 때
-			cSer.commentDelete(dto.getcId());
-			PrintWriter out;
-			out = response.getWriter();
-			out.println("<script>alert('댓글을 삭제완료했습니다.');</script>");
-			out.println("<script>location.href='index.do?postId="+dto.getPostId()+"'</script>");
-			out.flush();
-		}else {
-			PrintWriter out;
-			out = response.getWriter();
-			out.println("<script>alert('로그인을 먼저 해주세요.');</script>");
-			out.println("<script>location.href='index.do'</script>");
-			out.flush();
-			return "index";
-		}
-		return "notice_view.do";
+
+		dto = new CommentDTO();
+		dto.setcId(cId);
+
+		return cSer.commentDelete(cId);
 
 	}
 

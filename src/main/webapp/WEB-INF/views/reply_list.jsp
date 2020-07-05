@@ -60,46 +60,65 @@
 	$(function() {
 
 		//댓글 수정 버튼
-		$("#btn_reply_Update").click(
-				function() {
-					if (confirm("수정 하시겠습니까?")) {
+		$("#btn_reply_Update").click(function() {
+			if (confirm("수정 하시겠습니까?")) {
 
-						//수정하는데 필요한 정보들, 댓글 번호, 글 내용, 작성자 아이디, 게시글 번호를 변수에 저장한다.
-						var cId = $("#cId").val();
-						var rContent = $("#rContent").text();
-						var userId = $("#userId").val();
-						var postId = $("#postId").val();
+				var cId = $("#cId").val();
+				var postId = $("#postId").val();
+				var rContent = $("textarea#rContent2").val();
+				var userId = $("#userId").val();
 
-						//페이지 관련 값들과 댓글 수정에 필요한 값들을 url로 전송한다.
-						document.form1.action = "reply_update.do?cId=" + cId
-								+ "&rContent=" + encodeURI(rContent)
-								+ "&userId=" + userId + "&postId=" + postId;
-						document.form1.submit();
+				$.ajax({
+					url : 'reply_update.do',
+					type : 'post',
+					data : {
+						'rContent' : rContent,
+						'cId' : cId,
+						'userId' : userId,
+						'postId' : postId
+					},
+					success : function(data) {
 
-						alert("댓글이 수정되었습니다.")
+						if (data == 1) {
+							commentList(postId); //댓글 수정후 목록 출력							
+						}
+
 					}
 				});
-			
+
+				alert("댓글이 수정되었습니다.")
+			}
+		});
+
 		//댓글 삭제 버튼
-		$("#btn_reply_Delete").click(
-				function() {
+		$("#btn_reply_Delete").click(function() {
 
-					if (confirm("삭제 하시겠습니까?")) {
+			if (confirm("삭제 하시겠습니까?")) {
 
-						//댓글 삭제를 하기위해 댓글 번호, 글 번호, 댓글 내용, 그리고 게시글 세부 페이지로 포워딩 하기 위해 페이지 관련 값들을 변수에 저장한다.
-						var cId = $("#cId").val();
-						var postId = $("#postId").val();
-						var rContent = $("#rContent").text();
+				//댓글 삭제를 하기위해 댓글 번호, 글 번호, 댓글 내용, 그리고 게시글 세부 페이지로 포워딩 하기 위해 페이지 관련 값들을 변수에 저장한다.
+				var cId = $("#cId").val();
+		/* 		var postId = $("#postId").val();
+				var rContent = $("textarea#rContent2").val(); */
 
-						//url로 삭제에 필요한 변수들을 보낸다.
-						document.form1.action = "reply_delete.do?cId=" + cId
-								+ "&postId=" + postId;
-						document.form1.submit();
+				$.ajax({
+					url : 'reply_delete.do',
+					type : 'post',
+					data : {
+						/* 'rContent' : rContent, */
+						'cId' : cId,
+						/* 'postId' : postId */
+					},
+					success : function(data) {
 
-						alert("댓글이 삭제되었습니다.")
-
+						if (data == 1) {
+							commentList(postId); //댓글 수정후 목록 출력							
+						}
 					}
 				});
+				alert("댓글이 삭제되었습니다.")
+
+			}
+		});
 	});
 </script>
 
@@ -123,16 +142,14 @@
 								name="postId" value="${row.postId}">
 
 							<div>
-								<textarea id="rContent" name="rContent" class="form-control">${row.rContent}</textarea>
+								<textarea id="rContent2" name="rContent" class="form-control">${row.rContent}</textarea>
 							</div>
 						</form> <!-- 본인일 경우에만 댓글 수정버튼과 댓글 삭제 버튼이 출력되도록 설정함 --> <c:if
 							test="${sessionScope.userData.userId == row.userId }">
 							<button type="button" id="btn_reply_Update"
 								style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 								댓글 수정</button>
-							<button type="button"
-								onclick="location.href='reply_delete.do?cId=${row.cId}'&postId=${row.postId}"
-								id="btn_reply_Delete"
+							<button type="button" id="btn_reply_Delete"
 								style="float: right; background-color: #9F6118; border: 1px solid transparent; outline: none; color: white; margin: 0px 4px; padding: 6px 12px; border-radius: .25rem">
 								댓글 삭제</button>
 

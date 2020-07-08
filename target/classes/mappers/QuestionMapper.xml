@@ -7,12 +7,12 @@
 	
 	<!-- 모든 문의 정보 목록 -->
 	<select id="question_info_ALL" resultType="QuestionDTO">
-		SELECT * FROM question
+		SELECT * FROM question ORDER BY queId DESC
 	</select>
 	
 	<!-- 사용자의 문의 정보 목록 -->
 	<select id="question_info_user" parameterType="UserDTO" resultType="QuestionDTO">
-		SELECT * FROM question WHERE userId = #{userId}
+		SELECT * FROM question WHERE userId = #{userId} ORDER BY queId DESC
 	</select>
 	
 	<!-- 문의 정보 -->

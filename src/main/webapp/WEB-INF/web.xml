@@ -51,5 +51,7 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	<listener>
+		<listener-class>com.alhl.hz.listener.SessionListener</listener-class>
+	</listener>   
 </web-app>

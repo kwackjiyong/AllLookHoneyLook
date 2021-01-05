@@ -6,17 +6,17 @@
 <mapper namespace="userMapper">
 	<!-- 아래부터 내가만든 -->
 	<select id="userSelectALL" resultType="UserDTO">
-		SELECT * FROM USERDATA
+		SELECT * FROM userdata
 	</select>
 
 	<select resultType="UserDTO" parameterType="UserDTO"
-		id="userSelectAll">SELECT * FROM USERDATA</select>
+		id="userSelectAll">SELECT * FROM userdata</select>
 
 	<select resultType="UserDTO" parameterType="UserDTO"
-		id="userSelectOne">SELECT * FROM USERDATA WHERE userId=#{userId}</select>
+		id="userSelectOne">SELECT * FROM userdata WHERE userId=#{userId}</select>
 
 	<insert id="userInsert" parameterType="UserDTO" >
-		INSERT INTO USERDATA
+		INSERT INTO userdata
 		(userId,userName,userPassword,userBirth,creatTime,userGender,userEmail,userEmailHash,userEmailCertified)
 		VALUES
 		(#{userId}, #{userName},
@@ -24,24 +24,24 @@
 	</insert>
 
 	<update id="userModify" parameterType="UserDTO">
-		UPDATE USERDATA SET
+		UPDATE userdata SET
 		userPassword=#{userPassword},userEmail=#{userEmail}
 		WHERE userId=#{userId}
 	</update>
 	
 	<update id="userEmailCheck" parameterType="UserDTO">
-		UPDATE USERDATA SET
+		UPDATE userdata SET
 		userEmailCertified=1
 		WHERE userId=#{userId}
 	</update>
 	
 	<update id="userUpdate_Cash" parameterType="UserDTO">
-		UPDATE USERDATA SET
+		UPDATE userdata SET
 		cash=#{cash}
 		WHERE userId=#{userId}
 	</update>
 	<delete id="userDelete" parameterType="UserDTO">
-		DELETE FROM USERDATA
+		DELETE FROM userdata
 		WHERE userId=#{userId}
 	</delete>
 

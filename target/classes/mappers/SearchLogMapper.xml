@@ -38,7 +38,7 @@
 		FROM searchlog
 		where userId in 
 		(SELECT userId
-		FROM USERDATA 
+		FROM userdata 
 		<![CDATA[
 		WHERE userBirth < #{userBirth} AND userBirth > #{creatTime}
 		]]>)

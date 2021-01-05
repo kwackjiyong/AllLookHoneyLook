@@ -48,7 +48,8 @@ public class JsoupParser {
 	public static void webDriver_init(HttpServletRequest request){
 		// 서블릿 리퀘스트로부터 실제 프로젝트 경로를 받아옴
 		String path = request.getSession().getServletContext().getRealPath("");
-		path = path + "resources/chromedriver/chromedriver.exe";
+		//path = path + "resources/chromedriver/chromedriver.exe";
+		path = path + "resources/chromedriver/chromedriver";
 		System.out.println("리소스 드라이버 경로:" + path);
 		System.setProperty("webdriver.chrome.driver", path); // 크롬 드라이버 생성
 		// Driver 옵션추가

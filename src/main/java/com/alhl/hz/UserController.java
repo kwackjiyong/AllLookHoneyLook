@@ -1,6 +1,7 @@
 package com.alhl.hz;
 
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
@@ -164,8 +165,14 @@ public class UserController {
 				out.flush();
 			}
 		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String exceptionAsString = sw.toString();
+			String tempppp = exceptionAsString.split("\n", 0)[0];
+			System.out.println(exceptionAsString);
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('" + userdto.getUserId() + "는 존재하지 않는 아이디입니다.');</script>");
+			out.println("<script>alert('로그인 오류');</script>");
+			out.println("<script>alert('오류내용 : " +tempppp+ "');</script>");
 			out.flush();
 		} finally {
 			PrintWriter out = response.getWriter();

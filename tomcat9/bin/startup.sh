@@ -56,5 +56,5 @@ else
     exit 1
   fi
 fi
-chmod 755 /var/lib/jenkins/workspace/AllLookHoneyLook/tomcat9/webapps/AllLookHoneyLook/resources/chromedriver/chromedriver
+
 exec "$PRGDIR"/"$EXECUTABLE" start "$@"

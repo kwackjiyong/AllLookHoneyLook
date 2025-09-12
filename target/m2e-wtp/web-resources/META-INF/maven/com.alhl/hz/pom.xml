@@ -150,7 +150,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>6.0.8.Final</version>
+			<version>6.2.0.Final</version>
 		</dependency>
 
 		<dependency>
